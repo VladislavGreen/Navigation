@@ -8,7 +8,7 @@ import UIKit
 
 class PostViewController: UIViewController {
  
-    var dataSource = Post(title: "Click the button to see the next button")
+    var dataSource = Post(title: "Click the flame button to see what's next")
                                
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -18,15 +18,21 @@ class PostViewController: UIViewController {
         return label
     }()
     
-    private lazy var button: UIButton = {
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50 ))
-        button.setTitle("See Info", for: .normal)
-        button.layer.cornerRadius = 5
-        button.backgroundColor = .systemGreen
-        button.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
-        return button
-    }()
+    private var barButtonItem = UIBarButtonItem (
+        title: "Continue",
+        style: .plain,
+        target: PostViewController.self,
+        action: #selector(didTapButton(sender:))
+    )
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let barButtonItemImage = UIImage(systemName: "flame")
+        let barButtonItem = UIBarButtonItem(image: barButtonItemImage, style: .plain, target: self, action: #selector(didTapButton))
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -35,24 +41,19 @@ class PostViewController: UIViewController {
     func setupUI() {
         setupConstraints()
         titleLabel.text = dataSource.title
-        
-        self.view.addSubview(self.button)
-        self.button.center = self.view.center
-        
         view.backgroundColor = .green
     }
 
     func setupConstraints() {
         view.addSubview(titleLabel)
-        view.addSubview(button)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
-    @objc private func didTapButton() {
+    @objc private func didTapButton(sender: UIBarButtonItem) {
         self.present(InfoViewController(), animated: true, completion: nil)
     }
 
