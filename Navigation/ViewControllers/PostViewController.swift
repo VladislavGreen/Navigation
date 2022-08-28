@@ -42,6 +42,7 @@ class PostViewController: UIViewController {
         setupConstraints()
         titleLabel.text = dataSource.title
         view.backgroundColor = .green
+        navigationItem.title = "Post"
     }
 
     func setupConstraints() {

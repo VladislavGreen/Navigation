@@ -20,14 +20,14 @@ class TabBarController: UITabBarController {
         
         self.viewControllers = [feedViewController, profileViewController]
         
-        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "list.dash"), tag: 0)
-        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.crop.circle"), tag: 1)
+        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
+        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
 
         feedViewController.tabBarItem = item1
         profileViewController.tabBarItem = item2
         
-        UITabBar.appearance().tintColor = UIColor(red: 0/255.0, green: 146/255.0, blue: 0/255.0, alpha: 1.0)
-        UITabBar.appearance().backgroundColor = .systemGray
+//        UITabBar.appearance().tintColor = UIColor(red: 0/255.0, green: 146/255.0, blue: 0/255.0, alpha: 1.0)
+        UITabBar.appearance().backgroundColor = .white
     }
     
 }

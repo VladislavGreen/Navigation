@@ -10,7 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
     
     private lazy var button: UIButton = {
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50 ))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50 ))
         button.setTitle("Show Post", for: .normal)
         button.layer.cornerRadius = 5
         button.backgroundColor = .systemGreen
