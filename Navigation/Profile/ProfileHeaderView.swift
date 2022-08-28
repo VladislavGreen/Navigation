@@ -63,25 +63,36 @@ class ProfileHeaderView: UIView {
     
     //    Поле статуса
     
+    var statusText: String = "Waiting for something..."
+    
     var statusTextField : UITextField = {
-        let textField = UITextField()
+        
+        var textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.text = "Waiting for something..."
         textField.textColor = .gray
+
+//  Перенесено во View Controller (viewDidLoad Setup)
+//        textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: UIControl.Event.editingChanged)
+        
+        textField.clearsOnBeginEditing = true
+    
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
+        
     }()
     
-    
-    
-    
-    
-    
-    
+//  Перенесено во View Controller
+//    @objc func statusTextChanged(_ textField: UITextField) {
+//        statusText = textField.text!
+//        print("text changed")
+//    }
+
     
     @objc func buttonPressed() {
-        let currentStatus = statusTextField.text!
-        print(currentStatus)
+        let currentStatus = statusText
+        statusTextField.text = currentStatus
+        print(currentStatus as Any)
     }
     
 }

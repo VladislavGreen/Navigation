@@ -43,6 +43,9 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         // Profile pic rounding
         self.roundingUIView(aView: profileHeaderView.profileImageView, cornerRadiusParam: 50)
         self.roundingUIView(aView: profileHeaderView.profileImageViewBackground, cornerRadiusParam: 50)
+        
+        //  работа с полем статуса (пришлось перенести сюда, иначе крашилось)
+        profileHeaderView.statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: UIControl.Event.editingChanged)
 
         setupConstraints()
       }
@@ -105,4 +108,8 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
            aView.layer.cornerRadius = cornerRadiusParam
        }
 
+    @objc func statusTextChanged(_ textField: UITextField) {
+        profileHeaderView.statusText = textField.text!
+//        print("text changed")
+    }
 }
