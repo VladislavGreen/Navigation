@@ -11,6 +11,9 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
     let profileHeaderView = ProfileHeaderView()
     
+//    override func loadView() {
+//            self.view = ProfileHeaderView()
+//        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,91 +28,11 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     }
     
     func setupUI() {
-        view.backgroundColor = .lightGray
-
         let profileNavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
         profileNavigationBar.backgroundColor = .white
         navigationItem.title = "Profile"
         
         view.addSubview(profileNavigationBar)
-        
-        view.addSubview(profileHeaderView.profileImageView)
-        view.addSubview(profileHeaderView.profileImageViewBackground)
-        
-        view.addSubview(profileHeaderView.userName)
-        
-        view.addSubview(profileHeaderView.statusTextField)
-        
-        // Profile pic rounding
-        self.roundingUIView(aView: profileHeaderView.profileImageView, cornerRadiusParam: 50)
-        self.roundingUIView(aView: profileHeaderView.profileImageViewBackground, cornerRadiusParam: 50)
-        
-        //  работа с полем статуса (пришлось перенести сюда, иначе крашилось)
-        profileHeaderView.statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: UIControl.Event.editingChanged)
-
-        setupConstraints()
-      }
-   
-    func setupConstraints() {
-        
-        view.addSubview(profileHeaderView.userName)
-        view.addSubview(profileHeaderView.showStatusButton)
-        view.addSubview(profileHeaderView.profileImageView)
-        view.addSubview(profileHeaderView.profileImageViewBackground)
-        view.addSubview(profileHeaderView.statusTextField)
-        
-        NSLayoutConstraint.activate([
-            
-            // Profile Pic and Background
-            profileHeaderView.profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 116),
-            profileHeaderView.profileImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            profileHeaderView.profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileHeaderView.profileImageView.heightAnchor.constraint(equalToConstant: 100),
-            
-            profileHeaderView.profileImageViewBackground.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            profileHeaderView.profileImageViewBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: 116),
-            profileHeaderView.profileImageViewBackground.widthAnchor.constraint(equalToConstant: 100),
-            profileHeaderView.profileImageViewBackground.heightAnchor.constraint(equalToConstant: 100),
-            profileHeaderView.profileImageViewBackground.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 216),
-            
-            //  User Name
-            profileHeaderView.userName.leftAnchor.constraint(
-                equalTo: profileHeaderView.profileImageViewBackground.rightAnchor,
-                constant: 16
-            ),
-            profileHeaderView.userName.topAnchor.constraint(equalTo: view.topAnchor, constant: 127),
-
-            //  Status Button
-            profileHeaderView.showStatusButton.topAnchor.constraint(
-                equalTo: profileHeaderView.profileImageViewBackground.bottomAnchor,
-                constant: 16),
-            profileHeaderView.showStatusButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            profileHeaderView.showStatusButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            profileHeaderView.showStatusButton.heightAnchor.constraint(equalToConstant: 50),
-
-
-            
-            //  Status Text Field
-            profileHeaderView.statusTextField.leftAnchor.constraint(
-                equalTo: profileHeaderView.profileImageViewBackground.rightAnchor,
-                constant: 16
-            ),
-            profileHeaderView.statusTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            profileHeaderView.statusTextField.heightAnchor.constraint(equalToConstant: 50),
-            profileHeaderView.statusTextField.bottomAnchor.constraint(
-                equalTo: profileHeaderView.showStatusButton.topAnchor,
-                constant: -18),
-        ])
-
     }
-    
-    func roundingUIView(aView: UIView!, cornerRadiusParam: CGFloat!) {
-           aView.clipsToBounds = true
-           aView.layer.cornerRadius = cornerRadiusParam
-       }
 
-    @objc func statusTextChanged(_ textField: UITextField) {
-        profileHeaderView.statusText = textField.text!
-//        print("text changed")
-    }
 }
