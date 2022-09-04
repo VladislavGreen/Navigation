@@ -12,7 +12,7 @@ class ProfileHeaderView: UIView {
     
     //    Аватарка
     
-    var profileImageView: UIImageView = {
+    var avatarImageView: UIImageView = {
         let profilePic = UIImageView()
         let picture = UIImage(named: "cat")
         profilePic.image = picture
@@ -20,7 +20,7 @@ class ProfileHeaderView: UIView {
         return profilePic
     }()
     
-    var profileImageViewBackground: UIView = {
+    var avatarImageViewBackground: UIView = {
         let picBackground = UIView()
         picBackground.layer.borderColor = UIColor.white.cgColor
         picBackground.layer.borderWidth = 3
@@ -32,7 +32,7 @@ class ProfileHeaderView: UIView {
     
     //    Имя пользователя
     
-    let userName: UILabel = {
+    let fullNameLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         label.text = "Waiter Cat"
         label.textColor = .black
@@ -44,7 +44,7 @@ class ProfileHeaderView: UIView {
     
     //  Текущий статус
     
-    var currentStatus: UILabel = {
+    var statusLabel: UILabel = {
         let status = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         status.text = "Waiting for something..."
         status.textColor = .gray
@@ -54,9 +54,29 @@ class ProfileHeaderView: UIView {
     }()
     
     
+    //    Поле ввода статуса
+    
+    private var statusText: String = "Waiting for something..."
+    
+    var statusTextField : UITextField = {
+        
+        var textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.placeholder = " Type something here"
+        textField.textColor = .black
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 12
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.clearsOnBeginEditing = true
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    
     //    Кнопка Show status
     
-    lazy var showStatusButton: UIButton = {
+    lazy var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -72,40 +92,39 @@ class ProfileHeaderView: UIView {
     }()
     
     
-    //    Поле ввода статуса
+    //  Новая кнопка
     
-    private var statusText: String = "Waiting for something..."
-    
-    var statusTextField : UITextField = {
-        
-        var textField = UITextField()
-        textField.font = UIFont.systemFont(ofSize: 15)
-        textField.text = " Type something here"
-        textField.textColor = .black
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.clearsOnBeginEditing = true
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
+    lazy var newButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("New Button", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+//        button.layer.cornerRadius = 4
+//        button.layer.shadowOffset.width = 4
+//        button.layer.shadowOffset.height = 4
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowOpacity = 0.7
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .lightGray
+//        backgroundColor = .lightGray
         
-        addSubview(profileImageView)
-        addSubview(profileImageViewBackground)
-        addSubview(userName)
-        addSubview(currentStatus)
+        addSubview(avatarImageView)
+        addSubview(avatarImageViewBackground)
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
         addSubview(statusTextField)
+        addSubview(newButton)
         
         // Profile pic rounding
-        self.roundingUIView(aView: profileImageView, cornerRadiusParam: 50)
-        self.roundingUIView(aView: profileImageViewBackground, cornerRadiusParam: 50)
+        self.roundingUIView(aView: avatarImageView, cornerRadiusParam: 50)
+        self.roundingUIView(aView: avatarImageViewBackground, cornerRadiusParam: 50)
         
         statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: UIControl.Event.editingChanged)
 
@@ -120,63 +139,70 @@ class ProfileHeaderView: UIView {
     
     func setupConstraints() {
         
-        addSubview(userName)
-        addSubview(showStatusButton)
-        addSubview(profileImageView)
-        addSubview(profileImageViewBackground)
-        addSubview(currentStatus)
+        addSubview(avatarImageView)
+        addSubview(avatarImageViewBackground)
+        addSubview(fullNameLabel)
+        addSubview(setStatusButton)
+        addSubview(statusLabel)
         addSubview(statusTextField)
+        addSubview(newButton)
         
         NSLayoutConstraint.activate([
             
             // Profile Pic and Background
-            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 116),
-            profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 116),
+            avatarImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
             
-            profileImageViewBackground.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            profileImageViewBackground.topAnchor.constraint(equalTo: topAnchor, constant: 116),
-            profileImageViewBackground.widthAnchor.constraint(equalToConstant: 100),
-            profileImageViewBackground.heightAnchor.constraint(equalToConstant: 100),
-            profileImageViewBackground.bottomAnchor.constraint(equalTo: topAnchor, constant: 216),
+            avatarImageViewBackground.topAnchor.constraint(equalTo: topAnchor, constant: 116),
+            avatarImageViewBackground.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            avatarImageViewBackground.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageViewBackground.heightAnchor.constraint(equalToConstant: 100),
+            avatarImageViewBackground.bottomAnchor.constraint(equalTo: topAnchor, constant: 216),
             
             //  User Name
-            userName.leftAnchor.constraint(
-                equalTo: profileImageViewBackground.rightAnchor,
+            fullNameLabel.leadingAnchor.constraint(
+                equalTo: avatarImageView.trailingAnchor,
                 constant: 16
             ),
-            userName.topAnchor.constraint(equalTo: topAnchor, constant: 127),
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 127),
 
             //  Status Button
-            showStatusButton.topAnchor.constraint(
-                equalTo: profileImageViewBackground.bottomAnchor,
+            setStatusButton.topAnchor.constraint(
+                equalTo: avatarImageView.bottomAnchor,
                 constant: 66),
-            showStatusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            showStatusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            setStatusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            setStatusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
 
             //  Current Status
-            currentStatus.leftAnchor.constraint(
-                equalTo: profileImageViewBackground.rightAnchor,
+            statusLabel.leftAnchor.constraint(
+                equalTo: avatarImageViewBackground.rightAnchor,
                 constant: 16
             ),
-            currentStatus.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            currentStatus.heightAnchor.constraint(equalToConstant: 50),
-            currentStatus.bottomAnchor.constraint(
+            statusLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            statusLabel.heightAnchor.constraint(equalToConstant: 50),
+            statusLabel.bottomAnchor.constraint(
                 equalTo: statusTextField.topAnchor,
                 constant: -0),
             
             //  Status Text Field
             statusTextField.leftAnchor.constraint(
-                equalTo: profileImageViewBackground.rightAnchor,
+                equalTo: avatarImageViewBackground.rightAnchor,
                 constant: 16
             ),
             statusTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             statusTextField.bottomAnchor.constraint(
-                equalTo: showStatusButton.topAnchor,
+                equalTo: setStatusButton.topAnchor,
                 constant: -18),
+            
+            //  New Button
+            newButton.leftAnchor.constraint(equalTo: leftAnchor),
+            newButton.rightAnchor.constraint(equalTo: rightAnchor),
+            newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+                                             
         ])
 
     }
@@ -195,8 +221,8 @@ class ProfileHeaderView: UIView {
     
     @objc func buttonPressed() {
         let newStatus = statusText
-        currentStatus.text = newStatus
-        print(currentStatus as Any)
+        statusLabel.text = newStatus
+        print(statusLabel as Any)
     }
     
 }
