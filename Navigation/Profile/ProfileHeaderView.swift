@@ -99,28 +99,13 @@ class ProfileHeaderView: UIView {
         button.setTitle("New Button", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
-//        button.layer.cornerRadius = 4
-//        button.layer.shadowOffset.width = 4
-//        button.layer.shadowOffset.height = 4
-//        button.layer.shadowColor = UIColor.black.cgColor
-//        button.layer.shadowOpacity = 0.7
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        backgroundColor = .lightGray
-        
-        addSubview(avatarImageView)
-        addSubview(avatarImageViewBackground)
-        addSubview(fullNameLabel)
-        addSubview(statusLabel)
-        addSubview(statusTextField)
-        addSubview(newButton)
         
         // Profile pic rounding
         self.roundingUIView(aView: avatarImageView, cornerRadiusParam: 50)
@@ -162,47 +147,31 @@ class ProfileHeaderView: UIView {
             avatarImageViewBackground.bottomAnchor.constraint(equalTo: topAnchor, constant: 216),
             
             //  User Name
-            fullNameLabel.leadingAnchor.constraint(
-                equalTo: avatarImageView.trailingAnchor,
-                constant: 16
-            ),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 127),
 
             //  Status Button
-            setStatusButton.topAnchor.constraint(
-                equalTo: avatarImageView.bottomAnchor,
-                constant: 66),
+            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 66),
             setStatusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             setStatusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
 
             //  Current Status
-            statusLabel.leftAnchor.constraint(
-                equalTo: avatarImageViewBackground.rightAnchor,
-                constant: 16
-            ),
+            statusLabel.leftAnchor.constraint(equalTo: avatarImageViewBackground.rightAnchor, constant: 16),
             statusLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             statusLabel.heightAnchor.constraint(equalToConstant: 50),
-            statusLabel.bottomAnchor.constraint(
-                equalTo: statusTextField.topAnchor,
-                constant: -0),
+            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -0),
             
             //  Status Text Field
-            statusTextField.leftAnchor.constraint(
-                equalTo: avatarImageViewBackground.rightAnchor,
-                constant: 16
-            ),
+            statusTextField.leftAnchor.constraint(equalTo: avatarImageViewBackground.rightAnchor, constant: 16),
             statusTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.bottomAnchor.constraint(
-                equalTo: setStatusButton.topAnchor,
-                constant: -18),
+            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -18),
             
             //  New Button
             newButton.leftAnchor.constraint(equalTo: leftAnchor),
             newButton.rightAnchor.constraint(equalTo: rightAnchor),
             newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-                                             
         ])
 
     }
@@ -216,7 +185,6 @@ class ProfileHeaderView: UIView {
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? "No text"
-//        print("text changed")
     }
     
     @objc func buttonPressed() {

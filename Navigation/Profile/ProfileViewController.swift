@@ -11,7 +11,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
     let profileHeaderView = ProfileHeaderView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
