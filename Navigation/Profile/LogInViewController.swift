@@ -23,6 +23,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return scrollView
     }()
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+//        stackView.layer.borderColor = UIColor.lightGray.cgColor
+//        stackView.layer.borderWidth = 0.5
+        stackView.distribution = .equalCentering
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private lazy var stackViewTextFields: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -36,32 +46,37 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.tag = 0
-        textField.keyboardType = .emailAddress
-        textField.textColor = .black
-        textField.font = .systemFont(ofSize: 16)
-        textField.tintColor = .gray
-        textField.backgroundColor = .systemGray6
-        textField.autocapitalizationType = .none
-        textField.placeholder = "Email or phone"
-        textField.clearButtonMode = .whileEditing
-        textField.delegate = self
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
-    private lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.tag = 1
+//        textField.tag = 0
         textField.keyboardType = .default
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 16)
         textField.tintColor = .gray
         textField.backgroundColor = .systemGray6
         textField.autocapitalizationType = .none
-        textField.placeholder = "Password"
+        textField.placeholder = " Email or phone"
+        textField.clearButtonMode = .whileEditing
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+//        textField.tag = 1
+        textField.keyboardType = .default
+        textField.textColor = .black
+        textField.font = .systemFont(ofSize: 16)
+        textField.tintColor = .gray
+        textField.backgroundColor = .systemGray6
+        textField.autocapitalizationType = .none
+        textField.placeholder = " Password"
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
@@ -81,6 +96,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         button.clipsToBounds = true
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -114,46 +130,43 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(loginNavigationBar)
         view.addSubview(scrollView)
         scrollView.addSubview(logoImageView)
-        scrollView.addSubview(button)
-        scrollView.addSubview(stackViewTextFields)
+        scrollView.addSubview(stackView)
+        
+        stackView.addArrangedSubview(stackViewTextFields)
+        stackView.addArrangedSubview(button)
+        
         stackViewTextFields.addArrangedSubview(loginTextField)
+        stackViewTextFields.addArrangedSubview(separatorView)
         stackViewTextFields.addArrangedSubview(passwordTextField)
         stackViewTextFields.layer.cornerRadius = 10
         
         NSLayoutConstraint.activate([
             
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            logoImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 160),
             logoImageView.heightAnchor.constraint(equalToConstant: 100),
             logoImageView.widthAnchor.constraint(equalToConstant: 100),
-            logoImageView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 260),
+            logoImageView.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: 260),
                         
-            stackViewTextFields.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120),
-            stackViewTextFields.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            stackViewTextFields.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackViewTextFields.bottomAnchor.constraint(equalTo:  logoImageView.bottomAnchor, constant: 220),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 380),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 166.5),
             
-            loginTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120),
             loginTextField.heightAnchor.constraint(equalToConstant: 50),
-
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.topAnchor, constant: 50),
-//            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
-            passwordTextField.bottomAnchor.constraint(equalTo: loginTextField.topAnchor, constant: 100),
-
-            button.topAnchor.constraint(equalTo: loginTextField.topAnchor, constant: 116),
+            separatorView.heightAnchor.constraint(equalToConstant: 0.5),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             button.heightAnchor.constraint(equalToConstant: 50),
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            button.bottomAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 116),
+
         ])
-
     }
-
+    
+    
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -165,8 +178,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             let keyboardHeight = keyboardRectangle.height
 
             let loginButtonBottomPointY =
-                self.stackViewTextFields.frame.origin.y + self.button.frame.origin.y + self.button.frame.height + 16
-                // self.button.frame.origin.y - положение относительно супервью - self.stackView - поэтому прибавляем положение стека.
+                self.stackView.frame.origin.y + self.button.frame.origin.y + self.button.frame.height + 16
+            
             let keyboardOriginY = self.view.frame.height - keyboardHeight
 
             let yOffset = keyboardOriginY < loginButtonBottomPointY
