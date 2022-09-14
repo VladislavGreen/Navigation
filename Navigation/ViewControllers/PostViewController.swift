@@ -8,7 +8,7 @@ import UIKit
 
 class PostViewController: UIViewController {
  
-    var dataSource = Post(title: "Click the flame button to see what's next")
+//    var dataSource = Post(description: "Click the flame button to see what's next")
                                
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -40,7 +40,7 @@ class PostViewController: UIViewController {
 
     func setupUI() {
         setupConstraints()
-        titleLabel.text = dataSource.title
+//        titleLabel.text = dataSource.title
         view.backgroundColor = .green
         navigationItem.title = "Post"
     }

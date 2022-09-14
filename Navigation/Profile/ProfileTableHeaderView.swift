@@ -1,14 +1,13 @@
 //
-//  ProfileHeaderView.swift
+//  ProfileTableHeaderView.swift
 //  Navigation
 //
-//  Created by Vladislav Green on 8/25/22.
+//  Created by Vladislav Green on 9/12/22.
 //
 
 import UIKit
 
-class ProfileHeaderView: UIView {
-    
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //    Аватарка
     
@@ -94,18 +93,21 @@ class ProfileHeaderView: UIView {
     
     //  Новая кнопка
     
-    lazy var newButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("New Button", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+//    lazy var newButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("New Button", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.backgroundColor = .systemBlue
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         
         // Profile pic rounding
         self.roundingUIView(aView: avatarImageView, cornerRadiusParam: 50)
@@ -120,7 +122,6 @@ class ProfileHeaderView: UIView {
         super.init(coder: aDecoder)
 //            createSubviews()
     }
-
     
     func setupConstraints() {
         
@@ -130,25 +131,25 @@ class ProfileHeaderView: UIView {
         addSubview(setStatusButton)
         addSubview(statusLabel)
         addSubview(statusTextField)
-        addSubview(newButton)
+//        addSubview(newButton)
         
         NSLayoutConstraint.activate([
             
             // Profile Pic and Background
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 116),
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             avatarImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
             
-            avatarImageViewBackground.topAnchor.constraint(equalTo: topAnchor, constant: 116),
+            avatarImageViewBackground.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             avatarImageViewBackground.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             avatarImageViewBackground.widthAnchor.constraint(equalToConstant: 100),
             avatarImageViewBackground.heightAnchor.constraint(equalToConstant: 100),
-            avatarImageViewBackground.bottomAnchor.constraint(equalTo: topAnchor, constant: 216),
+            avatarImageViewBackground.bottomAnchor.constraint(equalTo: topAnchor, constant: 100),
             
             //  User Name
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 127),
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
 
             //  Status Button
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 66),
@@ -169,11 +170,10 @@ class ProfileHeaderView: UIView {
             statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -18),
             
             //  New Button
-            newButton.leftAnchor.constraint(equalTo: leftAnchor),
-            newButton.rightAnchor.constraint(equalTo: rightAnchor),
-            newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+//            newButton.leftAnchor.constraint(equalTo: leftAnchor),
+//            newButton.rightAnchor.constraint(equalTo: rightAnchor),
+//            newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
-
     }
     
     
@@ -181,7 +181,6 @@ class ProfileHeaderView: UIView {
            aView.clipsToBounds = true
            aView.layer.cornerRadius = cornerRadiusParam
        }
-
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? "No text"
@@ -192,5 +191,4 @@ class ProfileHeaderView: UIView {
         statusLabel.text = newStatus
         print(statusLabel as Any)
     }
-    
 }

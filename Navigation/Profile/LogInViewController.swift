@@ -46,7 +46,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
-//        textField.tag = 0
         textField.keyboardType = .default
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 16)
@@ -69,7 +68,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-//        textField.tag = 1
         textField.keyboardType = .default
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 16)
