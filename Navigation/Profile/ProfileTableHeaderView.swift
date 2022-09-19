@@ -9,6 +9,18 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
+//    struct ViewModel {
+//        let text: String
+//    }
+//    
+//    private lazy var titleLabel: UILabel = {
+//        let titleLabel = UILabel()
+//        titleLabel.textColor = .black
+//        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        return titleLabel
+//    }()
+    
     //    Аватарка
     
     var avatarImageView: UIImageView = {
@@ -91,21 +103,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     
     
-    //  Новая кнопка
-    
-//    lazy var newButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("New Button", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.backgroundColor = .systemBlue
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-    
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -118,61 +115,55 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         setupConstraints()
         }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-//            createSubviews()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupConstraints() {
         
-        addSubview(avatarImageView)
-        addSubview(avatarImageViewBackground)
-        addSubview(fullNameLabel)
-        addSubview(setStatusButton)
-        addSubview(statusLabel)
-        addSubview(statusTextField)
-//        addSubview(newButton)
+        self.contentView.addSubview(self.avatarImageView)
+        self.contentView.addSubview(self.avatarImageViewBackground)
+        self.contentView.addSubview(self.fullNameLabel)
+        self.contentView.addSubview(self.setStatusButton)
+        self.contentView.addSubview(self.statusLabel)
+        self.contentView.addSubview(self.statusTextField)
         
         NSLayoutConstraint.activate([
             
             // Profile Pic and Background
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            avatarImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            self.avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            self.avatarImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+            self.avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            self.avatarImageView.heightAnchor.constraint(equalToConstant: 100),
             
-            avatarImageViewBackground.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            avatarImageViewBackground.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            avatarImageViewBackground.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageViewBackground.heightAnchor.constraint(equalToConstant: 100),
-            avatarImageViewBackground.bottomAnchor.constraint(equalTo: topAnchor, constant: 100),
+            self.avatarImageViewBackground.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            self.avatarImageViewBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+            self.avatarImageViewBackground.widthAnchor.constraint(equalToConstant: 100),
+            self.avatarImageViewBackground.heightAnchor.constraint(equalToConstant: 100),
+            self.avatarImageViewBackground.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 100),
             
             //  User Name
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            self.fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            self.fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
 
             //  Status Button
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 66),
-            setStatusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            setStatusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            self.setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 66),
+            self.setStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+            self.setStatusButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            self.setStatusButton.heightAnchor.constraint(equalToConstant: 50),
 
             //  Current Status
-            statusLabel.leftAnchor.constraint(equalTo: avatarImageViewBackground.rightAnchor, constant: 16),
-            statusLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            statusLabel.heightAnchor.constraint(equalToConstant: 50),
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -0),
+            self.statusLabel.leftAnchor.constraint(equalTo: avatarImageViewBackground.rightAnchor, constant: 16),
+            self.statusLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            self.statusLabel.heightAnchor.constraint(equalToConstant: 50),
+            self.statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -0),
             
             //  Status Text Field
-            statusTextField.leftAnchor.constraint(equalTo: avatarImageViewBackground.rightAnchor, constant: 16),
-            statusTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -18),
-            
-            //  New Button
-//            newButton.leftAnchor.constraint(equalTo: leftAnchor),
-//            newButton.rightAnchor.constraint(equalTo: rightAnchor),
-//            newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            self.statusTextField.leftAnchor.constraint(equalTo: avatarImageViewBackground.rightAnchor, constant: 16),
+            self.statusTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            self.statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -18),
+
         ])
     }
     
@@ -191,4 +182,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         statusLabel.text = newStatus
         print(statusLabel as Any)
     }
+    
+//    func setup(with viewModel: ViewModel) {
+//        self.titleLabel.text = viewModel.text
+//    }
 }

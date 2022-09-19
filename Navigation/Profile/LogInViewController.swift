@@ -26,8 +26,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-//        stackView.layer.borderColor = UIColor.lightGray.cgColor
-//        stackView.layer.borderWidth = 0.5
         stackView.distribution = .equalCentering
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -49,7 +47,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         textField.keyboardType = .default
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 16)
-        textField.tintColor = .gray
+        textField.tintColor = UIColor(named: "Accent Color")
         textField.backgroundColor = .systemGray6
         textField.autocapitalizationType = .none
         textField.placeholder = " Email or phone"

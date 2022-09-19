@@ -92,12 +92,12 @@ class PostTableViewCell: UITableViewCell {
     
     func setupView() {
     
-        addSubview(self.postName)
-        addSubview(self.postImageBackground)
-        addSubview(self.postImage)
-        addSubview(self.postText)
-        addSubview(self.postViews)
-        addSubview(self.postLikes)
+        self.contentView.addSubview(self.postName)
+        self.contentView.addSubview(self.postImageBackground)
+        self.contentView.addSubview(self.postImage)
+        self.contentView.addSubview(self.postText)
+        self.contentView.addSubview(self.postViews)
+        self.contentView.addSubview(self.postLikes)
         
         NSLayoutConstraint.activate([
             self.postName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
@@ -106,8 +106,8 @@ class PostTableViewCell: UITableViewCell {
             self.postName.bottomAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 36),
 
             self.postImageBackground.topAnchor.constraint(equalTo: self.postName.bottomAnchor,constant: 12),
-            self.postImageBackground.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            self.postImageBackground.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            self.postImageBackground.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.postImageBackground.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             self.postImageBackground.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
             self.postImageBackground.heightAnchor.constraint(equalTo: self.contentView.widthAnchor),
             
@@ -119,7 +119,8 @@ class PostTableViewCell: UITableViewCell {
             
             self.postText.topAnchor.constraint(equalTo: self.postImageBackground.bottomAnchor,constant: 16),
             self.postText.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-            self.postText.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 16),
+            self.postText.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+            self.postText.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -48),
             
             self.postViews.topAnchor.constraint(equalTo: self.postText.bottomAnchor, constant:  16),
             self.postViews.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),

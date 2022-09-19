@@ -12,14 +12,13 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     let postTableViewCell = PostTableViewCell()
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         tableView.backgroundColor = .lightGray
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 528
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 524
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "CustomCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,14 +86,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             likes: post.likes
         )
         cell.setup(with: viewModel)
-        
-        
-//        var content = cell.defaultContentConfiguration()
-//        content.text = postTableViewCell.postName.text
-//        content.image = postTableViewCell.postImage.image
-//        content.secondaryText = postTableViewCell.postText.text
-//        cell.contentConfiguration = content
-        
         return cell
     }
     
