@@ -9,18 +9,6 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-//    struct ViewModel {
-//        let text: String
-//    }
-//    
-//    private lazy var titleLabel: UILabel = {
-//        let titleLabel = UILabel()
-//        titleLabel.textColor = .black
-//        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return titleLabel
-//    }()
-    
     //    Аватарка
     
     var avatarImageView: UIImageView = {
@@ -69,7 +57,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String = "Waiting for something..."
     
-    var statusTextField : UITextField = {
+    var statusTextField: UITextField = {
         
         var textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 15)
@@ -182,8 +170,4 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         statusLabel.text = newStatus
         print(statusLabel as Any)
     }
-    
-//    func setup(with viewModel: ViewModel) {
-//        self.titleLabel.text = viewModel.text
-//    }
 }

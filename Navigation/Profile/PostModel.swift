@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 struct PostModel {
     var author: String
     var image: UIImage?
