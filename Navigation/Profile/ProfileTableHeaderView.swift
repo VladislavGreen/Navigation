@@ -11,7 +11,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //    Аватарка
     
-    var avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let profilePic = UIImageView()
         let picture = UIImage(named: "cat")
         profilePic.image = picture
@@ -19,7 +19,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return profilePic
     }()
     
-    var avatarImageViewBackground: UIView = {
+    private lazy var avatarImageViewBackground: UIView = {
         let picBackground = UIView()
         picBackground.layer.borderColor = UIColor.white.cgColor
         picBackground.layer.borderWidth = 3
@@ -43,7 +43,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //  Текущий статус
     
-    var statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let status = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         status.text = "Waiting for something..."
         status.textColor = .gray
@@ -55,9 +55,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //    Поле ввода статуса
     
-    private var statusText: String = "Waiting for something..."
+    private lazy var statusText: String = "Waiting for something..."
     
-    var statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         
         var textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 15)
@@ -75,7 +75,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //    Кнопка Show status
     
-    lazy var setStatusButton: UIButton = {
+    private lazy  var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -154,7 +154,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
         ])
     }
-    
     
     func roundingUIView(aView: UIView!, cornerRadiusParam: CGFloat!) {
            aView.clipsToBounds = true
