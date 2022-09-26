@@ -18,9 +18,44 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         let profilePic = UIImageView()
         let picture = UIImage(named: "cat")
         profilePic.image = picture
+        profilePic.isUserInteractionEnabled = true
         profilePic.translatesAutoresizingMaskIntoConstraints = false
         return profilePic
     }()
+    
+    private var avatarCenterStart = CGPoint()
+    private var avatarBoundsStart = CGRect()
+
+    private var avatarImageViewWidthConstraint: NSLayoutConstraint?
+    private var avatarImageViewHeightConstraint: NSLayoutConstraint?
+    private var avatarImageViewTopAnchorConstraint: NSLayoutConstraint?
+    private var avatarImageViewLeftAnchorConstraint: NSLayoutConstraint?
+    
+    
+    private var isImageViewIncreased = false
+    
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray
+        view.isHidden = true
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var button: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "clear"), for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 0
+        button.clipsToBounds = true
+        button.alpha = 0
+        button.isHidden = true
+        button.addTarget(self, action: #selector(self.didTapClearButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -40,55 +75,134 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.setupGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        
-//        self.setupGestures()
-//
-//
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(self.didShowKeyboard(_:)),
-//                                               name: UIResponder.keyboardWillShowNotification,
-//                                               object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(self.didHideKeyboard(_:)),
-//                                               name: UIResponder.keyboardWillHideNotification,
-//                                               object: nil)
-
     }
     
     private func setupView() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.tableView)
+        self.view.addSubview(self.backgroundView)
+        self.view.addSubview(self.button)
+        self.view.addSubview(self.avatarImageView)
+        self.roundingUIView(aView: avatarImageView, cornerRadiusParam: 50)
+        
+        self.avatarImageViewWidthConstraint = self.avatarImageView.widthAnchor.constraint(equalToConstant: 100)
+        self.avatarImageViewHeightConstraint = self.avatarImageView.heightAnchor.constraint(equalToConstant: 100)
+        self.avatarImageViewTopAnchorConstraint = self.avatarImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40)
+        self.avatarImageViewLeftAnchorConstraint = self.avatarImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16)
+
+        
         
         NSLayoutConstraint.activate([
+            
+            self.avatarImageViewTopAnchorConstraint,
+            self.avatarImageViewLeftAnchorConstraint,
+            self.avatarImageViewWidthConstraint,
+            self.avatarImageViewHeightConstraint,
+            
+            self.backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.backgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            self.backgroundView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            self.backgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+            self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40),
+            self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            self.button.heightAnchor.constraint(equalToConstant: 64),
+            self.button.widthAnchor.constraint(equalToConstant: 64),
+            
             self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
-        ])
+        ].compactMap({ $0 }))
     }
     
-//    @objc private func didShowKeyboard(_ notification: Notification) {
-//    }
-//
-//    @objc private func didHideKeyboard(_ notification: Notification) {
-//        self.forcedHidingKeyboard()
-//    }
-//
-//    private func setupGestures() {
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
-//        self.view.addGestureRecognizer(tapGesture)
-//    }
-//
-//    @objc private func forcedHidingKeyboard() {
-//        self.view.endEditing(true)
-//    }
+    func roundingUIView(aView: UIView!, cornerRadiusParam: CGFloat!) {
+           aView.clipsToBounds = true
+           aView.layer.cornerRadius = cornerRadiusParam
+       }
     
+    private func setupGestures() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
+        tapGestureRecognizer.numberOfTapsRequired = 2
+        self.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) -> () {
+        
+        self.button.isEnabled = true
+        self.avatarIncreasing()
+    }
+    
+    
+    @objc private func didTapClearButton() {
+        self.button.isEnabled = false
+        
+        let completion: () -> Void = { [weak self] in
+            self?.backgroundView.isHidden = true
+        }
+        
+        self.avatarDecreasing(completion: completion)
+    }
+    
+    private func avatarIncreasing() {
+        
+        avatarCenterStart = self.avatarImageView.center
+        avatarBoundsStart = self.avatarImageView.bounds
+        
+       
+        UIView.animate(withDuration: 0.5,
+            animations: {
+
+                self.avatarImageView.center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+                self.avatarImageView.transform = CGAffineTransform(scaleX: 1.001, y: 1.001)
+                self.avatarImageView.bounds.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+
+                self.avatarImageView.layer.cornerRadius = 0
+                self.backgroundView.alpha = 0.8
+                self.backgroundView.isHidden = false
+            }
+            , completion: { _ in
+                UIView.animate(withDuration: 0.3,
+                    animations: {
+                        self.button.alpha = 1
+                        self.button.isHidden = false
+                    }
+                )
+            }
+        )
+    }
+
+    
+    private func avatarDecreasing(completion: @escaping () -> Void) {
+        
+        UIView.animateKeyframes(withDuration: 0.8,
+                                delay: 0,
+                                options: .calculationModeLinear) {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0,
+                               relativeDuration: 0.4) {
+                self.button.alpha = 0
+                self.button.isHidden = true
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.4,
+                               relativeDuration: 0.24) { [self] in
+                
+                self.avatarImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.avatarImageView.bounds = self.avatarBoundsStart
+                self.avatarImageView.center = self.avatarCenterStart
+                self.avatarImageView.layer.cornerRadius = 50
+                
+                self.backgroundView.alpha = 0
+            }
+        }
+    }
 }
 
 
@@ -143,7 +257,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
+        if indexPath.section == 0 {
                 let vc = PhotosViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
         }

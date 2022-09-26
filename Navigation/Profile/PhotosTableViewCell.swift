@@ -9,12 +9,6 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
-//    struct  PhotoCellViewModel {
-//        let cellLabel: UILabel
-//        let button: UIButton
-//        let collectionView: UICollectionView
-//    }
-    
     private lazy var cellLabel: UILabel = {
         let label = UILabel()
         label.text = "Photos"
@@ -33,7 +27,6 @@ class PhotosTableViewCell: UITableViewCell {
         return button
     }()
     
-    
     private enum Constants {
         static let numberOfItemsInLine: CGFloat = 4
     }
@@ -46,7 +39,6 @@ class PhotosTableViewCell: UITableViewCell {
         layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 8
         layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
-//        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width - 32, height: 50)
         return layout
     }()
     
@@ -56,7 +48,7 @@ class PhotosTableViewCell: UITableViewCell {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DefaultCell")
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.clipsToBounds = true
+        collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -103,7 +95,7 @@ class PhotosTableViewCell: UITableViewCell {
         let insets = layout.sectionInset.left + layout.sectionInset.right + (Constants.numberOfItemsInLine - 1) * layout.minimumInteritemSpacing
         let imageWidth = (screenWidth - insets)/4
         let imageHeight = imageWidth
-        print ("👻 screenWidth: \(screenWidth)", "👻 imageHeight: \(imageHeight)")
+        print ("👻 screenWidth: \(screenWidth), imageHeight: \(imageHeight)")
         return imageHeight
     }
 }
@@ -142,29 +134,5 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
         return CGSize(width: itemWidth, height: itemWidth)
     }
 }
-        
-//        NSLayoutConstraint.activate(stackViewConstrants())
-//    }
-//
-//    private func stackViewConstrants() -> [NSLayoutConstraint] {
-////        let topAnchorConstraint = self.stackView.topAnchor.constraint(equalTo: self.cellLabel.bottomAnchor, constant: 12)
-////        let leadingAnchorConstraint = self.stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12)
-////        let trailingAnchorConstraint = self.stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12)
-////        let bottomAnchorConstraint = self.stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12)
-//
-//        let screenWidth = UIScreen.main.bounds.width
-//        let insets = 12 + 12 + 8 + 8 + 8 as CGFloat             // insets + spaicing
-//        let imageWidth = screenWidth/4 - insets
-//        let imageHeight = imageWidth + 36               // 36 - Label and Button height compensation
-//        let heightAnchorConstraint = NSLayoutConstraint(item: stackView,
-//                                                        attribute: .height,
-//                                                        relatedBy: .equal,
-//                                                        toItem: nil,
-//                                                        attribute: .notAnAttribute,
-//                                                        multiplier: 1.0, constant: imageHeight)
-//        return [
-//            topAnchorConstraint, leadingAnchorConstraint, trailingAnchorConstraint, bottomAnchorConstraint, heightAnchorConstraint
-//        ]
-//    }
-//}
+
 
