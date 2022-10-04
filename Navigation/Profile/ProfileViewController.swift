@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
@@ -30,7 +31,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     private var avatarImageViewHeightConstraint: NSLayoutConstraint?
     private var avatarImageViewTopAnchorConstraint: NSLayoutConstraint?
     private var avatarImageViewLeftAnchorConstraint: NSLayoutConstraint?
-    
     
     private var isImageViewIncreased = false
     
@@ -60,7 +60,13 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
-        tableView.backgroundColor = .lightGray
+        
+        #if DEBUG
+            tableView.backgroundColor = .lightGray
+        #else
+            tableView.backgroundColor = .systemBackground
+        #endif
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -84,7 +90,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     }
     
     private func setupView() {
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .white
         self.view.addSubview(self.tableView)
         self.view.addSubview(self.backgroundView)
         self.view.addSubview(self.button)

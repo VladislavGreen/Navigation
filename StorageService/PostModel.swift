@@ -7,14 +7,14 @@
 
 import UIKit
 
-struct PostModel {
-    var author: String
-    var image: UIImage?
-    var description: String
-    var views: Int
-    var likes: Int
+public struct PostModel {
+    public var author: String
+    public var image: UIImage?
+    public var description: String
+    public var views: Int
+    public var likes: Int
     
-    static var posts: [PostModel] {
+    public static var posts: [PostModel] {
         return [
             PostModel(
                 author: "Lazy Poster",
