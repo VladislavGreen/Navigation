@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -60,7 +61,6 @@ class PostTableViewCell: UITableViewCell {
          likesLabel.translatesAutoresizingMaskIntoConstraints = false
         return likesLabel
     }()
- 
     
     private var indexPath: IndexPath?
     
@@ -84,7 +84,10 @@ class PostTableViewCell: UITableViewCell {
     
     func setup(with viewModel: ViewModel) {
         self.postName.text = viewModel.author
-        self.postImage.image = viewModel.image
+        
+//        self.postImage.image = viewModel.image
+        filter(image: viewModel.image)
+        
         self.postText.text = viewModel.description
         self.postViews.text = "View: \(viewModel.views)"
         self.postLikes.text = "Likes: \(viewModel.likes)"
@@ -129,5 +132,17 @@ class PostTableViewCell: UITableViewCell {
             self.postLikes.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             self.postLikes.centerXAnchor.constraint(equalTo: self.postViews.centerXAnchor),
         ])
+    }
+     
+    private func filter(image: UIImage?) {
+        ImageProcessor().processImage(
+            sourceImage: image!,
+            filter: .noir,
+            completion: export(image:)
+        )
+    }
+    
+    private func export(image: UIImage?) {
+        self.postImage.image = image
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import SnapKit
 
 class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
@@ -14,23 +15,18 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
     private let dataSource = Photo.photos
     
-    
     private lazy var avatarImageView: UIImageView = {
         let profilePic = UIImageView()
         let picture = UIImage(named: "cat")
         profilePic.image = picture
         profilePic.isUserInteractionEnabled = true
-        profilePic.translatesAutoresizingMaskIntoConstraints = false
+//        profilePic.translatesAutoresizingMaskIntoConstraints = false
+        profilePic.alpha = 0.02
         return profilePic
     }()
     
     private var avatarCenterStart = CGPoint()
     private var avatarBoundsStart = CGRect()
-
-    private var avatarImageViewWidthConstraint: NSLayoutConstraint?
-    private var avatarImageViewHeightConstraint: NSLayoutConstraint?
-    private var avatarImageViewTopAnchorConstraint: NSLayoutConstraint?
-    private var avatarImageViewLeftAnchorConstraint: NSLayoutConstraint?
     
     private var isImageViewIncreased = false
     
@@ -39,7 +35,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         view.backgroundColor = .systemGray
         view.isHidden = true
         view.alpha = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -52,10 +48,9 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         button.alpha = 0
         button.isHidden = true
         button.addTarget(self, action: #selector(self.didTapClearButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -73,7 +68,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostCell")
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosCell")
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
@@ -97,35 +92,25 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         self.view.addSubview(self.avatarImageView)
         self.roundingUIView(aView: avatarImageView, cornerRadiusParam: 50)
         
-        self.avatarImageViewWidthConstraint = self.avatarImageView.widthAnchor.constraint(equalToConstant: 100)
-        self.avatarImageViewHeightConstraint = self.avatarImageView.heightAnchor.constraint(equalToConstant: 100)
-        self.avatarImageViewTopAnchorConstraint = self.avatarImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40)
-        self.avatarImageViewLeftAnchorConstraint = self.avatarImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16)
-
+        avatarImageView.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().inset(48)
+            make.left.equalToSuperview().inset(16)
+            make.width.height.equalTo(100)
+        }
         
+        backgroundView.snp.makeConstraints { (make) -> Void in
+            make.top.left.width.height.equalToSuperview()
+        }
         
-        NSLayoutConstraint.activate([
-            
-            self.avatarImageViewTopAnchorConstraint,
-            self.avatarImageViewLeftAnchorConstraint,
-            self.avatarImageViewWidthConstraint,
-            self.avatarImageViewHeightConstraint,
-            
-            self.backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            self.backgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            self.backgroundView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            self.backgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
-            self.button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40),
-            self.button.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            self.button.heightAnchor.constraint(equalToConstant: 64),
-            self.button.widthAnchor.constraint(equalToConstant: 64),
-            
-            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-        ].compactMap({ $0 }))
+        button.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().inset(40)
+            make.right.equalToSuperview()
+            make.width.height.equalTo(64)
+        }
+        
+        tableView.snp.makeConstraints { (make) -> Void in
+            make.top.left.width.height.equalToSuperview()
+        }
     }
     
     func roundingUIView(aView: UIView!, cornerRadiusParam: CGFloat!) {
@@ -137,14 +122,14 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
         tapGestureRecognizer.numberOfTapsRequired = 2
         self.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
-    }
+            }
     
     @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) -> () {
         
         self.button.isEnabled = true
+        self.avatarImageView.alpha = 1
         self.avatarIncreasing()
     }
-    
     
     @objc private func didTapClearButton() {
         self.button.isEnabled = false
@@ -160,7 +145,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         
         avatarCenterStart = self.avatarImageView.center
         avatarBoundsStart = self.avatarImageView.bounds
-        
        
         UIView.animate(withDuration: 0.5,
             animations: {
@@ -183,7 +167,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
             }
         )
     }
-
     
     private func avatarDecreasing(completion: @escaping () -> Void) {
         
@@ -204,7 +187,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
                 self.avatarImageView.bounds = self.avatarBoundsStart
                 self.avatarImageView.center = self.avatarCenterStart
                 self.avatarImageView.layer.cornerRadius = 50
-                
+                self.avatarImageView.alpha = 0.02
                 self.backgroundView.alpha = 0
             }
         }
