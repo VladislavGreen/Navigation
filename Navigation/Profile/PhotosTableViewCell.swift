@@ -95,7 +95,7 @@ class PhotosTableViewCell: UITableViewCell {
         let insets = layout.sectionInset.left + layout.sectionInset.right + (Constants.numberOfItemsInLine - 1) * layout.minimumInteritemSpacing
         let imageWidth = (screenWidth - insets)/4
         let imageHeight = imageWidth
-        print ("👻 screenWidth: \(screenWidth), imageHeight: \(imageHeight)")
+//        print ("👻 screenWidth: \(screenWidth), imageHeight: \(imageHeight)")
         return imageHeight
     }
 }
@@ -129,7 +129,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
             
         let itemWidth = floor(width / Constants.numberOfItemsInLine)
 
-        print("🍏 \(itemWidth)")
+//        print("🍏 \(itemWidth)")
 
         return CGSize(width: itemWidth, height: itemWidth)
     }

@@ -10,6 +10,9 @@ import StorageService
 
 class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
+
+    public var user: User = userDefault
+    
     let postTableViewCell = PostTableViewCell()
     
     private let dataSource = Photo.photos
@@ -17,20 +20,16 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
     private lazy var avatarImageView: UIImageView = {
         let profilePic = UIImageView()
-        let picture = UIImage(named: "cat")
+        let picture = user.userAvatar
         profilePic.image = picture
         profilePic.isUserInteractionEnabled = true
+        profilePic.alpha = 0.02
         profilePic.translatesAutoresizingMaskIntoConstraints = false
         return profilePic
     }()
     
     private var avatarCenterStart = CGPoint()
     private var avatarBoundsStart = CGRect()
-
-    private var avatarImageViewWidthConstraint: NSLayoutConstraint?
-    private var avatarImageViewHeightConstraint: NSLayoutConstraint?
-    private var avatarImageViewTopAnchorConstraint: NSLayoutConstraint?
-    private var avatarImageViewLeftAnchorConstraint: NSLayoutConstraint?
     
     private var isImageViewIncreased = false
     
@@ -62,7 +61,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         
         #if DEBUG
-            tableView.backgroundColor = .lightGray
+            tableView.backgroundColor = .red
         #else
             tableView.backgroundColor = .systemBackground
         #endif
@@ -76,6 +75,14 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+//    init(user: User) {
+//        self.user = user
+//    }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     
     override func viewDidLoad() {
@@ -97,19 +104,12 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         self.view.addSubview(self.avatarImageView)
         self.roundingUIView(aView: avatarImageView, cornerRadiusParam: 50)
         
-        self.avatarImageViewWidthConstraint = self.avatarImageView.widthAnchor.constraint(equalToConstant: 100)
-        self.avatarImageViewHeightConstraint = self.avatarImageView.heightAnchor.constraint(equalToConstant: 100)
-        self.avatarImageViewTopAnchorConstraint = self.avatarImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40)
-        self.avatarImageViewLeftAnchorConstraint = self.avatarImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16)
-
-        
-        
         NSLayoutConstraint.activate([
             
-            self.avatarImageViewTopAnchorConstraint,
-            self.avatarImageViewLeftAnchorConstraint,
-            self.avatarImageViewWidthConstraint,
-            self.avatarImageViewHeightConstraint,
+            self.avatarImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40),
+            self.avatarImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+            self.avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            self.avatarImageView.heightAnchor.constraint(equalToConstant: 100),
             
             self.backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.backgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
@@ -142,6 +142,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) -> () {
         
         self.button.isEnabled = true
+        self.avatarImageView.alpha = 1
         self.avatarIncreasing()
     }
     
@@ -204,7 +205,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
                 self.avatarImageView.bounds = self.avatarBoundsStart
                 self.avatarImageView.center = self.avatarCenterStart
                 self.avatarImageView.layer.cornerRadius = 50
-                
+                self.avatarImageView.alpha = 0.02
                 self.backgroundView.alpha = 0
             }
         }
@@ -216,11 +217,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return ProfileHeaderView()
+            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! ProfileHeaderView
+            view.userHeader = user
+            return view
         }
         return nil
     }
-   
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }

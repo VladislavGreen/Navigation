@@ -41,6 +41,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return stackView
     }()
     
+    // переменная для сравнения логина
+    private lazy var loginTextFieldValue: String = ""
     
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
@@ -63,6 +65,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    // переменная для сравнения пароля
+    private lazy var passwordTextFieldValue: String = ""
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
@@ -196,8 +201,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func buttonPressed() {
+        let loginTried = getLoginTextFieldValue()
+        let currentUser = CurrentUserService(userLogin: loginTried)
+        let user = currentUser.user
+        
         let viewController = ProfileViewController()
+        viewController.user = user ?? userDefault                                       // здесь можно отправить на экран рекистрации
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func getLoginTextFieldValue() -> String {
+        let value1 = loginTextField.text!
+        return value1
     }
     
 }
