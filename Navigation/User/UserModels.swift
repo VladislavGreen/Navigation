@@ -11,12 +11,12 @@ import UIKit
  // Временное решение для хранения данных пользователей
 
 public var userDefault: User = {
-    let cat = User(
+    let user = User(
     userLogin: "123",
     userFullName: "no user",
     userAvatar: UIImage(systemName: "person.fill")!,
     userStatus: "no data")
-    return cat
+    return user
 }()
 
 public var userCat: User = {

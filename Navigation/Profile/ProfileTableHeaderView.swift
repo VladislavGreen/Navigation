@@ -9,14 +9,12 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    public var userHeader: User
-    
     //    Аватарка
     
     private lazy var avatarImageView: UIImageView = {
         let profilePic = UIImageView()
-        let picture = userHeader.userAvatar
-        profilePic.image = picture
+//        let picture = userHeader.userAvatar
+//        profilePic.image = picture
         profilePic.translatesAutoresizingMaskIntoConstraints = false
         return profilePic
     }()
@@ -33,11 +31,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //    Имя пользователя
     
-    private lazy var fullName: String = userHeader.userFullName
+//    private lazy var fullName: String = userHeader.userFullName
     
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.text = fullName
+//        label.text = fullName
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,11 +45,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //  Текущий статус
     
-    private lazy var statusText: String = userHeader.userStatus
+    private lazy var statusText: String = "waiting for something"
     
     private lazy var statusLabel: UILabel = {
         let status = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        status.text = statusText
+//        status.text = statusText
         status.textColor = .gray
         status.font = UIFont.boldSystemFont(ofSize: 14)
         status.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +94,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     
     override init(reuseIdentifier: String?) {
-        self.userHeader = ProfileViewController().user
         super.init(reuseIdentifier: reuseIdentifier)
         
         // Profile pic rounding
@@ -156,7 +153,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             self.statusTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
             self.statusTextField.heightAnchor.constraint(equalToConstant: 40),
             self.statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -18),
-
         ])
     }
     
@@ -174,4 +170,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         statusLabel.text = newStatus
         print(statusLabel as Any)
     }
+    
+    func setUserDetails(_ user: User) {
+        fullNameLabel.text = user.userFullName
+        statusLabel.text = user.userStatus
+        avatarImageView.image = user.userAvatar
+        }
 }

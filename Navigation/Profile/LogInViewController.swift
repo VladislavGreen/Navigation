@@ -202,7 +202,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func buttonPressed() {
         let loginTried = getLoginTextFieldValue()
-        let currentUser = CurrentUserService(userLogin: loginTried)
+        
+        #if DEBUG
+            let currentUser = TestUserService(userLogin: loginTried)
+        #else
+            let currentUser = CurrentUserService(userLogin: loginTried)
+        #endif
+        
         let user = currentUser.user
         
         let viewController = ProfileViewController()

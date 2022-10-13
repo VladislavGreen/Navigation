@@ -76,14 +76,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         return tableView
     }()
     
-//    init(user: User) {
-//        self.user = user
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,7 +138,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         self.avatarIncreasing()
     }
     
-    
     @objc private func didTapClearButton() {
         self.button.isEnabled = false
         
@@ -162,7 +153,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         avatarCenterStart = self.avatarImageView.center
         avatarBoundsStart = self.avatarImageView.bounds
         
-       
         UIView.animate(withDuration: 0.5,
             animations: {
 
@@ -184,7 +174,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
             }
         )
     }
-
     
     private func avatarDecreasing(completion: @escaping () -> Void) {
         
@@ -216,12 +205,13 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! ProfileHeaderView
-            view.userHeader = user
+        guard section == 0 else { return nil }
+        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? ProfileHeaderView {
+            view.setUserDetails(user)
             return view
+        } else {
+        preconditionFailure("user do not exist")
         }
-        return nil
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

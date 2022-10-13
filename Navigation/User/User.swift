@@ -45,10 +45,6 @@ public class CurrentUserService: UserService {
             return user
         }
     }
-
-//    init(user: User) {
-//        self.user = loginToProfile(ofUser: user.userLogin)
-//    }
     
     init(userLogin: String) {
         self.userLogin = userLogin
