@@ -6,14 +6,13 @@
 //
 
 
-class LoginInspector: LoginViewControllerDelegate {
+struct LoginInspector: LoginViewControllerDelegate {
     
     func check(
         _ sender: LoginViewController,
         loginTried: String,
         passwordTried: String
     ) -> Bool {
-        print("Login Inspector works")
         return Checker.shared.check(loginTried: loginTried, passwordTried: passwordTried)
     }
 }

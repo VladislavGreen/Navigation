@@ -16,12 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let viewController = LoginViewController()
-        let inspector = LoginInspector()
-        viewController.loginDelegate = inspector
+        
+// К задаче 1:
+//        let inspector = LoginInspector()
+//        viewController.loginDelegate = inspector
 
 // К задаче 2:
-//        let loginFactory = MyLoginFactory()
-//        viewController.loginDelegate = loginFactory.makeLoginInspector()
+        let loginFactory = MyLoginFactory()
+        viewController.loginDelegate = loginFactory.makeLoginInspector()
         
         let loginViewController = UINavigationController (rootViewController: viewController)
         let feedViewController = UINavigationController (rootViewController: FeedViewController())

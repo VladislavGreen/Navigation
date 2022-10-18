@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    weak var loginDelegate: LoginViewControllerDelegate?          
+    var loginDelegate: LoginViewControllerDelegate?          
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -222,18 +222,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         print(loginTried, passwordTried)
         
-////        // проверка без делегата. всё работает
-//        let loginInspector = LoginInspector()
-//        let accessIsAllowed = loginInspector.check(
-            
         let accessIsAllowed = loginDelegate?.check(
             self,
             loginTried: loginTried,
             passwordTried: passwordTried
         )
         if accessIsAllowed == true {
-            
-            print("успешная проверка!")
             
             #if DEBUG
                 let currentUser = TestUserService(userLogin: loginTried)

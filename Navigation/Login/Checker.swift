@@ -18,14 +18,6 @@ public final class Checker {
     }
 
     public func check(loginTried: String, passwordTried: String) -> Bool {
-        let userIsRegistered: Bool
-        print("Checker func works")
-        
-        guard loginTried == login, passwordTried == password else {
-            userIsRegistered = false
-            return userIsRegistered
-        }
-        userIsRegistered = true
-        return userIsRegistered
+        loginTried == login && passwordTried == password
     }
 }

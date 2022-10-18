@@ -5,7 +5,7 @@
 //  Created by Vladislav Green on 10/15/22.
 //
 
-protocol LoginViewControllerDelegate: AnyObject {
+protocol LoginViewControllerDelegate {
     
     func check(
         _ sender: LoginViewController,

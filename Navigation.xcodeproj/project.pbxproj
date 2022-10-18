@@ -34,6 +34,7 @@
 		A4DA92B528EC947B001A4C39 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C0DD228B39CDD0056EC7C /* PostModel.swift */; };
 		A4DC3DF228B79A9900ED8263 /* HomeTask 2.1.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4DC3DF128B79A9900ED8263 /* HomeTask 2.1.rtf */; };
 		A4DC3DF428B79AD900ED8263 /* HomeTask 2.2.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4DC3DF328B79AD900ED8263 /* HomeTask 2.2.rtf */; };
+		A4DDF50A28FEEDBE009F0272 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */; };
 		A4E9AC4928C8CFB300436749 /* HomeTask 2.3.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4E9AC4828C8CFB300436749 /* HomeTask 2.3.rtf */; };
 		A4E9AC4B28C8D5B100436749 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9AC4A28C8D5B100436749 /* LoginViewController.swift */; };
 		A4F27BBB28D88BD8008AF8ED /* HomeTask 2.5.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4F27BBA28D88BD8008AF8ED /* HomeTask 2.5.rtf */; };
@@ -96,6 +97,7 @@
 		A4DA92AC28EC9444001A4C39 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		A4DC3DF128B79A9900ED8263 /* HomeTask 2.1.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.1.rtf"; sourceTree = "<group>"; };
 		A4DC3DF328B79AD900ED8263 /* HomeTask 2.2.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.2.rtf"; sourceTree = "<group>"; };
+		A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		A4E9AC4828C8CFB300436749 /* HomeTask 2.3.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.3.rtf"; sourceTree = "<group>"; };
 		A4E9AC4A28C8D5B100436749 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4F27BBA28D88BD8008AF8ED /* HomeTask 2.5.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.5.rtf"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		A4DDF50828FED2CD009F0272 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */,
 				A42A608D28FDADF500D7726E /* LoginFactory.swift */,
 				A46438EA28FB0ACF00649B83 /* LoginInspector.swift */,
 				A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */,
@@ -358,6 +361,7 @@
 				A4B1533428B4CECD00F276BF /* TabBarController.swift in Sources */,
 				A42A608E28FDADF500D7726E /* LoginFactory.swift in Sources */,
 				A40C0DC828B392910056EC7C /* FeedViewController.swift in Sources */,
+				A4DDF50A28FEEDBE009F0272 /* MyLoginFactory.swift in Sources */,
 				A46438E928FAF23E00649B83 /* Checker.swift in Sources */,
 				A4FE3B1628B403750079D788 /* InfoViewController.swift in Sources */,
 				A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */,
