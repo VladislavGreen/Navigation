@@ -15,7 +15,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let viewController = LoginViewController()
+        let inspector = LoginInspector()
+        viewController.loginDelegate = inspector
+
+// К задаче 2:
+//        let loginFactory = MyLoginFactory()
+//        viewController.loginDelegate = loginFactory.makeLoginInspector()
+        
+        let loginViewController = UINavigationController (rootViewController: viewController)
+        let feedViewController = UINavigationController (rootViewController: FeedViewController())
+        
         let tabBarController = TabBarController()
+        tabBarController.viewControllers = [feedViewController, loginViewController]
+                
+        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
+        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
+
+        feedViewController.tabBarItem = item1
+        loginViewController.tabBarItem = item2
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController // Your initial view controller.

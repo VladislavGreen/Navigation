@@ -15,16 +15,18 @@ class TabBarController: UITabBarController {
     }
     
     private func setupUI() {
-        let feedViewController = UINavigationController (rootViewController: FeedViewController())
-        let logInViewController = UINavigationController (rootViewController: LogInViewController())
         
-        self.viewControllers = [feedViewController, logInViewController]
-        
-        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
-        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
-
-        feedViewController.tabBarItem = item1
-        logInViewController.tabBarItem = item2
+    // код перенесён в SceneDelegate
+//        let feedViewController = UINavigationController (rootViewController: FeedViewController())
+//        let loginViewController = UINavigationController (rootViewController: LoginViewController())
+//        
+//        self.viewControllers = [feedViewController, loginViewController]
+//        
+//        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
+//        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
+//
+//        feedViewController.tabBarItem = item1
+//        loginViewController.tabBarItem = item2
         
         UITabBar.appearance().backgroundColor = .white
     }

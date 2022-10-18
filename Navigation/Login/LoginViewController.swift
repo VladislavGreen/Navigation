@@ -7,7 +7,9 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    weak var loginDelegate: LoginViewControllerDelegate?          
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -103,6 +105,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    private let alertController = UIAlertController(
+        title: "Не удалось войти в профиль",
+        message: "Проверьте логин и пароль",
+        preferredStyle: .alert
+    )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -124,6 +132,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         setupGestures()
+        setupAlertConfiguration()
 
         let loginNavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
         loginNavigationBar.isHidden = true
@@ -173,6 +182,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tapGesture)
     }
     
+    private func setupAlertConfiguration() {
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+           print("Ok")
+        }))
+    }
+    
     @objc private func didShowKeyboard(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
@@ -201,26 +216,51 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func buttonPressed() {
+        
         let loginTried = getLoginTextFieldValue()
+        let passwordTried = getPasswordTextFieldValue()
         
-        #if DEBUG
-            let currentUser = TestUserService(userLogin: loginTried)
-        #else
-            let currentUser = CurrentUserService(userLogin: loginTried)
-        #endif
+        print(loginTried, passwordTried)
         
-        let user = currentUser.user
-        
-        let viewController = ProfileViewController()
-        viewController.user = user ?? userDefault                                       // здесь можно отправить на экран рекистрации
-        self.navigationController?.pushViewController(viewController, animated: true)
+////        // проверка без делегата. всё работает
+//        let loginInspector = LoginInspector()
+//        let accessIsAllowed = loginInspector.check(
+            
+        let accessIsAllowed = loginDelegate?.check(
+            self,
+            loginTried: loginTried,
+            passwordTried: passwordTried
+        )
+        if accessIsAllowed == true {
+            
+            print("успешная проверка!")
+            
+            #if DEBUG
+                let currentUser = TestUserService(userLogin: loginTried)
+            #else
+                let currentUser = CurrentUserService(userLogin: loginTried)
+            #endif
+            
+            let user = currentUser.user
+            
+            let viewController = ProfileViewController()
+            viewController.user = user ?? userDefault
+            self.navigationController?.pushViewController(viewController, animated: true)
+                
+        } else {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func getLoginTextFieldValue() -> String {
-        let value1 = loginTextField.text!
-        return value1
+        let value = loginTextField.text!
+        return value
     }
     
+    func getPasswordTextFieldValue() -> String {
+        let value = passwordTextField.text!
+        return value
+    }
 }
 
 

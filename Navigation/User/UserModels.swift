@@ -28,8 +28,15 @@ public var userCat: User = {
     return cat
 }()
 
-public var usersBase: [User] = [userDefault, userCat]
+public var userAdmin: User = {
+    let cat = User(
+    userLogin: "q",
+    userFullName: "Admin Cat",
+    userAvatar: UIImage(named: "cat")!,
+    userStatus: "Admin is waiting")
+    return cat
+}()
+
+public var usersBase: [User] = [userDefault, userCat, userAdmin]
     
-//public let passwordUserDefault = "123"
-//
-//public let passwordUserCat = "cat123"
+
