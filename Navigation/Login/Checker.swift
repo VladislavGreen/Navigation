@@ -13,8 +13,8 @@ public final class Checker {
     var password: String
     
     private init() {
-        login = "q"
-        password = "q"
+        login = ""
+        password = ""
     }
 
     public func check(loginTried: String, passwordTried: String) -> Bool {

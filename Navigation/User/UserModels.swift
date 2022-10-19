@@ -30,7 +30,7 @@ public var userCat: User = {
 
 public var userAdmin: User = {
     let cat = User(
-    userLogin: "q",
+    userLogin: "",
     userFullName: "Admin Cat",
     userAvatar: UIImage(named: "cat")!,
     userStatus: "Admin is waiting")

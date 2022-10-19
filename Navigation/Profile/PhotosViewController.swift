@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+       
+    let imagePublisherFacade = ImagePublisherFacade()
+    
+    
     
     private enum Constants {
         static let numberOfItemsInLine: CGFloat = 3
@@ -32,17 +37,30 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
     
-    private let dataSource = Photo.photos
+//    private let dataSource = Photo.photos
+    private lazy var dataSource = [UIImageView]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.setupNavigationBar()
+        imagePublisherFacade.subscribe(self)
+        addImages()
     }
+    
+
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        imagePublisherFacade.removeSubscription(for: self)
+        print("🔙 отписываемся")
     }
     
     private func setupNavigationBar() {
@@ -62,7 +80,15 @@ class PhotosViewController: UIViewController {
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+    
+    func addImages() {
+        imagePublisherFacade.addImagesWithTimer(
+            time: 0.5,
+            repeat: 15,
+            userImages: MyImages.images)
+    }
 }
+
 
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -97,3 +123,16 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
+
+extension PhotosViewController {
+    
+    func receive(images: [UIImage]) {
+        let picView = UIImageView()
+        let i = images.count-1
+        picView.image = images[i]
+        picView.contentMode = .scaleAspectFit
+        picView.translatesAutoresizingMaskIntoConstraints = false
+        dataSource.append(picView)
+        collectionView.reloadData()
+    }
+}
