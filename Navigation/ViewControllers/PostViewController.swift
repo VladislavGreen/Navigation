@@ -8,8 +8,6 @@ import UIKit
 
 class PostViewController: UIViewController {
  
-//    var dataSource = Post(description: "Click the flame button to see what's next")
-                               
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "First Text"

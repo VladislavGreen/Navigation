@@ -5,52 +5,19 @@
 //  Created by Vladislav Green on 10/13/22.
 //
 
-//import UIKit
-//
-//final class TestUserService: UserService {
-//
-//    let user = User(
-//        userLogin: "Mico",
-//        userFullName: "Mico Myst",
-//        userAvatar: UIImage(named: "cat")!,
-//        userStatus: "Ready to anything"
-//    )
-//
-//    func getUser(login: String) -> User? {
-//            login == user.userLogin ? user : nil
-//        }
-//}
-//  С наскока не получилось - посмотреть потом
+import UIKit
 
+final class TestUserService: UserService {
 
-public class TestUserService: UserService {
+var user = User(
+    userLogin: "",
+    userFullName: "Test Cat",
+    userAvatar: UIImage(named: "cat")!,
+    userStatus: "One thinks ahead"
+    )
 
-    let userLogin: String
-
-    var user: User? {
-        get {
-            let user = loginToProfile(ofUser: userLogin)
-            return user
-        }
-    }
-
-    init(userLogin: String) {
-        self.userLogin = userLogin
-    }
-
-    internal func loginToProfile(ofUser: String) -> User? {
-
-        var user: User?
-
-        for i in 0...usersBase.count-1 {
-            if usersBase[i].userLogin == ofUser {
-                user = usersBase[i]
-            } else {
-                user = nil
-            }
-        }
-        print("Тест-режим: \(user?.userFullName)")
-        return user
+    func loginToProfile(ofUser: String) -> User? {
+        ofUser == user.userLogin ? user : nil
     }
 }
 

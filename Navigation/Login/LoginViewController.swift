@@ -230,15 +230,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if accessIsAllowed == true {
             
             #if DEBUG
-                let currentUser = TestUserService(userLogin: loginTried)
+            let currentUser = TestUserService()
             #else
-                let currentUser = CurrentUserService(userLogin: loginTried)
+            let currentUser = CurrentUserService()
             #endif
             
             let user = currentUser.user
             
             let viewController = ProfileViewController()
-            viewController.user = user ?? userDefault
+            viewController.user = user 
             self.navigationController?.pushViewController(viewController, animated: true)
                 
         } else {

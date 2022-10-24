@@ -19,16 +19,16 @@ public var userDefault: User = {
     return user
 }()
 
-public var userCat: User = {
-    let cat = User(
-    userLogin: "cat",
-    userFullName: "Waiter Cat",
-    userAvatar: UIImage(named: "cat")!,
-    userStatus: "Waiting and waiting")
-    return cat
-}()
+//private var userCat: User = {
+//    let cat = User(
+//    userLogin: "cat",
+//    userFullName: "Waiter Cat",
+//    userAvatar: UIImage(named: "cat")!,
+//    userStatus: "Waiting and waiting")
+//    return cat
+//}()
 
-public var userAdmin: User = {
+private var userAdmin: User = {
     let cat = User(
     userLogin: "",
     userFullName: "Admin Cat",
@@ -37,6 +37,6 @@ public var userAdmin: User = {
     return cat
 }()
 
-public var usersBase: [User] = [userDefault, userCat, userAdmin]
+public var usersBase: [User] = [userAdmin]
     
 

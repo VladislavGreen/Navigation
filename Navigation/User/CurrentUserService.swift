@@ -1,60 +1,48 @@
 //
-//  User.swift
+//  CurrentUserService.swift
 //  Navigation
 //
-//  Created by Vladislav Green on 10/11/22.
+//  Created by Vladislav Green on 10/21/22.
 //
 
 import UIKit
 
-public class User {
+final class CurrentUserService: UserService {
     
-    public var userLogin: String
-    public var userFullName: String
-    public var userAvatar: UIImage
-    public var userStatus: String
-    
-    public init(
-        userLogin: String,
-        userFullName: String,
-        userAvatar: UIImage,
-        userStatus: String
-    ) {
-        self.userLogin = userLogin
-        self.userFullName = userFullName
-        self.userAvatar = userAvatar
-        self.userStatus = userStatus
+var user = User(
+    userLogin: "",
+    userFullName: "Deku Tree",
+    userAvatar: UIImage(named: "cat")!,
+    userStatus: "One thinks ahead"
+    )
+
+    func loginToProfile(ofUser: String) -> User? {
+        ofUser == user.userLogin ? user : nil
     }
 }
+    
 
-// следующий код перенесён в отдельные файлы
-
-//protocol UserService {
-//    func loginToProfile(ofUser: String) -> User?
-//}
-
-
-//public class CurrentUserService: UserService {
-//    
+// предыдущая реализация (для истории)
+    
 //    // база пользователей пока хранится в UserModels
-//    
+//
 //    let userLogin: String
-//    
+//
 //    var user: User? {
 //        get {
 //            let user = loginToProfile(ofUser: userLogin)
 //            return user
 //        }
 //    }
-//    
+//
 //    init(userLogin: String) {
 //        self.userLogin = userLogin
 //    }
-//    
+//
 //    internal func loginToProfile(ofUser: String) -> User? {
-//        
+//
 //        var user: User?
-//        
+//
 //        // позже, при формировании профиля, нужно будет гарантировать, что login уникальный
 //        for i in 0...usersBase.count-1 {
 //            if usersBase[i].userLogin == ofUser {
@@ -67,4 +55,3 @@ public class User {
 //        return user
 //    }
 //}
-
