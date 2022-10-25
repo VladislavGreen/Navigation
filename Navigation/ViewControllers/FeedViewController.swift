@@ -18,7 +18,7 @@ class FeedViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    private lazy var guessTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .default
         textField.textColor = .black
@@ -34,15 +34,6 @@ class FeedViewController: UIViewController {
         return textField
     }()
     
-    private lazy var checkGuessButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("checkGuess", for: .normal)
-        button.layer.cornerRadius = 4
-        button.backgroundColor = .systemBlue
-        button.addTarget(self, action: #selector(checkGuessButtonPressed), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var lightLabel: UILabel = {
         let label = UILabel()
         label.text = "Result"
@@ -52,51 +43,45 @@ class FeedViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
-    
-//    private var firstButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("First Button", for: .normal)
-//        button.layer.cornerRadius = 4
-//        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-//        button.backgroundColor = .systemGreen
-//        return button
-//    }()
-//
-//    private var secondButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Second Button", for: .normal)
-//        button.layer.cornerRadius = 4
-//        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-//        button.backgroundColor = .systemYellow
-//        return button
-//    }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let firstButton = CustomButton()
-        firstButton.configureButton(
-            with: CustomButtonModel(
-                buttonTitle: "First Button",
-                buttonColor: .systemGreen,
-                buttonAction: firstButton.buttonTapped
-            )
-        )
+        firstButton.backgroundColor = .systemGreen
+        firstButton.setTitle("FirstButton", for: .normal)
+        firstButton.buttonAction = { [unowned self] in
+            let vc = PostViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
         let secondButton = CustomButton()
-        secondButton.configureButton(
-            with: CustomButtonModel(
-                buttonTitle: "Second Button",
-                buttonColor: .systemYellow,
-                buttonAction: secondButton.buttonTapped
-            )
-        )
+        secondButton.backgroundColor = .systemYellow
+        secondButton.setTitle("Second Button", for: .normal)
+        secondButton.buttonAction = { [unowned self] in
+            let vc = PostViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        let checkGuessButton = CustomButton()
+        checkGuessButton.backgroundColor = .systemBlue
+        checkGuessButton.setTitle("Check Guess", for: .normal)
+        checkGuessButton.buttonAction = { [unowned self] in
+            let feedModel = FeedModel()
+            let passwordTried = getPasswordTextFieldValue()
+            print(passwordTried)
+            
+            if feedModel.check(word: passwordTried) == true {
+                lightLabel.backgroundColor = .green
+            } else {
+                lightLabel.backgroundColor = .red
+            }
+        }
         
         view.addSubview(buttonsStackView)
         buttonsStackView.addArrangedSubview(lightLabel)
-        buttonsStackView.addArrangedSubview(passwordTextField)
+        buttonsStackView.addArrangedSubview(guessTextField)
         buttonsStackView.addArrangedSubview(checkGuessButton)
         buttonsStackView.addArrangedSubview(firstButton)
         buttonsStackView.addArrangedSubview(secondButton)
@@ -108,27 +93,7 @@ class FeedViewController: UIViewController {
     }
     
     private func getPasswordTextFieldValue() -> String {
-        let value = passwordTextField.text!
+        let value = guessTextField.text!
         return value
     }
-    
-    @objc private func checkGuessButtonPressed() {
-        let passwordTried = getPasswordTextFieldValue()
-        print(passwordTried)
-        
-        let feedModel = FeedModel()
-        if feedModel.check(word: passwordTried) == true {
-            lightLabel.backgroundColor = .green
-        } else {
-            lightLabel.backgroundColor = .red
-        }
-    }
-    
-    
-//    @objc func didTapButton() {
-//        let vc = PostViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-    
-
 }
