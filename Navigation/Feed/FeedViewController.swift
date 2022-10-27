@@ -9,6 +9,16 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
+    var feedViewModel: FeedViewModelProtocol! {
+        didSet {
+            self.feedViewModel.placeholderNameDidChange = { [weak self] feedViewModel in
+                // что делаем когда изменилось слово
+                self?.guessTextField.placeholder = feedViewModel.newPlaceholder
+                
+            }
+        }
+    }
+    
     private let buttonsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -26,7 +36,7 @@ class FeedViewController: UIViewController {
         textField.tintColor = .gray
         textField.backgroundColor = .white
         textField.autocapitalizationType = .none
-        textField.placeholder = " Password"
+//        textField.placeholder = " Password"
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
 //        textField.delegate = self
@@ -47,6 +57,8 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        feedViewModel.showNewPlaceholder()
         
         let firstButton = CustomButton()
         firstButton.backgroundColor = .systemGreen

@@ -10,37 +10,16 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var rootCoordinator: AppCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        let viewController = LoginViewController()
-        
-// К задаче 1:
-//        let inspector = LoginInspector()
-//        viewController.loginDelegate = inspector
-
-// К задаче 2:
-        let loginFactory = MyLoginFactory()
-        viewController.loginDelegate = loginFactory.makeLoginInspector()
-        
-        let loginViewController = UINavigationController (rootViewController: viewController)
-        let feedViewController = UINavigationController (rootViewController: FeedViewController())
-        
-        let tabBarController = TabBarController()
-        tabBarController.viewControllers = [feedViewController, loginViewController]
-                
-        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
-        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
-
-        feedViewController.tabBarItem = item1
-        loginViewController.tabBarItem = item2
-        
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = tabBarController // Your initial view controller.
-        window.makeKeyAndVisible()
+        let tabBarController = TabBarController()
+        window.rootViewController = RootCoordinator(transitionHandler: tabBarController).start()
         self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
