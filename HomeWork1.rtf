@@ -75,14 +75,14 @@ HW8 (checked out after HW6)\
 \pard\pardeftab720\sa320\partightenfactor0
 
 \f1\b0\fs32 \cf2 \cb3 \uc0\u1042  \u1079 \u1085 \u1072 \u1082 \u1086 \u1084 \u1086 \u1084  \u1074 \u1072 \u1084  \u1087 \u1072 \u1082 \u1077 \u1090 \u1077  {\field{\*\fldinst{HYPERLINK "https://github.com/TrueMax/iOSIntPackage/releases/tag/v3.2.3"}}{\fldrslt \cf4 iOSIntPackage}}, \uc0\u1074  
-\f3\fs27\fsmilli13600 \cf2 \cb5 ImageProcessor
-\f1\fs32 \cf2 \cb3  \uc0\u1087 \u1086 \u1103 \u1074 \u1080 \u1083 \u1089 \u1103  \u1085 \u1086 \u1074 \u1099 \u1081  \u1084 \u1077 \u1090 \u1086 \u1076 : 
-\f3\fs27\fsmilli13600 \cf2 \cb5 processImagesOnThread
-\f1\fs32 \cf2 \cb3 . \uc0\u1069 \u1090 \u1086 \u1090  \u1084 \u1077 \u1090 \u1086 \u1076  \u1091 \u1084 \u1077 \u1077 \u1090  \u1086 \u1090 \u1082 \u1088 \u1099 \u1074 \u1072 \u1090 \u1100  \u1089 \u1086 \u1073 \u1089 \u1090 \u1074 \u1077 \u1085 \u1085 \u1099 \u1081  
-\f3\fs27\fsmilli13600 \cf2 \cb5 thread
-\f1\fs32 \cf2 \cb3  \uc0\u1080  \u1088 \u1072 \u1073 \u1086 \u1090 \u1072 \u1090 \u1100  \u1089  \u1088 \u1072 \u1079 \u1085 \u1099 \u1084  \u1091 \u1088 \u1086 \u1074 \u1085 \u1077 \u1084  
-\f3\fs27\fsmilli13600 \cf2 \cb5 qualityOfService
-\f1\fs32 \cf2 \cb3 .\cb1 \
+\f3\fs27\fsmilli13600 \cb5 ImageProcessor
+\f1\fs32 \cb3  \uc0\u1087 \u1086 \u1103 \u1074 \u1080 \u1083 \u1089 \u1103  \u1085 \u1086 \u1074 \u1099 \u1081  \u1084 \u1077 \u1090 \u1086 \u1076 : 
+\f3\fs27\fsmilli13600 \cb5 processImagesOnThread
+\f1\fs32 \cb3 . \uc0\u1069 \u1090 \u1086 \u1090  \u1084 \u1077 \u1090 \u1086 \u1076  \u1091 \u1084 \u1077 \u1077 \u1090  \u1086 \u1090 \u1082 \u1088 \u1099 \u1074 \u1072 \u1090 \u1100  \u1089 \u1086 \u1073 \u1089 \u1090 \u1074 \u1077 \u1085 \u1085 \u1099 \u1081  
+\f3\fs27\fsmilli13600 \cb5 thread
+\f1\fs32 \cb3  \uc0\u1080  \u1088 \u1072 \u1073 \u1086 \u1090 \u1072 \u1090 \u1100  \u1089  \u1088 \u1072 \u1079 \u1085 \u1099 \u1084  \u1091 \u1088 \u1086 \u1074 \u1085 \u1077 \u1084  
+\f3\fs27\fsmilli13600 \cb5 qualityOfService
+\f1\fs32 \cb3 .\cb1 \
 \pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
 \ls2\ilvl0\cf2 \cb3 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
 \uc0\u1059 \u1089 \u1090 \u1072 \u1085 \u1086 \u1074 \u1080 \u1090 \u1077  \u1087 \u1072 \u1082 \u1077 \u1090  \u1080 \u1083 \u1080  \u1086 \u1073 \u1085 \u1086 \u1074 \u1080 \u1090 \u1077  \u1077 \u1075 \u1086  \u1076 \u1086  \u1087 \u1086 \u1089 \u1083 \u1077 \u1076 \u1085 \u1077 \u1081  \u1074 \u1077 \u1088 \u1089 \u1080 \u1080 : 
@@ -439,24 +439,24 @@ checkGuessButton.buttonAction = \{ [unowned self] \cf8 in\cf10 \
 \pard\pardeftab720\partightenfactor0
 
 \fs28 \cf10 \cb9 final \cf8 class\cf10  CustomButton: UIButton \{\
-    typealias Action = \cf16 ()\cf10  -> Void\
+    typealias Action = \cf16 \cb9 ()\cf10 \cb9  -> Void\
     \
     var buttonAction: Action\
     \
     init(title: String, titleColor: UIColor = .white, bgColor: UIColor, action: @escaping Action) \{\
         buttonAction = action\
         super.init(frame: .zero)\
-        layer.cornerRadius = \cf16 12\cf10 \
-        clipsToBounds = \cf16 true\cf10 \
+        layer.cornerRadius = \cf16 \cb9 12\cf10 \cb9 \
+        clipsToBounds = \cf16 \cb9 true\cf10 \cb9 \
         backgroundColor = bgColor\
         setTitleColor(titleColor, for: .normal)\
-        translatesAutoresizingMaskIntoConstraints = \cf16 false\cf10 \
+        translatesAutoresizingMaskIntoConstraints = \cf16 \cb9 false\cf10 \cb9 \
         setTitle(title, for: .normal)\
         addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)\
     \}\
     \
     required init?(coder: NSCoder) \{\
-        fatalError(\cf14 "lol"\cf10 )\
+        fatalError(\cf14 \cb9 "lol"\cf10 \cb9 )\
     \}\
     \
     @objc \cf8 private\cf10  func buttonTapped() \{\
