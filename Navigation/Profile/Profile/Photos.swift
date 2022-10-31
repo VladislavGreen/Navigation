@@ -10,7 +10,7 @@ private var imageNames = [
     "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"
 ]
 
-// Эта модель осталась для TableViewCell
+// Эта модель c UIImageView осталась для TableViewCell
 private var imageViews: [UIImageView]  = {
     var picViews: [UIImageView] = []
     for index in 0..<imageNames.count {
@@ -29,8 +29,7 @@ struct Photo {
     static var photos: [UIImageView] = imageViews
 }
 
-// модель для PhotosViewController
-// для подгрузки фоток через Observer нужны UIImage, поэтому модернизация
+// модель c UIImage для PhotosViewController
 private var imgs: [UIImage] = {
     var img: [UIImage] = []
     for index in 0..<imageNames.count {

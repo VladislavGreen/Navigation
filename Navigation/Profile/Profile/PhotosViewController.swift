@@ -8,12 +8,8 @@
 import UIKit
 import iOSIntPackage
 
-class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+class PhotosViewController: UIViewController {
        
-    let imagePublisherFacade = ImagePublisherFacade()
-    
-    
-    
     private enum Constants {
         static let numberOfItemsInLine: CGFloat = 3
     }
@@ -37,30 +33,14 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         return collectionView
     }()
     
-//    private let dataSource = Photo.photos
     private lazy var dataSource = [UIImageView]()
-
+    private let dataSourceImages: [UIImage] = MyImages.images
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.setupNavigationBar()
-        imagePublisherFacade.subscribe(self)
-        addImages()
-    }
-    
-
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        self.collectionView.collectionViewLayout.invalidateLayout()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        imagePublisherFacade.removeSubscription(for: self)
-        print("🔙 отписываемся")
+        self.filter(images: dataSourceImages)
     }
     
     private func setupNavigationBar() {
@@ -79,13 +59,6 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
             self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
-    }
-    
-    func addImages() {
-        imagePublisherFacade.addImagesWithTimer(
-            time: 0.5,
-            repeat: 15,
-            userImages: MyImages.images)
     }
 }
 
@@ -123,16 +96,67 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
+// структура для временного хранения данных подсчёта времени работы фильтра
+struct Timing  {
+    static var startFilterTime: Double = 0.0
+    static var startExportTime: Double = 0.0
+    static var diffTime: Double = 0.0
+}
 
+
+//  расширенеие для функций обработки и экспорта изображений
 extension PhotosViewController {
     
-    func receive(images: [UIImage]) {
-        let picView = UIImageView()
-        let i = images.count-1
-        picView.image = images[i]
-        picView.contentMode = .scaleAspectFit
-        picView.translatesAutoresizingMaskIntoConstraints = false
-        dataSource.append(picView)
-        collectionView.reloadData()
+    private func filter(images: [UIImage]) {
+        
+        let start = CFAbsoluteTimeGetCurrent()
+        Timing.startFilterTime = start
+        print("starting filtering \(start)")
+        
+        ImageProcessor().processImagesOnThread(
+            sourceImages: images,
+            filter: .noir,
+            qos: .default,
+            completion: exportImageViews(images: )
+        )
+    }
+            
+    private func exportImageViews(images: [CGImage?]) {
+        
+        let start = CFAbsoluteTimeGetCurrent()
+        Timing.startExportTime = start
+        print("starting exporting \(start)")
+        let diff = Timing.startExportTime - Timing.startFilterTime
+        print("Filtering took \(diff) sec to process")
+
+        let imagesCG = images
+        for i in 0..<imagesCG.count {
+            let imageCG = imagesCG[i]
+            let imageUI: UIImage = UIImage(cgImage: imageCG!)
+            DispatchQueue.main.async {
+                let imageView = UIImageView()
+                imageView.image = imageUI
+                self.dataSource.append(imageView)
+//                print("exporting image \(i+1)")
+                self.collectionView.reloadData()
+
+            }
+        }
     }
 }
+
+//  результаты измерений времени применения фильтра .noir
+//  qos: .userInteractive 2.4, 2.16 -  3 threads
+//  qos: .userInitiated 2.37, 2.11 - 4 threads
+//  qos: .utility 2.7, 2.5 - 3 threads
+//  qos: .background 11.9, 10.14 - 3 threads
+//  qos: .default 2.54, 2.15 - 4 threads
+
+//  результаты ручных измерений с момента перехода на экран до появления обработанных изображений (почему так с потоками - непонятно)
+//  qos: .userInteractive 2.80 - 10 threads
+//  qos: .userInitiated 2.95 - 10 threads
+//  qos: .utility 3.25 - 11 threads
+//  qos: .background 13.70 - 3 threads
+//  qos: .default 2.4, 2.13  - 4 threads
+
+

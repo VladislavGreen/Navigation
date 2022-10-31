@@ -136,17 +136,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A40C0DCB28B3936E0056EC7C /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A4B1533328B4CECD00F276BF /* TabBarController.swift */,
-				A40C0DC728B392910056EC7C /* FeedViewController.swift */,
-				A40C0DD028B39C630056EC7C /* PostViewController.swift */,
-				A4FE3B1528B403750079D788 /* InfoViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		A4231B7328B37A3E0026265D = {
 			isa = PBXGroup;
 			children = (
@@ -168,21 +157,53 @@
 			isa = PBXGroup;
 			children = (
 				A4DA926E28EC8D18001A4C39 /* HomeWork1.rtf */,
-				A43943BE2906A51E0079EB64 /* FeedModel.swift */,
-				A43943BB2902EAC60079EB64 /* SmartViews */,
-				A4DDF50828FED2CD009F0272 /* Login */,
 				A4AD685628F55436007A9AF4 /* User */,
+				A42D41D5290D5F1100FB7C29 /* Feed */,
 				A4DC3DF528B79B9D00ED8263 /* Profile */,
-				A40C0DCB28B3936E0056EC7C /* ViewControllers */,
+				A4B1533328B4CECD00F276BF /* TabBarController.swift */,
 				A4DA92AB28EC9444001A4C39 /* StorageService */,
-				A4231B8128B37A3E0026265D /* SceneDelegate.swift */,
-				A4231B7F28B37A3E0026265D /* AppDelegate.swift */,
+				A42D41D3290D5EA200FB7C29 /* Application Layer */,
 				A4231B8828B37A3F0026265D /* Assets.xcassets */,
 				A4231B8A28B37A3F0026265D /* LaunchScreen.storyboard */,
 				A4231B8D28B37A3F0026265D /* Info.plist */,
 				A4AD685528F551DC007A9AF4 /* Texts */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		A42D41D3290D5EA200FB7C29 /* Application Layer */ = {
+			isa = PBXGroup;
+			children = (
+				A4231B8128B37A3E0026265D /* SceneDelegate.swift */,
+				A4231B7F28B37A3E0026265D /* AppDelegate.swift */,
+			);
+			path = "Application Layer";
+			sourceTree = "<group>";
+		};
+		A42D41D4290D5EDE00FB7C29 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
+				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
+				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
+				A4F27BBE28D8A180008AF8ED /* Photos.swift */,
+				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
+				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
+				A40C0DCC28B393A90056EC7C /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		A42D41D5290D5F1100FB7C29 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				A43943BB2902EAC60079EB64 /* SmartViews */,
+				A43943BE2906A51E0079EB64 /* FeedModel.swift */,
+				A40C0DC728B392910056EC7C /* FeedViewController.swift */,
+				A4FE3B1528B403750079D788 /* InfoViewController.swift */,
+				A40C0DD028B39C630056EC7C /* PostViewController.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		A43943BB2902EAC60079EB64 /* SmartViews */ = {
@@ -230,13 +251,8 @@
 		A4DC3DF528B79B9D00ED8263 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
-				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
-				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
-				A4F27BBE28D8A180008AF8ED /* Photos.swift */,
-				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
-				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
-				A40C0DCC28B393A90056EC7C /* ProfileViewController.swift */,
+				A4DDF50828FED2CD009F0272 /* Login */,
+				A42D41D4290D5EDE00FB7C29 /* Profile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
