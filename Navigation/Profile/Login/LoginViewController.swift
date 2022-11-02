@@ -105,6 +105,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    private lazy var generatePasswordButton: UIButton = {
+        let button = UIButton()
+        let imageAlpha1 = UIImage(named: "blue_pixel")as UIImage?
+        let imageAlpha08 = UIImage(named: "blue_pixel")!.alpha(0.8)
+        button.setBackgroundImage(imageAlpha1, for: .normal)
+        button.setBackgroundImage(imageAlpha08, for: .disabled)
+        button.setBackgroundImage(imageAlpha08, for: .highlighted)
+        button.setBackgroundImage(imageAlpha08, for: .selected)
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.setTitle("Generate Password", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.addTarget(self, action: #selector(generatePasswordButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.style = .large
+        view.color = .gray
+        view.hidesWhenStopped = true
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let alertController = UIAlertController(
         title: "Не удалось войти в профиль",
         message: "Проверьте логин и пароль",
@@ -140,13 +168,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(loginNavigationBar)
         view.addSubview(scrollView)
         scrollView.addSubview(logoImageView)
+//        scrollView.addSubview(activityIndicatorView)
+
         scrollView.addSubview(stackView)
         
         stackView.addArrangedSubview(stackViewTextFields)
         stackView.addArrangedSubview(button)
+        stackView.addArrangedSubview(generatePasswordButton)
         
         stackViewTextFields.addArrangedSubview(loginTextField)
         stackViewTextFields.addArrangedSubview(separatorView)
+        passwordTextField.addSubview(activityIndicatorView)
         stackViewTextFields.addArrangedSubview(passwordTextField)
         stackViewTextFields.layer.cornerRadius = 10
         
@@ -166,16 +198,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 380),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackView.heightAnchor.constraint(equalToConstant: 166.5),
+            stackView.heightAnchor.constraint(equalToConstant: 216.5),
             
             loginTextField.heightAnchor.constraint(equalToConstant: 50),
             separatorView.heightAnchor.constraint(equalToConstant: 0.5),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             button.heightAnchor.constraint(equalToConstant: 50),
+            generatePasswordButton.heightAnchor.constraint(equalToConstant: 50),
+            
+//            activityIndicatorView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 300),
+            activityIndicatorView.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor)
+//            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50),
+//            activityIndicatorView.widthAnchor.constraint(equalTo: activityIndicatorView.heightAnchor)
+            
 
         ])
     }
-    
     
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
@@ -193,13 +232,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
 
-            let loginButtonBottomPointY =
-                self.stackView.frame.origin.y + self.button.frame.origin.y + self.button.frame.height + 16
+            let bottomPointY =
+//                self.stackView.frame.origin.y + self.button.frame.origin.y + self.button.frame.height + 16
+            self.stackView.frame.origin.y + self.generatePasswordButton.frame.origin.y + self.generatePasswordButton.frame.height + 16
             
             let keyboardOriginY = self.view.frame.height - keyboardHeight
 
-            let yOffset = keyboardOriginY < loginButtonBottomPointY
-            ? loginButtonBottomPointY - keyboardOriginY + 16
+            let yOffset = keyboardOriginY < bottomPointY
+            ? bottomPointY - keyboardOriginY
             : 0
 
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
@@ -254,6 +294,51 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func getPasswordTextFieldValue() -> String {
         let value = passwordTextField.text!
         return value
+    }
+    
+    @objc func generatePasswordButtonPressed() {
+        let updatedPassword = randomString(length: 4)
+        Checker.shared.password = updatedPassword
+        print(Checker.shared.password)
+        passwordTextFieldValue = updatedPassword
+        
+        guessAndShowPassword()
+    }
+    
+    private func randomString(length: Int) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+    
+    private func guessAndShowPassword() {
+        
+        let workItemStartAnimation = DispatchWorkItem {
+            self.activityIndicatorView.startAnimating()
+        }
+                
+        let workItemBF = DispatchWorkItem {
+            let bf = BruteForce()
+            bf.bruteForce(passwordToUnlock: Checker.shared.password)
+        }
+        
+        let notifyWhenBFFinished = DispatchWorkItem {
+//            вывести пароль в поле password, сделав его видимым по isSecureTextEntry = false,
+//            остановить работу activityIndicator
+//            и скрыть его с экрана.
+            self.passwordTextField.text = self.passwordTextFieldValue
+            self.passwordTextField.isSecureTextEntry = false
+            self.activityIndicatorView.stopAnimating()
+        }
+        
+        workItemBF.notify(queue: .main, execute: notifyWhenBFFinished)
+        
+        DispatchQueue.main.async (
+            execute: workItemStartAnimation
+        )
+        
+        DispatchQueue.global().async (
+            execute: workItemBF
+        )
     }
 }
 
