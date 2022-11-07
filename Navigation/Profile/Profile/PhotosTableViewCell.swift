@@ -57,6 +57,7 @@ class PhotosTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
+        scrollPicturesPreview(scrollingView: collectionView)
     }
     
     required init?(coder: NSCoder) {
@@ -98,6 +99,28 @@ class PhotosTableViewCell: UITableViewCell {
 //        print ("👻 screenWidth: \(screenWidth), imageHeight: \(imageHeight)")
         return imageHeight
     }
+    
+    private lazy var timerIsActive: Bool = true
+    
+    private func scrollPicturesPreview(scrollingView: UICollectionView) {
+        var counter = 0
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { (timer) in
+            
+            let index = IndexPath(item: counter, section: 0)
+            scrollingView.scrollToItem(at: index, at: .left, animated: true)
+            if counter < self.dataSource.count-4 {
+                counter += 1
+            } else {
+                scrollingView.reloadData()
+                counter = 0
+            }
+            timer.tolerance = 0.2
+            if self.timerIsActive == false {
+                timer.invalidate()
+            }
+        }
+        timer.fire()
+    }
 }
 
 extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -132,6 +155,11 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
 //        print("🍏 \(itemWidth)")
 
         return CGSize(width: itemWidth, height: itemWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        timerIsActive.toggle()
+        print("Stop please")
     }
 }
 

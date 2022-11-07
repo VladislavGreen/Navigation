@@ -183,10 +183,10 @@
 		A42D41D4290D5EDE00FB7C29 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
-				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
-				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
 				A4F27BBE28D8A180008AF8ED /* Photos.swift */,
+				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
+				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
+				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
 				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
 				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
 				A40C0DCC28B393A90056EC7C /* ProfileViewController.swift */,
