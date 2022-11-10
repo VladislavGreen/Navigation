@@ -129,6 +129,8 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
         tapGestureRecognizer.numberOfTapsRequired = 2
         self.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) -> () {
@@ -210,7 +212,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             view.setUserDetails(user)
             return view
         } else {
-        preconditionFailure("user do not exist")
+            preconditionFailure("user do not exist")
         }
     }
     
@@ -264,5 +266,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 
-
+extension ProfileViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 

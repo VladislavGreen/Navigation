@@ -111,7 +111,6 @@ extension PhotosViewController {
         
         let start = CFAbsoluteTimeGetCurrent()
         Timing.startFilterTime = start
-        print("starting filtering \(start)")
         
         ImageProcessor().processImagesOnThread(
             sourceImages: images,
@@ -125,8 +124,17 @@ extension PhotosViewController {
         
         let start = CFAbsoluteTimeGetCurrent()
         Timing.startExportTime = start
-        print("starting exporting \(start)")
         let diff = Timing.startExportTime - Timing.startFilterTime
+        
+        imageProcessingReport(diffTime: diff) { result in
+            switch result {
+            case .success(let diff):
+                print("Not bad! It takes just \(diff) sec to process all images")
+            case .failure(let error):
+                print(error.description)
+            }
+        }
+        
         print("Filtering took \(diff) sec to process")
 
         let imagesCG = images
@@ -139,8 +147,20 @@ extension PhotosViewController {
                 self.dataSource.append(imageView)
 //                print("exporting image \(i+1)")
                 self.collectionView.reloadData()
-
             }
+        }
+    }
+    
+    func imageProcessingReport(
+        diffTime: Double,
+        completion: (Result<Double, ImageProcessingTimeOut>) -> Void
+    ) {
+        let controlTime = 2.5
+        if diffTime > controlTime {
+            completion(.failure(.tooSlow))
+            return
+        } else {
+            completion(.success(diffTime))
         }
     }
 }

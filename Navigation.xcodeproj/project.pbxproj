@@ -25,6 +25,7 @@
 		A46438E928FAF23E00649B83 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438E828FAF23E00649B83 /* Checker.swift */; };
 		A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EA28FB0ACF00649B83 /* LoginInspector.swift */; };
 		A46438ED28FB0F2500649B83 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */; };
+		A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A464C1E8291BE9C800B8C192 /* Errors.swift */; };
 		A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AD685728F5ABA4007A9AF4 /* User.swift */; };
 		A4AD685A28F6A09E007A9AF4 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AD685928F6A09E007A9AF4 /* UserModels.swift */; };
 		A4B1533428B4CECD00F276BF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1533328B4CECD00F276BF /* TabBarController.swift */; };
@@ -95,6 +96,7 @@
 		A46438E828FAF23E00649B83 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		A46438EA28FB0ACF00649B83 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		A464C1E8291BE9C800B8C192 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A4AD685728F5ABA4007A9AF4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A4AD685928F6A09E007A9AF4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		A4B1533328B4CECD00F276BF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				A4DA926E28EC8D18001A4C39 /* HomeWork1.rtf */,
+				A464C1E8291BE9C800B8C192 /* Errors.swift */,
 				A4AD685628F55436007A9AF4 /* User */,
 				A42D41D5290D5F1100FB7C29 /* Feed */,
 				A4DC3DF528B79B9D00ED8263 /* Profile */,
@@ -200,8 +203,8 @@
 				A43943BB2902EAC60079EB64 /* SmartViews */,
 				A43943BE2906A51E0079EB64 /* FeedModel.swift */,
 				A40C0DC728B392910056EC7C /* FeedViewController.swift */,
-				A4FE3B1528B403750079D788 /* InfoViewController.swift */,
 				A40C0DD028B39C630056EC7C /* PostViewController.swift */,
+				A4FE3B1528B403750079D788 /* InfoViewController.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -212,6 +215,17 @@
 				A43943BC2902EB0B0079EB64 /* CustomButton.swift */,
 			);
 			path = SmartViews;
+			sourceTree = "<group>";
+		};
+		A464C1EA291BFA0800B8C192 /* Check Login & Password */ = {
+			isa = PBXGroup;
+			children = (
+				A42A608D28FDADF500D7726E /* LoginFactory.swift */,
+				A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */,
+				A46438EA28FB0ACF00649B83 /* LoginInspector.swift */,
+				A46438E828FAF23E00649B83 /* Checker.swift */,
+			);
+			path = "Check Login & Password";
 			sourceTree = "<group>";
 		};
 		A4AD685528F551DC007A9AF4 /* Texts */ = {
@@ -260,11 +274,8 @@
 		A4DDF50828FED2CD009F0272 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */,
-				A42A608D28FDADF500D7726E /* LoginFactory.swift */,
-				A46438EA28FB0ACF00649B83 /* LoginInspector.swift */,
+				A464C1EA291BFA0800B8C192 /* Check Login & Password */,
 				A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */,
-				A46438E828FAF23E00649B83 /* Checker.swift */,
 				A4E9AC4A28C8D5B100436749 /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -402,6 +413,7 @@
 				A43943BD2902EB0B0079EB64 /* CustomButton.swift in Sources */,
 				A4F27BBF28D8A180008AF8ED /* Photos.swift in Sources */,
 				A4E9AC4B28C8D5B100436749 /* LoginViewController.swift in Sources */,
+				A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */,
 				A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */,
 				A4B1533428B4CECD00F276BF /* TabBarController.swift in Sources */,
 				A42A608E28FDADF500D7726E /* LoginFactory.swift in Sources */,
