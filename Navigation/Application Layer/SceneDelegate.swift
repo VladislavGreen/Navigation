@@ -21,21 +21,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let inspector = LoginInspector()
 //        viewController.loginDelegate = inspector
 
-// К задаче 2:
+// К задаче 2 и 11:
         let loginFactory = MyLoginFactory()
         viewController.loginDelegate = loginFactory.makeLoginInspector()
         
         let loginViewController = UINavigationController (rootViewController: viewController)
         let feedViewController = UINavigationController (rootViewController: FeedViewController())
+        let audioViewController = UINavigationController (rootViewController: AudioViewController())
+        let videoViewController = UINavigationController (rootViewController: VideoViewController())
+        let recordingAudioViewController = UINavigationController (rootViewController: RecordingAudioViewController())
         
         let tabBarController = TabBarController()
-        tabBarController.viewControllers = [feedViewController, loginViewController]
+        tabBarController.viewControllers = [
+            feedViewController, loginViewController, audioViewController, videoViewController, recordingAudioViewController
+        ]
                 
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
         let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
+        let item3 = UITabBarItem(title: "Audio", image: UIImage(systemName: "speaker.fill"), tag: 2)
+        let item4 = UITabBarItem(title: "Video", image: UIImage(systemName: "tv"), tag: 3)
+        let item5 = UITabBarItem(title: "Recorder", image: UIImage(systemName: "mic.fill"), tag: 4)
 
         feedViewController.tabBarItem = item1
         loginViewController.tabBarItem = item2
+        audioViewController.tabBarItem = item3
+        videoViewController.tabBarItem = item4
+        recordingAudioViewController.tabBarItem = item5
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController // Your initial view controller.
