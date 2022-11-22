@@ -12,16 +12,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-       
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let viewController = LoginViewController()
         
-// К задаче 1:
-//        let inspector = LoginInspector()
-//        viewController.loginDelegate = inspector
-
-// К задаче 2 и 11:
         let loginFactory = MyLoginFactory()
         viewController.loginDelegate = loginFactory.makeLoginInspector()
         
@@ -35,13 +30,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarController.viewControllers = [
             feedViewController, loginViewController, audioViewController, videoViewController, recordingAudioViewController
         ]
-                
+        
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
         let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
         let item3 = UITabBarItem(title: "Audio", image: UIImage(systemName: "speaker.fill"), tag: 2)
         let item4 = UITabBarItem(title: "Video", image: UIImage(systemName: "tv"), tag: 3)
         let item5 = UITabBarItem(title: "Recorder", image: UIImage(systemName: "mic.fill"), tag: 4)
-
+        
         feedViewController.tabBarItem = item1
         loginViewController.tabBarItem = item2
         audioViewController.tabBarItem = item3
@@ -52,6 +47,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = tabBarController // Your initial view controller.
         window.makeKeyAndVisible()
         self.window = window
+        
+        if let appConfiguration = AppConfiguration.allCases.randomElement() {
+            NetworkManager.request(for: appConfiguration)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

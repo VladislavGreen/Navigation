@@ -86,14 +86,35 @@ class FeedViewController: UIViewController {
         buttonsStackView.addArrangedSubview(firstButton)
         buttonsStackView.addArrangedSubview(secondButton)
         
+        self.setupGestures()
+
+        
         NSLayoutConstraint.activate([
             buttonsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonsStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
+    private func setupGestures() {
+        self.hideKeyboardWhenTappedAround()
+    }
+    
     private func getPasswordTextFieldValue() -> String {
         let value = guessTextField.text!
         return value
+    }
+}
+
+
+extension FeedViewController {
+    private func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(FeedViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = true
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

@@ -26,7 +26,7 @@ class RecordingAudioViewController: UIViewController, AVAudioRecorderDelegate, A
         label.textColor = .lightGray
         label.textAlignment = .center
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.lineBreakStrategy = .hangulWordPriority
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
