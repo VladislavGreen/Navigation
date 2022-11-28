@@ -10,7 +10,7 @@ class PostViewController: UIViewController {
  
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "First Text"
+        label.text = "Press the Flame button to see the Info page ↑"
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

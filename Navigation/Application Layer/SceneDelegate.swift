@@ -48,9 +48,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        if let appConfiguration = AppConfiguration.allCases.randomElement() {
-            NetworkManager.request(for: appConfiguration)
-        }
+        // К заданию 1.1 "Хранение данных" с Network Manager (выключено пока, что-бы не мешало)
+//        if let appConfiguration = AppConfiguration.allCases.randomElement() {
+//            NetworkManager.request(for: appConfiguration)
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

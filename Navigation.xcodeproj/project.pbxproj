@@ -28,6 +28,7 @@
 		A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EA28FB0ACF00649B83 /* LoginInspector.swift */; };
 		A46438ED28FB0F2500649B83 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */; };
 		A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A464C1E8291BE9C800B8C192 /* Errors.swift */; };
+		A46DA9DD2934D89800E4885A /* InfoDataTatooine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */; };
 		A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AD685728F5ABA4007A9AF4 /* User.swift */; };
 		A4AD685A28F6A09E007A9AF4 /* UserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AD685928F6A09E007A9AF4 /* UserModels.swift */; };
 		A4B1533428B4CECD00F276BF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1533328B4CECD00F276BF /* TabBarController.swift */; };
@@ -110,6 +111,7 @@
 		A46438EA28FB0ACF00649B83 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A464C1E8291BE9C800B8C192 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDataTatooine.swift; sourceTree = "<group>"; };
 		A4AD685728F5ABA4007A9AF4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A4AD685928F6A09E007A9AF4 /* UserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModels.swift; sourceTree = "<group>"; };
 		A4B1533328B4CECD00F276BF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				A43943BE2906A51E0079EB64 /* FeedModel.swift */,
 				A40C0DC728B392910056EC7C /* FeedViewController.swift */,
 				A40C0DD028B39C630056EC7C /* PostViewController.swift */,
+				A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */,
 				A4FE3B1528B403750079D788 /* InfoViewController.swift */,
 			);
 			path = Feed;
@@ -504,6 +507,7 @@
 				A44199C828DA06CA004A7047 /* PhotosCollectionViewCell.swift in Sources */,
 				A43943B82902C89C0079EB64 /* User Service.swift in Sources */,
 				A40C3CF328F8290000F1BACF /* TestUserService.swift in Sources */,
+				A46DA9DD2934D89800E4885A /* InfoDataTatooine.swift in Sources */,
 				A43943BF2906A51F0079EB64 /* FeedModel.swift in Sources */,
 				A4231B8028B37A3E0026265D /* AppDelegate.swift in Sources */,
 				A4AD685A28F6A09E007A9AF4 /* UserModels.swift in Sources */,

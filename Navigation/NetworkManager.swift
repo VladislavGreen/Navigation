@@ -10,22 +10,11 @@ import Foundation
 struct NetworkManager {
     
     static func request(for configuration: AppConfiguration) {
-        let currentConfiguration = configuration
         
-//        switch currentConfiguration {
-//        case .URL01:
-//            address = currentConfiguration.rawValue
-//        case .URL02:
-//            address = currentConfiguration.rawValue
-//        case .URL03:
-//            address = currentConfiguration.rawValue
-//        }
-        // Очевидно, switch не нужен при данном решении задачи
-        
-        let link = currentConfiguration.rawValue
+        let link = configuration.rawValue
 
-        let configuration = URLSessionConfiguration.default
-        let urlSession = URLSession(configuration: configuration)
+        let sessionConfiguration = URLSessionConfiguration.default
+        let urlSession = URLSession(configuration: sessionConfiguration)
         
         if let url = URL(string: link) {
             
