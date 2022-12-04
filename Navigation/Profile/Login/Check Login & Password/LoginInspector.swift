@@ -13,22 +13,23 @@ struct LoginInspector: LoginViewControllerDelegate {
         loginTried: String,
         passwordTried: String
     ) -> Bool {
-//        return  Checker.shared.check(loginTried: loginTried, passwordTried: passwordTried)
         
-        do {
-            return try Checker.shared.check(loginTried: loginTried, passwordTried: passwordTried)
-        }
-        catch AuthorizationError.invalidLogin {
-            print(AuthorizationError.invalidLogin.description)
-            return false
-        }
-        catch AuthorizationError.invalidPassword {
-            print(AuthorizationError.invalidPassword.description)
-            return false
-        }
-        catch {
-            return false
-        }
+        return CheckerService.shared.checkCredentials(loginTried: loginTried, passwordTried: passwordTried)
+        
+//        do {
+//            return try Checker.shared.check(loginTried: loginTried, passwordTried: passwordTried)
+//        }
+//        catch AuthorizationError.invalidLogin {
+//            print(AuthorizationError.invalidLogin.description)
+//            return false
+//        }
+//        catch AuthorizationError.invalidPassword {
+//            print(AuthorizationError.invalidPassword.description)
+//            return false
+//        }
+//        catch {
+//            return false
+//        }
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -54,7 +55,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.tintColor = UIColor(named: "Accent Color")
         textField.backgroundColor = .systemGray6
         textField.autocapitalizationType = .none
-        textField.placeholder = " Email or phone"
+        textField.placeholder = " Enter your e-mail"
+        textField.leftViewMode = .always
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +83,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.backgroundColor = .systemGray6
         textField.autocapitalizationType = .none
         textField.placeholder = " Password"
+        textField.leftViewMode = .always
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
@@ -105,11 +110,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-    private let alertController = UIAlertController(
-        title: "Не удалось войти в профиль",
-        message: "Проверьте логин и пароль",
-        preferredStyle: .alert
-    )
+//    private let alertController = UIAlertController(
+//        title: "Не удалось войти в профиль",
+//        message: "Проверьте логин и пароль",
+//        preferredStyle: .alert
+//    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +137,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         setupGestures()
-        setupAlertConfiguration()
+//        setupAlertConfiguration()
 
         let loginNavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
         loginNavigationBar.isHidden = true
@@ -182,11 +187,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tapGesture)
     }
     
-    private func setupAlertConfiguration() {
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-           print("Ok")
-        }))
-    }
+//    private func setupAlertConfiguration() {
+//        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+//           print("Ok")
+//        }))
+//    }
     
     @objc private func didShowKeyboard(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -217,8 +222,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func buttonPressed() {
         
-        let loginTried = getLoginTextFieldValue()
-        let passwordTried = getPasswordTextFieldValue()
+        let loginTried = loginTextField.text!
+        let passwordTried = passwordTextField.text!
         
         print(loginTried, passwordTried)
         
@@ -227,6 +232,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             loginTried: loginTried,
             passwordTried: passwordTried
         )
+        
+        print(accessIsAllowed)
+        
         if accessIsAllowed == true {
             
             #if DEBUG
@@ -241,19 +249,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             viewController.user = user 
             self.navigationController?.pushViewController(viewController, animated: true)
                 
-        } else {
-            self.present(alertController, animated: true, completion: nil)
+//        } else {
+//            self.present(alertController, animated: true, completion: nil)
         }
-    }
-    
-    func getLoginTextFieldValue() -> String {
-        let value = loginTextField.text!
-        return value
-    }
-    
-    func getPasswordTextFieldValue() -> String {
-        let value = passwordTextField.text!
-        return value
     }
 }
 
