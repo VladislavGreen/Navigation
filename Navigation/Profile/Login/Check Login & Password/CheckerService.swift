@@ -14,25 +14,23 @@ protocol CheckerServiceProtocol {
     func checkCredentials(
 //        _ sender: LoginViewController,
         loginTried: String,
-        passwordTried: String
-    ) -> Bool
+        passwordTried: String,
+        completion: @escaping (_ result: Result<Bool, AuthorizationError>) -> Void)
 }
 
 
 class CheckerService: CheckerServiceProtocol {
-
+    
     public static let shared = CheckerService()
-    
+
     private lazy var alertConfiguration = UIAlertController()
-    
+
     //  Проверки
-    public func checkCredentials(loginTried: String, passwordTried: String) -> Bool {
-        
-        var accessIsAllowed: Bool
+    func checkCredentials(loginTried: String, passwordTried: String, completion: @escaping (_ result: Result<Bool, AuthorizationError>) -> Void) {
         
         // Проверка на пустые поля в Login и Password
         guard !loginTried.isEmpty, !passwordTried.isEmpty else {
-            
+
             alertConfiguration = UIAlertController(title: "Not so fast",
                                           message: "Empty fields detected. Please fill them.",
                                           preferredStyle: .alert)
@@ -41,15 +39,14 @@ class CheckerService: CheckerServiceProtocol {
                                           handler: {_ in
             }))
             showLoginAlert(alertConfiguration: alertConfiguration)
-            
+
             print("Уведомление о пустых полях")
-            accessIsAllowed = false
-            return accessIsAllowed
+            return
         }
-        
+
         // Проверка Login на email-ность
         guard loginTried.isValidEmail else {
-            
+
             alertConfiguration = UIAlertController(title: "You've made a typo",
                                           message: "Check your email spelling please",
                                           preferredStyle: .alert)
@@ -58,86 +55,70 @@ class CheckerService: CheckerServiceProtocol {
                                           handler: {_ in
             }))
             showLoginAlert(alertConfiguration: alertConfiguration)
-            
+
             print("Wrong Email")
-            accessIsAllowed = false
-            return accessIsAllowed
+            return
         }
         
-        accessIsAllowed = signIn(loginTried: loginTried, passwordTried: passwordTried)
-        return accessIsAllowed
-    }
-    
-    
-    //  Авторизуемся
-    private func signIn(loginTried: String, passwordTried: String) -> Bool {
-        
-        // ПРОБЛЕМА
-        var isSignedIn: Bool = false
-        
+        //  Авторизация
         FirebaseAuth.Auth.auth().signIn(withEmail: loginTried, password: passwordTried, completion: { result, error in
-            
+
             guard error == nil else {
                 print("Вызываем метод создания аккаунта")
-                isSignedIn = self.signUp(loginTried: loginTried, passwordTried: passwordTried)
+                self.signUp(loginTried: loginTried, passwordTried: passwordTried)
                 return
             }
 
             print("Входим в профиль")
-            isSignedIn = true
             return
         })
         
-        return isSignedIn
     }
-    
-    
-    //  Создаём аккаунт и авторизуемся в него
-    private func signUp(loginTried: String, passwordTried: String) -> Bool {
-        
-        var isSignedUp: Bool = false
-        
+
+
+
+    //  Создание аккаунта и авторизация
+    private func signUp(loginTried: String, passwordTried: String) {
+
         alertConfiguration = UIAlertController(title: "Create Account",
                                       message: "Would you like to create an account?",
                                       preferredStyle: .alert)
-        
+
         alertConfiguration.addAction(UIAlertAction(title: "Continue",
                                       style: .default,
                                       handler: {_ in
             FirebaseAuth.Auth.auth().createUser(withEmail: loginTried, password: passwordTried, completion: { result, error in
-                
+
                 guard error == nil else {
                     // show account creation alert
                     print("Account creation failed")
-                    isSignedUp = false
                     return
                 }
-                
                 print("You have signed in")
                 print("Входим в профиль")
-                isSignedUp = true
             })
         }))
         alertConfiguration.addAction(UIAlertAction(title: "Cancel",
                                       style: .cancel,
                                       handler: {_ in
-            
         }))
         showLoginAlert(alertConfiguration: alertConfiguration)
-        
-        return isSignedUp
     }
-    
-    
+
+
     private func showLoginAlert(alertConfiguration: UIAlertController ) {
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+        
+//        let scenes = UIApplication.shared.connectedScenes
+//        let windowScene = scenes.first as? UIWindowScene
+//        window = windowScene?.windows.first(where: { $0.isKeyWindow })?.windowScene
+        
+        if var topController = UIApplication.shared.windows.first(where: \.isKeyWindow)?.rootViewController {
                     while let presentedViewController = topController.presentedViewController {
                         topController = presentedViewController
                     }
                     topController.present(alertConfiguration, animated: true, completion: nil)
              }
     }
-    
 }
 
 
@@ -149,7 +130,9 @@ extension String {
 }
 
 
-// Использован хороший видео-урок https://www.youtube.com/watch?v=ife5YK-Keng 19:22
+
+
+// Использован видео-урок https://www.youtube.com/watch?v=ife5YK-Keng 19:22
 
 //        // Проверка на пустые поля в Login и Password
 //        guard !loginTried.isEmpty, !passwordTried.isEmpty else {

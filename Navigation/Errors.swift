@@ -19,17 +19,14 @@ extension ImageProcessingTimeOut: CustomStringConvertible {
 }
 
 enum AuthorizationError: Error {
-    case invalidLogin
-    case invalidPassword
+    case invalidLoginOrPassword
 }
 
 extension AuthorizationError: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .invalidLogin:
-            return "Invalid Login"
-        case .invalidPassword:
-            return "Invalid Password"
+        case .invalidLoginOrPassword:
+            return "Invalid Login or password"
         }
     }
 }

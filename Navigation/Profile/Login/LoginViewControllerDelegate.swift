@@ -7,11 +7,10 @@
 
 protocol LoginViewControllerDelegate {
     
-    func check(
+    func checkCredentials(
         _ sender: LoginViewController,
         loginTried: String,
-        passwordTried: String
-    ) -> Bool
-    
+        passwordTried: String,
+        completion: @escaping (_ result: Result<Bool, AuthorizationError>) -> Void)
 }
 

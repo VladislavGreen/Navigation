@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    var loginDelegate: LoginViewControllerDelegate?          
+    var loginViewControllerDelegate: LoginViewControllerDelegate?          
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -227,30 +227,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         print(loginTried, passwordTried)
         
-        let accessIsAllowed = loginDelegate?.check(
+        loginViewControllerDelegate?.checkCredentials(
             self,
             loginTried: loginTried,
             passwordTried: passwordTried
-        )
-        
-        print(accessIsAllowed)
-        
-        if accessIsAllowed == true {
-            
-            #if DEBUG
-            let currentUser = TestUserService()
-            #else
-            let currentUser = CurrentUserService()
-            #endif
-            
-            let user = currentUser.user
-            
-            let viewController = ProfileViewController()
-            viewController.user = user 
-            self.navigationController?.pushViewController(viewController, animated: true)
-                
-//        } else {
-//            self.present(alertController, animated: true, completion: nil)
+        ) {
+            result in
+                switch result {
+                case .success(true):
+                    print("Success from LVC")
+                    #if DEBUG
+                    let currentUser = TestUserService()
+                    #else
+                    let currentUser = CurrentUserService()
+                    #endif
+
+                    let user = currentUser.user
+
+                    let viewController = ProfileViewController()
+                    viewController.user = user
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                case .failure(AuthorizationError.invalidLoginOrPassword):
+                    print(AuthorizationError.invalidLoginOrPassword.description)
+                case .success(false):
+                    print("No Success from LVC")
+            }
         }
     }
 }
