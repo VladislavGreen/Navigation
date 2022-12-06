@@ -137,7 +137,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         setupGestures()
-//        setupAlertConfiguration()
+        
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("ProfileAssessAllowed"),
+            object: nil,
+            queue: OperationQueue.main)
+        { notification in
+            self.pushProfileViewController()
+        }
 
         let loginNavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
         loginNavigationBar.isHidden = true
@@ -236,23 +243,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 switch result {
                 case .success(true):
                     print("Success from LVC")
-                    #if DEBUG
-                    let currentUser = TestUserService()
-                    #else
-                    let currentUser = CurrentUserService()
-                    #endif
-
-                    let user = currentUser.user
-
-                    let viewController = ProfileViewController()
-                    viewController.user = user
-                    self.navigationController?.pushViewController(viewController, animated: true)
                 case .failure(AuthorizationError.invalidLoginOrPassword):
                     print(AuthorizationError.invalidLoginOrPassword.description)
                 case .success(false):
                     print("No Success from LVC")
             }
         }
+    }
+    
+    func pushProfileViewController() {
+            #if DEBUG
+        let currentUser = TestUserService()
+            #else
+        let currentUser = CurrentUserService()
+            #endif
+
+        let user = currentUser.user
+
+        let viewController = ProfileViewController()
+        viewController.user = user
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
