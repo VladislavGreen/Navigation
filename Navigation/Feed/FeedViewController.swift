@@ -50,15 +50,18 @@ class FeedViewController: UIViewController {
         
         let firstButton = CustomButton()
         firstButton.backgroundColor = .systemGreen
-        firstButton.setTitle("FirstButton", for: .normal)
-        firstButton.buttonAction = { [unowned self] in
-            let vc = PostViewController()
+        firstButton.setTitle("Clear All Users", for: .normal)
+        firstButton.buttonAction = {
+            let realmManager = RealmManager()
+            realmManager.clearUsersRealm()
+            print("all realm users have been deleted")
+            let vc = LoginViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
         let secondButton = CustomButton()
         secondButton.backgroundColor = .systemYellow
-        secondButton.setTitle("Second Button", for: .normal)
+        secondButton.setTitle("Tatooine Statistics", for: .normal)
         secondButton.buttonAction = { [unowned self] in
             let vc = PostViewController()
             self.navigationController?.pushViewController(vc, animated: true)

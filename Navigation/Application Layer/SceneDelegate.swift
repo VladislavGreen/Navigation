@@ -15,12 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewController = LoginViewController()
+//        let viewController = LoginViewController()
         
-        let loginFactory = MyLoginFactory()
-        viewController.loginDelegate = loginFactory.makeLoginInspector()
+//        let loginFactory = MyLoginFactory()
+//        viewController.loginDelegate = loginFactory.makeLoginInspector()
         
-        let loginViewController = UINavigationController (rootViewController: viewController)
+        let loginViewController = UINavigationController (rootViewController: LoginViewController())
         let feedViewController = UINavigationController (rootViewController: FeedViewController())
         let audioViewController = UINavigationController (rootViewController: AudioViewController())
         let videoViewController = UINavigationController (rootViewController: VideoViewController())
@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        // К заданию 1.1 "Хранение данных" с Network Manager (выключено пока, что-бы не мешало)
+//         К заданию 1.1 "Хранение данных" с Network Manager (выключено пока)
 //        if let appConfiguration = AppConfiguration.allCases.randomElement() {
 //            NetworkManager.request(for: appConfiguration)
 //        }

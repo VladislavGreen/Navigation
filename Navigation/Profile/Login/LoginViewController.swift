@@ -9,7 +9,9 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    var loginDelegate: LoginViewControllerDelegate?          
+//    var loginDelegate: LoginViewControllerDelegate?
+    
+    var realmManager = RealmManager()
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -113,6 +115,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkUserRealm()
         setupUI()
     }
     
@@ -127,6 +130,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
+    
+    func checkUserRealm() {
+        
+        realmManager.loadUserRealm()
+        let userRealm = realmManager.usersRealm
+        guard userRealm.isEmpty == false else { return }
+        logIn()
+    }
+    
     
     func setupUI() {
         
@@ -222,28 +234,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         print(loginTried, passwordTried)
         
-        let accessIsAllowed = loginDelegate?.check(
-            self,
-            loginTried: loginTried,
-            passwordTried: passwordTried
-        )
-        if accessIsAllowed == true {
+        realmManager.saveUserRealm(login: loginTried, password: passwordTried)
+        print(realmManager.usersRealm)
+        
+        logIn()
+        
+        
+        
+        // Проверка через делегата в этом случае, похоже, вообще не нужна
+        
+//        let accessIsAllowed = loginDelegate?.check(
+//            self,
+//            loginTried: loginTried,
+//            passwordTried: passwordTried
+//        )
+//
+//        if accessIsAllowed == true {
             
-            #if DEBUG
-            let currentUser = TestUserService()
-            #else
-            let currentUser = CurrentUserService()
-            #endif
             
-            let user = currentUser.user
-            
-            let viewController = ProfileViewController()
-            viewController.user = user 
-            self.navigationController?.pushViewController(viewController, animated: true)
-                
-        } else {
-            self.present(alertController, animated: true, completion: nil)
-        }
+        // Вынесено в отдельный метод logIn()
+//            #if DEBUG
+//            let currentUser = TestUserService()
+//            #else
+//            let currentUser = CurrentUserService()
+//            #endif
+//
+//            let user = currentUser.user
+
+//            let viewController = ProfileViewController()
+//            viewController.user = user
+//            self.navigationController?.pushViewController(viewController, animated: true)
+//
+//        } else {
+//            self.present(alertController, animated: true, completion: nil)
+//        }
     }
     
     func getLoginTextFieldValue() -> String {
@@ -254,6 +278,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func getPasswordTextFieldValue() -> String {
         let value = passwordTextField.text!
         return value
+    }
+    
+    func logIn() {
+        
+        #if DEBUG
+        let currentUser = TestUserService()
+        #else
+        let currentUser = CurrentUserService()
+        #endif
+
+        let user = currentUser.user
+        
+        let viewController = ProfileViewController()
+        viewController.user = user
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
