@@ -11,7 +11,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
 //    var loginDelegate: LoginViewControllerDelegate?
     
-    var realmManager = RealmManager()
+    lazy var realmManager = RealmManager()
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -229,8 +229,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func buttonPressed() {
         
-        let loginTried = getLoginTextFieldValue()
-        let passwordTried = getPasswordTextFieldValue()
+        let loginTried = loginTextField.text!
+        let passwordTried = passwordTextField.text!
         
         print(loginTried, passwordTried)
         
@@ -238,46 +238,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         print(realmManager.usersRealm)
         
         logIn()
-        
-        
-        
-        // Проверка через делегата в этом случае, похоже, вообще не нужна
-        
-//        let accessIsAllowed = loginDelegate?.check(
-//            self,
-//            loginTried: loginTried,
-//            passwordTried: passwordTried
-//        )
-//
-//        if accessIsAllowed == true {
-            
-            
-        // Вынесено в отдельный метод logIn()
-//            #if DEBUG
-//            let currentUser = TestUserService()
-//            #else
-//            let currentUser = CurrentUserService()
-//            #endif
-//
-//            let user = currentUser.user
-
-//            let viewController = ProfileViewController()
-//            viewController.user = user
-//            self.navigationController?.pushViewController(viewController, animated: true)
-//
-//        } else {
-//            self.present(alertController, animated: true, completion: nil)
-//        }
-    }
-    
-    func getLoginTextFieldValue() -> String {
-        let value = loginTextField.text!
-        return value
-    }
-    
-    func getPasswordTextFieldValue() -> String {
-        let value = passwordTextField.text!
-        return value
     }
     
     func logIn() {

@@ -23,15 +23,15 @@ struct NetworkManager {
                 
                 if let unwrappedData = data {
                     let parsedData = String(data: unwrappedData, encoding: .utf8)
-                    print("Data: \(String(describing: parsedData))")
+//                    print("Data: \(String(describing: parsedData))")
                 }
                 
                 if let castedResponse = response as? HTTPURLResponse {
-                    print("Response .allHeaderFields: \(castedResponse.allHeaderFields)")
-                    print("Response .statusCode: \(castedResponse.statusCode)")
+//                    print("Response .allHeaderFields: \(castedResponse.allHeaderFields)")
+//                    print("Response .statusCode: \(castedResponse.statusCode)")
                 }
                 
-                print("Error: \(String(describing: error))")
+//                print("Error: \(String(describing: error))")
                 // Код ошибки если отключить интернет: -1009:
             })
             task.resume()

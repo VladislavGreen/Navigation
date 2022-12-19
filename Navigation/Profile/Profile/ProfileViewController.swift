@@ -10,7 +10,8 @@ import StorageService
 
 class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
-
+//    let coreDataManager = CoreDataManager()
+    
     public var user: User = userDefault
     
     let postTableViewCell = PostTableViewCell()
@@ -86,6 +87,13 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+        print(" TabBarController selected index is \(self.tabBarController?.selectedIndex) ")
     }
     
     private func setupView() {
@@ -126,18 +134,54 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
        }
     
     private func setupGestures() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapGesture(_:)))
-        tapGestureRecognizer.numberOfTapsRequired = 2
-        self.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        let tapGestureRecognizerAvatar = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.handleTapGestureAvatar(_:)))
+        tapGestureRecognizerAvatar.numberOfTapsRequired = 2
+        self.avatarImageView.addGestureRecognizer(tapGestureRecognizerAvatar)
+        
+        let tapGestureRecognizerCell = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.handleTapGestureCell(_:)))
+        tapGestureRecognizerCell.numberOfTapsRequired = 2
+        self.tableView.addGestureRecognizer(tapGestureRecognizerCell)
         
         self.hideKeyboardWhenTappedAround()
     }
     
-    @objc private func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) -> () {
-        
+    @objc private func handleTapGestureAvatar(_ gestureRecognizer: UITapGestureRecognizer) -> () {
         self.button.isEnabled = true
         self.avatarImageView.alpha = 1
         self.avatarIncreasing()
+        
+        CoreDataManager.coreDataManager.clearPosts()
+        tableView.reloadData()
+        print("Удаляем все Favoirities - теперь их \(CoreDataManager.coreDataManager.postsCore.count)")
+    }
+    
+    @objc private func handleTapGestureCell(_ gestureRecognizer: UITapGestureRecognizer) -> () {
+        let tapLocation = gestureRecognizer.location(in: self.tableView)
+        
+        if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+            if self.tableView.cellForRow(at: tapIndexPath) is PostTableViewCell {
+                    
+                let post = PostModel.posts[tapIndexPath.row]
+                print("\(post)")
+                
+                let jpegImageData = post.image?.jpegData(compressionQuality: 1.0)
+                
+                CoreDataManager.coreDataManager.addPost(
+                    author: post.author,
+                    description: post.description,
+                    imageData: jpegImageData,
+                    views: Int64(post.views),
+                    likes: Int64(post.likes)
+                )
+                tableView.reloadData()
+                print("Post saved \(tapIndexPath), всего  \(CoreDataManager.coreDataManager.postsCore.count) записей")
+            }
+        }
     }
     
     @objc private func didTapClearButton() {
@@ -223,8 +267,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        }
+        if section == 1, self.tabBarController?.selectedIndex == 1 {
+            return PostModel.posts.count
+        }
+        if section == 1, self.tabBarController?.selectedIndex == 2 {
+            return CoreDataManager.coreDataManager.postsCore.count
         } else {
-        return PostModel.posts.count
+            return 1
         }
     }
     
@@ -233,7 +283,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosCell", for: indexPath) as! PhotosTableViewCell
             return cell
-        } else {
+        }
+        
+        if indexPath.section == 1, self.tabBarController?.selectedIndex == 1  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             
             let post = PostModel.posts[indexPath.row]
@@ -247,6 +299,34 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             cell.setup(with: viewModel)
             return cell
         }
+        
+        if indexPath.section == 1, self.tabBarController?.selectedIndex == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
+            
+            let post = CoreDataManager.coreDataManager.postsCore[indexPath.row]
+            
+            let emptyPostImage = UIImage(systemName: "person")
+            let emptyPostImageData = emptyPostImage?.jpegData(compressionQuality: 1.0)
+            
+            let image = UIImage(data: (post.postImageData ?? emptyPostImageData)!)
+                
+            let viewModel = PostTableViewCell.ViewModel(
+                author: post.postAuthor ?? "no data",
+                image: image,
+                description: post.postDescription ?? "no data",
+                views: Int(post.postViews),
+                likes: Int(post.postLikes)
+            )
+            cell.setup(with: viewModel)
+            
+            return cell
+        }
+        
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
+            return cell
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

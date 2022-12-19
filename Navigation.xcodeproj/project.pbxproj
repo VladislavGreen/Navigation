@@ -50,6 +50,8 @@
 		A4DC3DF228B79A9900ED8263 /* HomeTask 2.1.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4DC3DF128B79A9900ED8263 /* HomeTask 2.1.rtf */; };
 		A4DC3DF428B79AD900ED8263 /* HomeTask 2.2.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4DC3DF328B79AD900ED8263 /* HomeTask 2.2.rtf */; };
 		A4DDF50A28FEEDBE009F0272 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */; };
+		A4E45943294CD4DE006AB997 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E45942294CD4DE006AB997 /* CoreDataManager.swift */; };
+		A4E45969294CD606006AB997 /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A4E45967294CD606006AB997 /* Navigation.xcdatamodeld */; };
 		A4E9AC4928C8CFB300436749 /* HomeTask 2.3.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4E9AC4828C8CFB300436749 /* HomeTask 2.3.rtf */; };
 		A4E9AC4B28C8D5B100436749 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9AC4A28C8D5B100436749 /* LoginViewController.swift */; };
 		A4EABF30291FDEDF000EE517 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EABF2F291FDEDF000EE517 /* AudioViewController.swift */; };
@@ -132,6 +134,8 @@
 		A4DC3DF128B79A9900ED8263 /* HomeTask 2.1.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.1.rtf"; sourceTree = "<group>"; };
 		A4DC3DF328B79AD900ED8263 /* HomeTask 2.2.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.2.rtf"; sourceTree = "<group>"; };
 		A4DDF50928FEEDBE009F0272 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
+		A4E45942294CD4DE006AB997 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A4E45968294CD606006AB997 /* temp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = temp.xcdatamodel; sourceTree = "<group>"; };
 		A4E9AC4828C8CFB300436749 /* HomeTask 2.3.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.3.rtf"; sourceTree = "<group>"; };
 		A4E9AC4A28C8D5B100436749 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4EABF2F291FDEDF000EE517 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */,
+				A4E4596A294CD6B6006AB997 /* CoreData */,
 				A48A39E82948801C0055D881 /* RealmModel */,
 				A433FBC0292CBEC600EA4045 /* NetworkManager.swift */,
 				A4B2644A2922A91D006521FA /* Recording */,
@@ -210,6 +215,16 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		A429EB30294E0BE800AC6566 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				A4F27BBE28D8A180008AF8ED /* Photos.swift */,
+				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
+				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
 		A42D41D3290D5EA200FB7C29 /* Application Layer */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,11 +237,9 @@
 		A42D41D4290D5EDE00FB7C29 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A4F27BBE28D8A180008AF8ED /* Photos.swift */,
-				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
-				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
-				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
+				A429EB30294E0BE800AC6566 /* Photos */,
 				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
+				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
 				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
 				A40C0DCC28B393A90056EC7C /* ProfileViewController.swift */,
 			);
@@ -343,6 +356,15 @@
 				A4E9AC4A28C8D5B100436749 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		A4E4596A294CD6B6006AB997 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A4E45967294CD606006AB997 /* Navigation.xcdatamodeld */,
+				A4E45942294CD4DE006AB997 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		A4EABF2E291FDEA4000EE517 /* Audio */ = {
@@ -525,6 +547,7 @@
 				A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */,
 				A4F27BBD28D88D23008AF8ED /* PhotosTableViewCell.swift in Sources */,
 				A40C0DD128B39C630056EC7C /* PostViewController.swift in Sources */,
+				A4E45969294CD606006AB997 /* Navigation.xcdatamodeld in Sources */,
 				A4D3B59228CFA27900352ED2 /* ProfileTableHeaderView.swift in Sources */,
 				A44199C828DA06CA004A7047 /* PhotosCollectionViewCell.swift in Sources */,
 				A43943B82902C89C0079EB64 /* User Service.swift in Sources */,
@@ -535,6 +558,7 @@
 				A4231B8028B37A3E0026265D /* AppDelegate.swift in Sources */,
 				A4AD685A28F6A09E007A9AF4 /* UserModels.swift in Sources */,
 				A43943BA2902C8F40079EB64 /* CurrentUserService.swift in Sources */,
+				A4E45943294CD4DE006AB997 /* CoreDataManager.swift in Sources */,
 				A4231B8228B37A3E0026265D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -869,6 +893,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		A4E45967294CD606006AB997 /* Navigation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A4E45968294CD606006AB997 /* temp.xcdatamodel */,
+			);
+			currentVersion = A4E45968294CD606006AB997 /* temp.xcdatamodel */;
+			path = Navigation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A4231B7428B37A3E0026265D /* Project object */;
 }

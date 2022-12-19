@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 class PostTableViewCell: UITableViewCell {
     
@@ -66,6 +68,11 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+//        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(addPostToFavourities))
+//                doubleTap.numberOfTapsRequired = 2
+//                self.addGestureRecognizer(doubleTap)
+        
         self.setupView()
     }
     
@@ -130,4 +137,19 @@ class PostTableViewCell: UITableViewCell {
             self.postLikes.centerXAnchor.constraint(equalTo: self.postViews.centerXAnchor),
         ])
     }
+    
+    
+    @objc func addPostToFavourities(sender: UITapGestureRecognizer) {
+        print("Двойной тап из TableViewCell")
+    }
+        
+        //        let postModel: PostModel
+//        CoreDataManager().addPost(
+//            author: postModel.author,
+//            description: postModel.description,
+//            image: postModel.image?.imageAsset?.value(forKey: "assetName") as! String,
+//            views: postModel.views as? Int16 ?? 65536,
+//            likes: postModel.likes as? Int16 ?? 65536
+//        )
+//    }
 }
