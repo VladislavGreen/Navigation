@@ -10,8 +10,6 @@ import StorageService
 
 class ProfileViewController: UIViewController, UINavigationBarDelegate {
     
-//    let coreDataManager = CoreDataManager()
-    
     public var user: User = userDefault
     
     let postTableViewCell = PostTableViewCell()
@@ -93,7 +91,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()
-        print(" TabBarController selected index is \(self.tabBarController?.selectedIndex) ")
     }
     
     private func setupView() {
@@ -145,6 +142,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
             target: self,
             action: #selector(self.handleTapGestureCell(_:)))
         tapGestureRecognizerCell.numberOfTapsRequired = 2
+        tapGestureRecognizerCell.cancelsTouchesInView = false
         self.tableView.addGestureRecognizer(tapGestureRecognizerCell)
         
         self.hideKeyboardWhenTappedAround()
@@ -267,14 +265,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        }
-        if section == 1, self.tabBarController?.selectedIndex == 1 {
-            return PostModel.posts.count
-        }
-        if section == 1, self.tabBarController?.selectedIndex == 2 {
-            return CoreDataManager.coreDataManager.postsCore.count
         } else {
-            return 1
+            return PostModel.posts.count
         }
     }
     
@@ -298,35 +290,10 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             )
             cell.setup(with: viewModel)
             return cell
-        }
-        
-        if indexPath.section == 1, self.tabBarController?.selectedIndex == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
-            
-            let post = CoreDataManager.coreDataManager.postsCore[indexPath.row]
-            
-            let emptyPostImage = UIImage(systemName: "person")
-            let emptyPostImageData = emptyPostImage?.jpegData(compressionQuality: 1.0)
-            
-            let image = UIImage(data: (post.postImageData ?? emptyPostImageData)!)
-                
-            let viewModel = PostTableViewCell.ViewModel(
-                author: post.postAuthor ?? "no data",
-                image: image,
-                description: post.postDescription ?? "no data",
-                views: Int(post.postViews),
-                likes: Int(post.postLikes)
-            )
-            cell.setup(with: viewModel)
-            
-            return cell
-        }
-        
-        else {
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

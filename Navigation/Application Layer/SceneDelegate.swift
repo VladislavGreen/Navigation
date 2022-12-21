@@ -22,14 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let loginViewController = UINavigationController (rootViewController: LoginViewController())
         let feedViewController = UINavigationController (rootViewController: FeedViewController())
-        let favsViewController = UINavigationController (rootViewController: ProfileViewController())
+        let favouritesTVController = UINavigationController (rootViewController: FavouritesTVController())
         let audioViewController = UINavigationController (rootViewController: AudioViewController())
         let videoViewController = UINavigationController (rootViewController: VideoViewController())
         let recordingAudioViewController = UINavigationController (rootViewController: RecordingAudioViewController())
         
         let tabBarController = TabBarController()
         tabBarController.viewControllers = [
-            feedViewController, loginViewController, favsViewController, audioViewController, videoViewController, recordingAudioViewController
+            feedViewController, loginViewController, favouritesTVController, audioViewController, videoViewController, recordingAudioViewController
         ]
         
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         feedViewController.tabBarItem = item1
         loginViewController.tabBarItem = item2
-        favsViewController.tabBarItem = item3
+        favouritesTVController.tabBarItem = item3
         audioViewController.tabBarItem = item4
         videoViewController.tabBarItem = item5
         recordingAudioViewController.tabBarItem = item6

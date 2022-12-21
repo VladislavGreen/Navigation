@@ -50,15 +50,20 @@ class CoreDataManager {
         views: Int64,
         likes: Int64
     ) {
-        let post = PostCore(context: persistentContainer.viewContext)
-        post.postAuthor = author
-        post.postDescription = description
-        post.postImageData = imageData
-        post.postViews = views
-        post.postLikes = likes
-        
-        saveContext()
-        reloadPosts()
+        if checkIfItemExist(postDescription: description) == true {
+            print("Такой пост уже есть")
+            return
+        } else {
+            let post = PostCore(context: persistentContainer.viewContext)
+            post.postAuthor = author
+            post.postDescription = description
+            post.postImageData = imageData
+            post.postViews = views
+            post.postLikes = likes
+            
+            saveContext()
+            reloadPosts()
+        }
     }
     
     func reloadPosts() {
@@ -72,11 +77,31 @@ class CoreDataManager {
         }
     }
     
+    func checkIfItemExist(postDescription: String) -> Bool {
+        
+        let fetchRequest = PostCore.fetchRequest()
+        fetchRequest.fetchLimit =  1
+        fetchRequest.predicate = NSPredicate(format: "postDescription == %@" ,postDescription)
+        
+        do {
+            let postsCoreFetched = try persistentContainer.viewContext.fetch(fetchRequest)
+            if postsCoreFetched.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+    }
+    
     func clearPosts() {
         let context = persistentContainer.viewContext
         for post in postsCore {
             context.delete(post)
         }
         saveContext()
+        reloadPosts()
     }
 }

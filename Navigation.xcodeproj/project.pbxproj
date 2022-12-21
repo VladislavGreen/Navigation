@@ -61,6 +61,7 @@
 		A4EABF3B292124DD000EE517 /* TÆT Back Beams.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4EABF36292124DC000EE517 /* TÆT Back Beams.mp3 */; };
 		A4EABF3C292124DD000EE517 /* TAET & EXAN Eastern Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4EABF37292124DC000EE517 /* TAET & EXAN Eastern Bells.mp3 */; };
 		A4EABF3D292124DD000EE517 /* TÆT Coins For The Ghost.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4EABF38292124DD000EE517 /* TÆT Coins For The Ghost.mp3 */; };
+		A4ECA42B2951A61100D2950B /* FavouritesTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ECA42A2951A61100D2950B /* FavouritesTVController.swift */; };
 		A4F27BBB28D88BD8008AF8ED /* HomeTask 2.5.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4F27BBA28D88BD8008AF8ED /* HomeTask 2.5.rtf */; };
 		A4F27BBD28D88D23008AF8ED /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */; };
 		A4F27BBF28D8A180008AF8ED /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F27BBE28D8A180008AF8ED /* Photos.swift */; };
@@ -145,6 +146,7 @@
 		A4EABF36292124DC000EE517 /* TÆT Back Beams.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TÆT Back Beams.mp3"; sourceTree = "<group>"; };
 		A4EABF37292124DC000EE517 /* TAET & EXAN Eastern Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TAET & EXAN Eastern Bells.mp3"; sourceTree = "<group>"; };
 		A4EABF38292124DD000EE517 /* TÆT Coins For The Ghost.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TÆT Coins For The Ghost.mp3"; sourceTree = "<group>"; };
+		A4ECA42A2951A61100D2950B /* FavouritesTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTVController.swift; sourceTree = "<group>"; };
 		A4F27BBA28D88BD8008AF8ED /* HomeTask 2.5.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTask 2.5.rtf"; sourceTree = "<group>"; };
 		A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		A4F27BBE28D8A180008AF8ED /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				A429EB30294E0BE800AC6566 /* Photos */,
 				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
+				A4ECA42A2951A61100D2950B /* FavouritesTVController.swift */,
 				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
 				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
 				A40C0DCC28B393A90056EC7C /* ProfileViewController.swift */,
@@ -524,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4ECA42B2951A61100D2950B /* FavouritesTVController.swift in Sources */,
 				A40C0DCD28B393A90056EC7C /* ProfileViewController.swift in Sources */,
 				A46438ED28FB0F2500649B83 /* LoginViewControllerDelegate.swift in Sources */,
 				A48A39E5294880000055D881 /* RealmManager.swift in Sources */,
