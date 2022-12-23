@@ -12,12 +12,15 @@ import CoreData
 class PostTableViewCell: UITableViewCell {
     
     struct ViewModel {
+        let id: Int64
         let author: String
         let image: UIImage?
         let description: String
         let views: Int
         let likes: Int
     }
+    
+    var postID: Int64?
     
     var postName: UILabel = {
         let titleLabel = UILabel()
@@ -68,11 +71,6 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-//        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(addPostToFavourities))
-//                doubleTap.numberOfTapsRequired = 2
-//                self.addGestureRecognizer(doubleTap)
-        
         self.setupView()
     }
     
@@ -82,6 +80,7 @@ class PostTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.postID = nil
         self.postName.text = nil
         self.postImage.image = nil
         self.postText.text = nil
@@ -90,6 +89,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setup(with viewModel: ViewModel) {
+        self.postID = viewModel.id
         self.postName.text = viewModel.author
         self.postImage.image = viewModel.image
         self.postText.text = viewModel.description
@@ -137,19 +137,4 @@ class PostTableViewCell: UITableViewCell {
             self.postLikes.centerXAnchor.constraint(equalTo: self.postViews.centerXAnchor),
         ])
     }
-    
-    
-    @objc func addPostToFavourities(sender: UITapGestureRecognizer) {
-        print("Двойной тап из TableViewCell")
-    }
-        
-        //        let postModel: PostModel
-//        CoreDataManager().addPost(
-//            author: postModel.author,
-//            description: postModel.description,
-//            image: postModel.image?.imageAsset?.value(forKey: "assetName") as! String,
-//            views: postModel.views as? Int16 ?? 65536,
-//            likes: postModel.likes as? Int16 ?? 65536
-//        )
-//    }
 }

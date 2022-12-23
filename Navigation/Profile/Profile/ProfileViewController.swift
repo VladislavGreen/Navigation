@@ -165,11 +165,11 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
             if self.tableView.cellForRow(at: tapIndexPath) is PostTableViewCell {
                     
                 let post = PostModel.posts[tapIndexPath.row]
-                print("\(post)")
                 
                 let jpegImageData = post.image?.jpegData(compressionQuality: 1.0)
                 
                 CoreDataManager.coreDataManager.addPost(
+                    id: post.id,
                     author: post.author,
                     description: post.description,
                     imageData: jpegImageData,
@@ -177,7 +177,6 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
                     likes: Int64(post.likes)
                 )
                 tableView.reloadData()
-                print("Post saved \(tapIndexPath), всего  \(CoreDataManager.coreDataManager.postsCore.count) записей")
             }
         }
     }
@@ -282,6 +281,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             
             let post = PostModel.posts[indexPath.row]
             let viewModel = PostTableViewCell.ViewModel(
+                id: post.id,
                 author: post.author,
                 image: post.image,
                 description: post.description,

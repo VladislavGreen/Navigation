@@ -29,6 +29,7 @@
 		A46438ED28FB0F2500649B83 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */; };
 		A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A464C1E8291BE9C800B8C192 /* Errors.swift */; };
 		A46DA9DD2934D89800E4885A /* InfoDataTatooine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */; };
+		A482E5972954AE7A00F5062B /* TextPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A482E5962954AE7A00F5062B /* TextPicker.swift */; };
 		A48A39E12948784E0055D881 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A48A39E02948784E0055D881 /* Realm */; };
 		A48A39E32948784E0055D881 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A48A39E22948784E0055D881 /* RealmSwift */; };
 		A48A39E5294880000055D881 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48A39E4294880000055D881 /* RealmManager.swift */; };
@@ -119,6 +120,7 @@
 		A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A464C1E8291BE9C800B8C192 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDataTatooine.swift; sourceTree = "<group>"; };
+		A482E5962954AE7A00F5062B /* TextPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPicker.swift; sourceTree = "<group>"; };
 		A48A39E4294880000055D881 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		A48A39E6294880140055D881 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		A4AD685728F5ABA4007A9AF4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				A429EB30294E0BE800AC6566 /* Photos */,
 				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
+				A482E5962954AE7A00F5062B /* TextPicker.swift */,
 				A4ECA42A2951A61100D2950B /* FavouritesTVController.swift */,
 				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
 				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
@@ -549,6 +552,7 @@
 				A4B2644C2922A93B006521FA /* RecordingAudioViewController.swift in Sources */,
 				A433FBC1292CBEC600EA4045 /* NetworkManager.swift in Sources */,
 				A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */,
+				A482E5972954AE7A00F5062B /* TextPicker.swift in Sources */,
 				A4F27BBD28D88D23008AF8ED /* PhotosTableViewCell.swift in Sources */,
 				A40C0DD128B39C630056EC7C /* PostViewController.swift in Sources */,
 				A4E45969294CD606006AB997 /* Navigation.xcdatamodeld in Sources */,
@@ -726,6 +730,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -754,6 +759,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

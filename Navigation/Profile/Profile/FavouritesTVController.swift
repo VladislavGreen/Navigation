@@ -11,7 +11,7 @@ class FavouritesTVController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Favourites"
+        setupNavigationBar()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostCell")
     }
     
@@ -19,6 +19,39 @@ class FavouritesTVController: UITableViewController {
         super.viewDidAppear(animated)
         tableView.reloadData()
     }
+    
+    func setupNavigationBar() {
+        navigationItem.title = "Favourites"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Filter by Author",
+            style: .plain,
+            target: self,
+            action: #selector(filterPostsByAuthor))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Reset Filter",
+            style: .plain,
+            target: self,
+            action: #selector(resetPostsFilter))
+    }
+    
+    @objc
+    func filterPostsByAuthor() {
+        TextPicker.defaultPicker.showPicker(in: self) { text in
+            print(text)
+            CoreDataManager.coreDataManager.getPostsByAuthor(author: text) {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+    @objc
+    func resetPostsFilter() {
+        CoreDataManager.coreDataManager.getUnfilteredPostsBack() {
+            self.tableView.reloadData()
+        }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -40,6 +73,7 @@ class FavouritesTVController: UITableViewController {
         let image = UIImage(data: (post.postImageData ?? emptyPostImageData)!)
             
         let viewModel = PostTableViewCell.ViewModel(
+            id: post.postID,
             author: post.postAuthor ?? "no data",
             image: image,
             description: post.postDescription ?? "no data",
@@ -51,6 +85,20 @@ class FavouritesTVController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let item = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            let post = CoreDataManager.coreDataManager.postsCore[indexPath.row]
+            let postID = post.postID
+            
+            CoreDataManager.coreDataManager.clearPost(with: postID)
+            tableView.reloadData()
+        }
+        item.image = UIImage(named: "deleteIcon")
+        let swipeActions = UISwipeActionsConfiguration(actions: [item])
+        return swipeActions
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
