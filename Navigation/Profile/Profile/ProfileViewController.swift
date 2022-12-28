@@ -154,8 +154,7 @@ class ProfileViewController: UIViewController, UINavigationBarDelegate {
         self.avatarIncreasing()
         
         CoreDataManager.coreDataManager.clearPosts()
-        tableView.reloadData()
-        print("Удаляем все Favoirities - теперь их \(CoreDataManager.coreDataManager.postsCore.count)")
+//        tableView.reloadData()
     }
     
     @objc private func handleTapGestureCell(_ gestureRecognizer: UITapGestureRecognizer) -> () {
