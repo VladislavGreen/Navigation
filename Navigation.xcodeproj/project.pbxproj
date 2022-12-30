@@ -24,6 +24,7 @@
 		A43943BF2906A51F0079EB64 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943BE2906A51E0079EB64 /* FeedModel.swift */; };
 		A44199C628DA04EA004A7047 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44199C528DA04EA004A7047 /* PhotosViewController.swift */; };
 		A44199C828DA06CA004A7047 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */; };
+		A461CA48295EDCD500141BFE /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A461CA47295EDCD500141BFE /* KeychainSwift */; };
 		A46438E928FAF23E00649B83 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438E828FAF23E00649B83 /* Checker.swift */; };
 		A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EA28FB0ACF00649B83 /* LoginInspector.swift */; };
 		A46438ED28FB0F2500649B83 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */; };
@@ -163,6 +164,7 @@
 			files = (
 				A48A39E32948784E0055D881 /* RealmSwift in Frameworks */,
 				A48A39E12948784E0055D881 /* Realm in Frameworks */,
+				A461CA48295EDCD500141BFE /* KeychainSwift in Frameworks */,
 				A4DA92B028EC9444001A4C39 /* StorageService.framework in Frameworks */,
 				A4B8CB2B28FFD365008F73AF /* iOSIntPackage in Frameworks */,
 			);
@@ -428,6 +430,7 @@
 				A4B8CB2A28FFD365008F73AF /* iOSIntPackage */,
 				A48A39E02948784E0055D881 /* Realm */,
 				A48A39E22948784E0055D881 /* RealmSwift */,
+				A461CA47295EDCD500141BFE /* KeychainSwift */,
 			);
 			productName = Navigation;
 			productReference = A4231B7C28B37A3E0026265D /* Navigation.app */;
@@ -481,6 +484,7 @@
 			packageReferences = (
 				A4B8CB2928FFD365008F73AF /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				A48A39DF2948784E0055D881 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				A461CA46295EDCD500141BFE /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = A4231B7D28B37A3E0026265D /* Products */;
 			projectDirPath = "";
@@ -868,6 +872,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A461CA46295EDCD500141BFE /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A48A39DF2948784E0055D881 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -887,6 +899,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A461CA47295EDCD500141BFE /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A461CA46295EDCD500141BFE /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		A48A39E02948784E0055D881 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A48A39DF2948784E0055D881 /* XCRemoteSwiftPackageReference "realm-swift" */;

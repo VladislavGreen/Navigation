@@ -6,12 +6,30 @@
 //
 
 import UIKit
+import RealmSwift
+import KeychainSwift
+
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-//    var loginDelegate: LoginViewControllerDelegate?
     
     lazy var realmManager = RealmManager()
+    
+    lazy var realm = {
+        
+        let keychain = KeychainSwift()
+        var key = keychain.getData("Key")
+        if key == nil {
+            key = Data(count: 64)
+            _ = key!.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
+                SecRandomCopyBytes(kSecRandomDefault, 64, pointer.baseAddress!) }
+        }
+        
+        let config = Realm.Configuration(encryptionKey: key)
+        let realm = try! Realm(configuration: config)
+        return realm
+    }
+    
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -133,9 +151,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func checkUserRealm() {
         
-        realmManager.loadUserRealm()
+        realmManager.loadUserRealm(realm: realm())
+        
         let userRealm = realmManager.usersRealm
-        guard userRealm.isEmpty == false else { return }
+        guard userRealm.isEmpty == false else {
+            print("Userbase is empty")
+            return }
         logIn()
     }
     
@@ -234,8 +255,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         print(loginTried, passwordTried)
         
-        realmManager.saveUserRealm(login: loginTried, password: passwordTried)
-        print(realmManager.usersRealm)
+        
+        realmManager.saveUserRealm(login: loginTried, password: passwordTried, realm: realm())
         
         logIn()
     }

@@ -54,9 +54,9 @@ class FeedViewController: UIViewController {
         firstButton.buttonAction = {
             let realmManager = RealmManager()
             realmManager.clearUsersRealm()
-            print("all realm users have been deleted")
-            let vc = LoginViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+//            print("all realm users have been deleted")
+//            let vc = LoginViewController()
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         let secondButton = CustomButton()
