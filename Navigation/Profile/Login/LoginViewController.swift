@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             key = Data(count: 64)
             _ = key!.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
                 SecRandomCopyBytes(kSecRandomDefault, 64, pointer.baseAddress!) }
+            keychain.set(key!, forKey: "Key")
         }
         
         let config = Realm.Configuration(encryptionKey: key)
@@ -63,9 +64,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return stackView
     }()
     
-    // переменная для сравнения логина
-    private lazy var loginTextFieldValue: String = ""
-    
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .default
@@ -87,9 +85,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    // переменная для сравнения пароля
-    private lazy var passwordTextFieldValue: String = ""
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
@@ -157,6 +152,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard userRealm.isEmpty == false else {
             print("Userbase is empty")
             return }
+        
         logIn()
     }
     
@@ -252,9 +248,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let loginTried = loginTextField.text!
         let passwordTried = passwordTextField.text!
-        
         print(loginTried, passwordTried)
-        
         
         realmManager.saveUserRealm(login: loginTried, password: passwordTried, realm: realm())
         

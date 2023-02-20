@@ -23,28 +23,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let loginViewController = UINavigationController (rootViewController: LoginViewController())
         let feedViewController = UINavigationController (rootViewController: FeedViewController())
         let favouritesTVController = UINavigationController (rootViewController: FavouritesTVController())
+        let mapViewController = UINavigationController (rootViewController: MapViewController())
         let audioViewController = UINavigationController (rootViewController: AudioViewController())
         let videoViewController = UINavigationController (rootViewController: VideoViewController())
         let recordingAudioViewController = UINavigationController (rootViewController: RecordingAudioViewController())
         
         let tabBarController = TabBarController()
         tabBarController.viewControllers = [
-            feedViewController, loginViewController, favouritesTVController, audioViewController, videoViewController, recordingAudioViewController
+            feedViewController, loginViewController, favouritesTVController, mapViewController, audioViewController, videoViewController, recordingAudioViewController
         ]
         
         let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
         let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
         let item3 = UITabBarItem(title: "Favourities", image: UIImage(systemName: "heart.fill"), tag: 2)
-        let item4 = UITabBarItem(title: "Audio", image: UIImage(systemName: "speaker.fill"), tag: 3)
-        let item5 = UITabBarItem(title: "Video", image: UIImage(systemName: "tv"), tag: 4)
-        let item6 = UITabBarItem(title: "Recorder", image: UIImage(systemName: "mic.fill"), tag: 5)
+        let item4 = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 3)
+
+        let item5 = UITabBarItem(title: "Audio", image: UIImage(systemName: "speaker.fill"), tag: 4)
+        let item6 = UITabBarItem(title: "Video", image: UIImage(systemName: "tv"), tag: 5)
+        let item7 = UITabBarItem(title: "Recorder", image: UIImage(systemName: "mic.fill"), tag: 6)
         
         feedViewController.tabBarItem = item1
         loginViewController.tabBarItem = item2
         favouritesTVController.tabBarItem = item3
-        audioViewController.tabBarItem = item4
-        videoViewController.tabBarItem = item5
-        recordingAudioViewController.tabBarItem = item6
+        mapViewController.tabBarItem = item4
+        audioViewController.tabBarItem = item5
+        videoViewController.tabBarItem = item6
+        recordingAudioViewController.tabBarItem = item7
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController // Your initial view controller.

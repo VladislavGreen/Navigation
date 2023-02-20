@@ -18,6 +18,11 @@
 		A42A608E28FDADF500D7726E /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42A608D28FDADF500D7726E /* LoginFactory.swift */; };
 		A433FBBF292CBD5F00EA4045 /* HomeTasks "Data" .rtf in Resources */ = {isa = PBXBuildFile; fileRef = A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */; };
 		A433FBC1292CBEC600EA4045 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433FBC0292CBEC600EA4045 /* NetworkManager.swift */; };
+		A438898529A36D600077F4DC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898429A36D600077F4DC /* MapViewController.swift */; };
+		A438898729A36EB10077F4DC /* HomeTasks iosAdv.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A438898629A36EB10077F4DC /* HomeTasks iosAdv.rtf */; };
+		A438898929A36EE70077F4DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898829A36EE70077F4DC /* LocationManager.swift */; };
+		A438898B29A38E6F0077F4DC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898A29A38E6F0077F4DC /* MapAnnotation.swift */; };
+		A438898D29A398FE0077F4DC /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898C29A398FE0077F4DC /* MapAnnotationView.swift */; };
 		A43943B82902C89C0079EB64 /* User Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943B72902C89C0079EB64 /* User Service.swift */; };
 		A43943BA2902C8F40079EB64 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943B92902C8F40079EB64 /* CurrentUserService.swift */; };
 		A43943BD2902EB0B0079EB64 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943BC2902EB0B0079EB64 /* CustomButton.swift */; };
@@ -110,6 +115,11 @@
 		A42A608D28FDADF500D7726E /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTasks \"Data\" .rtf"; sourceTree = "<group>"; };
 		A433FBC0292CBEC600EA4045 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A438898429A36D600077F4DC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A438898629A36EB10077F4DC /* HomeTasks iosAdv.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTasks iosAdv.rtf"; sourceTree = "<group>"; };
+		A438898829A36EE70077F4DC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A438898A29A38E6F0077F4DC /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		A438898C29A398FE0077F4DC /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		A43943B72902C89C0079EB64 /* User Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Service.swift"; sourceTree = "<group>"; };
 		A43943B92902C8F40079EB64 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		A43943BC2902EB0B0079EB64 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -200,7 +210,7 @@
 		A4231B7E28B37A3E0026265D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */,
+				A438898329A36D480077F4DC /* Map */,
 				A4E4596A294CD6B6006AB997 /* CoreData */,
 				A48A39E82948801C0055D881 /* RealmModel */,
 				A433FBC0292CBEC600EA4045 /* NetworkManager.swift */,
@@ -225,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				A4F27BBE28D8A180008AF8ED /* Photos.swift */,
-				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
 				A44199C528DA04EA004A7047 /* PhotosViewController.swift */,
 			);
 			path = Photos;
@@ -247,6 +256,7 @@
 				A4D3B59428CFA82400352ED2 /* PostTableViewCell.swift */,
 				A482E5962954AE7A00F5062B /* TextPicker.swift */,
 				A4ECA42A2951A61100D2950B /* FavouritesTVController.swift */,
+				A44199C728DA06CA004A7047 /* PhotosCollectionViewCell.swift */,
 				A4F27BBC28D88D23008AF8ED /* PhotosTableViewCell.swift */,
 				A4D3B59128CFA27900352ED2 /* ProfileTableHeaderView.swift */,
 				A40C0DCC28B393A90056EC7C /* ProfileViewController.swift */,
@@ -265,6 +275,17 @@
 				A40C0DC728B392910056EC7C /* FeedViewController.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		A438898329A36D480077F4DC /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A438898C29A398FE0077F4DC /* MapAnnotationView.swift */,
+				A438898A29A38E6F0077F4DC /* MapAnnotation.swift */,
+				A438898429A36D600077F4DC /* MapViewController.swift */,
+				A438898829A36EE70077F4DC /* LocationManager.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		A43943BB2902EAC60079EB64 /* SmartViews */ = {
@@ -299,6 +320,8 @@
 		A4AD685528F551DC007A9AF4 /* Texts */ = {
 			isa = PBXGroup;
 			children = (
+				A438898629A36EB10077F4DC /* HomeTasks iosAdv.rtf */,
+				A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */,
 				A4DA926E28EC8D18001A4C39 /* HomeTasks PromRazr 1-12.rtf */,
 				A4FE3B1328B4019B0079D788 /* HomeTask 1.3.rtf */,
 				A4DC3DF128B79A9900ED8263 /* HomeTask 2.1.rtf */,
@@ -509,6 +532,7 @@
 				A4231B8928B37A3F0026265D /* Assets.xcassets in Resources */,
 				A433FBBF292CBD5F00EA4045 /* HomeTasks "Data" .rtf in Resources */,
 				A4DA926F28EC8D18001A4C39 /* HomeTasks PromRazr 1-12.rtf in Resources */,
+				A438898729A36EB10077F4DC /* HomeTasks iosAdv.rtf in Resources */,
 				A4DC3DF428B79AD900ED8263 /* HomeTask 2.2.rtf in Resources */,
 				A4EABF39292124DD000EE517 /* TÆT Minus Five.mp3 in Resources */,
 				A4C0611D28DC8FCA006F9A87 /* HomeTask 2.6.rtf in Resources */,
@@ -546,6 +570,8 @@
 				A4E9AC4B28C8D5B100436749 /* LoginViewController.swift in Sources */,
 				A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */,
 				A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */,
+				A438898929A36EE70077F4DC /* LocationManager.swift in Sources */,
+				A438898B29A38E6F0077F4DC /* MapAnnotation.swift in Sources */,
 				A4B2644729222F86006521FA /* VideoViewController.swift in Sources */,
 				A4B1533428B4CECD00F276BF /* TabBarController.swift in Sources */,
 				A42A608E28FDADF500D7726E /* LoginFactory.swift in Sources */,
@@ -553,12 +579,14 @@
 				A4DDF50A28FEEDBE009F0272 /* MyLoginFactory.swift in Sources */,
 				A46438E928FAF23E00649B83 /* Checker.swift in Sources */,
 				A4FE3B1628B403750079D788 /* InfoViewController.swift in Sources */,
+				A438898529A36D600077F4DC /* MapViewController.swift in Sources */,
 				A4B2644C2922A93B006521FA /* RecordingAudioViewController.swift in Sources */,
 				A433FBC1292CBEC600EA4045 /* NetworkManager.swift in Sources */,
 				A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */,
 				A482E5972954AE7A00F5062B /* TextPicker.swift in Sources */,
 				A4F27BBD28D88D23008AF8ED /* PhotosTableViewCell.swift in Sources */,
 				A40C0DD128B39C630056EC7C /* PostViewController.swift in Sources */,
+				A438898D29A398FE0077F4DC /* MapAnnotationView.swift in Sources */,
 				A4E45969294CD606006AB997 /* Navigation.xcdatamodeld in Sources */,
 				A4D3B59228CFA27900352ED2 /* ProfileTableHeaderView.swift in Sources */,
 				A44199C828DA06CA004A7047 /* PhotosCollectionViewCell.swift in Sources */,
@@ -730,6 +758,10 @@
 				DEVELOPMENT_TEAM = DRZ83U4BJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need to enable the Recorder";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -759,6 +791,10 @@
 				DEVELOPMENT_TEAM = DRZ83U4BJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need to enable the Recorder";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
