@@ -10,6 +10,14 @@ import AVFoundation
 
 class RecordingAudioViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
+    
+    private enum LocalizedKeys: String {
+        case helperText = "RecVC-helperText"
+        case micAccessAlert = "RecVC-micAccessAlert"
+        case recFailedAlert = "RecVC-recFailedAlert"
+        case recFailedMessage = "RecVC-recFailedMessage"
+    }
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 30
@@ -22,7 +30,7 @@ class RecordingAudioViewController: UIViewController, AVAudioRecorderDelegate, A
     
     private lazy var helper: UILabel = {
         let label = UILabel()
-        label.text = "Press Mic to start and stop recording. Then just press Play to listen to it."
+        label.text = ~LocalizedKeys.helperText.rawValue
         label.textColor = .lightGray
         label.textAlignment = .center
         label.lineBreakMode = .byWordWrapping
@@ -109,7 +117,7 @@ class RecordingAudioViewController: UIViewController, AVAudioRecorderDelegate, A
     private func loadFailUI() {
         let failLabel = UILabel()
         failLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        failLabel.text = "Recording failed: please ensure the app has access to your microphone."
+        failLabel.text = ~LocalizedKeys.micAccessAlert.rawValue
         failLabel.numberOfLines = 0
 
         stackView.addArrangedSubview(failLabel)
@@ -170,7 +178,9 @@ class RecordingAudioViewController: UIViewController, AVAudioRecorderDelegate, A
             loadPlayingUI()
             
         } else {
-            let ac = UIAlertController(title: "Record failed", message: "There was a problem recording your whistle; please try again.", preferredStyle: .alert)
+            let ac = UIAlertController(
+                title: ~LocalizedKeys.recFailedAlert.rawValue,
+                message: ~LocalizedKeys.recFailedMessage.rawValue, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }

@@ -11,6 +11,13 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate  {
     
+    private enum LocalizedKeys: String {
+        case title = "MapVC-title"
+        case cat = "MapVC-cat"
+        case go = "MapVC-go"
+        case newPin = "MapVC-newPin"
+    }
+    
     var sourceLocation: CLLocationCoordinate2D?
     
     private lazy var mapView: MKMapView = {
@@ -63,8 +70,14 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
     
     // MARK: - Private
     
+        
+    
     private func setupNavigationBar() {
-        title = "Найди кота"
+//        title = "Найди кота"
+//        title = NSLocalizedString("title-localizable", comment: "")
+        title = ~LocalizedKeys.title.rawValue
+//        title = String(localized: "title-localizable")
+        
         
         let rightButton = UIButton(type: .custom)
             rightButton.setImage(UIImage(systemName: "delete.left"), for: .normal)
@@ -127,7 +140,7 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
             MapAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
         )
         
-        let annotation = setInitialPin(name: "Кот", lat: lat, lon: lon)
+        let annotation = setInitialPin(name: ~LocalizedKeys.cat.rawValue, lat: lat, lon: lon)
         self.mapView.addAnnotations([annotation])
     }
     
@@ -139,7 +152,7 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
             coordinate: CLLocationCoordinate2D(
                                         latitude: lat,
                                         longitude: lon),
-            info: "Проложите маршрут отсюда!")
+            info: ~LocalizedKeys.go.rawValue)
         
         self.mapView.addAnnotations([point])
         sourceLocation = point.coordinate
@@ -164,7 +177,7 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
     private func addAnnotation(location: CLLocationCoordinate2D){
         let annotation = MKPointAnnotation()
             annotation.coordinate = location
-            annotation.title = "Новый Пин"
+            annotation.title = ~LocalizedKeys.newPin.rawValue
         self.mapView.addAnnotation(annotation)
     }
     
@@ -207,7 +220,7 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
     private func removeNewPins() {
         
         for annotation in mapView.annotations{
-            guard annotation.title == "Новый Пин"  else { return }
+            guard annotation.title == ~LocalizedKeys.newPin.rawValue  else { return }
             self.mapView.removeAnnotation(annotation)
         }
     }

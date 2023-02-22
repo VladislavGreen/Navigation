@@ -11,6 +11,13 @@ import CoreData
 
 class PostTableViewCell: UITableViewCell {
     
+    
+    private enum LocalizedKeys: String {
+        case views = "PostTVC-views" // "Views: "
+//        case likes = "PostTVC-likes" // "Likes: "
+
+    }
+    
     struct ViewModel {
         let id: Int64
         let author: String
@@ -88,16 +95,28 @@ class PostTableViewCell: UITableViewCell {
         self.postLikes.text = nil
     }
     
+    
     func setup(with viewModel: ViewModel) {
         self.postID = viewModel.id
         self.postName.text = viewModel.author
         self.postImage.image = viewModel.image
         self.postText.text = viewModel.description
-        self.postViews.text = "View: \(viewModel.views)"
-        self.postLikes.text = "Likes: \(viewModel.likes)"
+        self.postViews.text = ~LocalizedKeys.views.rawValue + "\(viewModel.views)"
+        
+        let likes = pluralize(using: "Counting_likes", number: viewModel.likes)
+        self.postLikes.text = likes
     }
     
-    func setupView() {
+    
+    private func pluralize(using localizedString: String, number: Int) -> String {
+        let formattedString = NSLocalizedString(localizedString, comment: "")
+        let string = String(format: formattedString, number)
+        print(string)
+        return string
+    }
+    
+    
+    private func setupView() {
     
         self.contentView.addSubview(self.postName)
         self.contentView.addSubview(self.postImageBackground)

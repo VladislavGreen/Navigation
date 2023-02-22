@@ -31,7 +31,7 @@ public struct PostModel {
                 image: UIImage(named: "pizza"),
                 description: "Жду не дождусь, когда открою коробку!",
                 views: 0,
-                likes: 0
+                likes: 1
             ),
             PostModel(
                 id: 3,
@@ -39,7 +39,7 @@ public struct PostModel {
                 image: UIImage(named: "racket"),
                 description: "Ещё один неудачный форхенд с задней линии.",
                 views: 0,
-                likes: 0
+                likes: 2
             ),
             PostModel(
                 id: 4,
@@ -47,7 +47,7 @@ public struct PostModel {
                 image: UIImage(named: "quote"),
                 description: "Моё любимое сообщение из набора Kyma Pacarana",
                 views: 0,
-                likes: 0
+                likes: 135
             ),
         ]
     }

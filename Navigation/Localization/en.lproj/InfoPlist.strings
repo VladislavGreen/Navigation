@@ -1,0 +1,19 @@
+/* 
+  InfoPlist.strings
+  Navigation
+
+  Created by Vladislav Green on 2/22/23.
+  
+*/
+
+
+// Location:
+
+"NSLocationWhenInUseUsageDescription" = "For the best experience with the App please allow access to your location";
+"NSLocationAlwaysUsageDescription" = "For the best experience with the App please allow access to your location";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "For the best experience with the App please allow access to your location";
+
+
+// Microphone:
+
+"NSMicrophoneUsageDescription" = "To record sound please allow access to the microphone";

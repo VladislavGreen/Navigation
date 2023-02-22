@@ -9,12 +9,19 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
+    
+    private enum LocalizedKeys: String {
+        // ~LocalizedKeys.helperText.rawValue
+        case status = "ProfileHV-status" // "waiting for something"
+        case statusPlaceholder = "ProfileHV-statusPlaceholder" // " Type something here"
+        case statusTextNil = "ProfileHV-statusTextNil" // "No text"
+        case statusButton = "ProfileHV-statusButton" // "Show status"
+    }
+    
     //    Аватарка
     
     private lazy var avatarImageView: UIImageView = {
         let profilePic = UIImageView()
-//        let picture = userHeader.userAvatar
-//        profilePic.image = picture
         profilePic.translatesAutoresizingMaskIntoConstraints = false
         return profilePic
     }()
@@ -31,11 +38,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //    Имя пользователя
     
-//    private lazy var fullName: String = userHeader.userFullName
-    
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-//        label.text = fullName
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,11 +49,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //  Текущий статус
     
-    private lazy var statusText: String = "waiting for something"
+    private lazy var statusText: String = ~LocalizedKeys.status.rawValue
     
     private lazy var statusLabel: UILabel = {
         let status = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-//        status.text = statusText
         status.textColor = .gray
         status.font = UIFont.boldSystemFont(ofSize: 14)
         status.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +66,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         var textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 15)
-        textField.placeholder = " Type something here"
+        textField.placeholder = ~LocalizedKeys.statusPlaceholder.rawValue
         textField.textColor = .black
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
@@ -79,7 +82,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy  var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Show status", for: .normal)
+        button.setTitle(~LocalizedKeys.statusButton.rawValue, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
@@ -162,7 +165,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
        }
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text ?? "No text"
+        statusText = textField.text ?? ~LocalizedKeys.statusTextNil.rawValue
     }
     
     @objc func buttonPressed() {

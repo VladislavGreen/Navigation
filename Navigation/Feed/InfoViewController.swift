@@ -9,21 +9,34 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
+    
+    private enum LocalizedKeys: String {
+        case button = "InfoVC-button" // " A button from UI course "
+        case alert = "InfoVC-alert" //  "It's time to choose!"
+        case message = "InfoVC-message" // "Left or right? Press the button:"
+        case latinLabel = "InfoVC-latinLabel" // "Some latin text"
+        case orbitalLabel = "InfoVC-orbitalLabel" // "Tatooine orbital period"
+    }
+    
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle(" A button from UI course ", for: .normal)
+        button.setTitle(~LocalizedKeys.button.rawValue, for: .normal)
         button.layer.cornerRadius = 5
         button.backgroundColor = .darkGray
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let alertController = UIAlertController(title: "It's time to choose!", message: "Left or right? Press the button:", preferredStyle: .alert)
+    let alertController = UIAlertController(
+        title: ~LocalizedKeys.alert.rawValue,
+        message: ~LocalizedKeys.message.rawValue,
+        preferredStyle: .alert
+    )
     
     
     private lazy var latinLabel: UILabel = {
         let label = UILabel()
-        label.text = "Some latin text"
+        label.text = ~LocalizedKeys.latinLabel.rawValue
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -31,7 +44,7 @@ class InfoViewController: UIViewController {
     
     private lazy var orbitalLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tatooin orbital period"
+        label.text = ~LocalizedKeys.orbitalLabel.rawValue
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -137,7 +150,7 @@ class InfoViewController: UIViewController {
                     do {
                         let tatooine = try JSONDecoder().decode(Tatooine.self, from: unwrappedData)
                         DispatchQueue.main.async {
-                            self.orbitalLabel.text = "Tatooine orbital period = \(tatooine.orbitalPeriod)"
+                            self.orbitalLabel.text = ~LocalizedKeys.orbitalLabel.rawValue + " = \(tatooine.orbitalPeriod)"
                             self.startURLSessionDataTask3()
                             self.setupUI()
                         }

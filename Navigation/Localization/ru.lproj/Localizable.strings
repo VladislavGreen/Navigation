@@ -1,0 +1,89 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Vladislav Green on 2/21/23.
+  
+*/
+
+
+//  MapViewController:
+
+"MapVC-title" = "Найди кота";
+"MapVC-cat" = "Кот";
+"MapVC-go" = "Проложите маршрут отсюда!";
+"MapVC-newPin" = "Новый пин";
+
+
+// RecordingAudioViewController:
+
+"RecVC-helperText" = "Mic - что-бы начать/остановить запись. Play - что-бы послушать" ;
+"RecVC-micAccessAlert" = "Запись невозможна - проверьте доступ к микрофону в настройках";
+"RecVC-recFailedAlert" = "Запись невозможна";
+"RecVC-recFailedMessage" = "Какая-то проблема - попробуйте ещё разок?";
+
+
+// FeedViewController:
+
+"FeedVC-guessTextPlaceholder" = " Пароль";
+"FeedVC-lightLabelText" = "Результат";
+"FeedVC-firstButtonTitle" = " Очистить пользователей ";
+"FeedVC-secondButtonTitle" = " Статистика Татуина ";
+"FeedVC-checkButtonTitle" = " Угадай ";
+
+
+// PostViewController:
+
+"PostVC-guessTextPlaceholder" = "Нажмите на огонёк, чтобы посмотреть Инфо ↑";
+"PostVC-barButtonItem" = "Продолжить";
+"PostVC-title" = "Пост";
+
+
+// InfoViewController:
+
+"InfoVC-button" = " Кнопка с предыдущего курса ";
+"InfoVC-alert" = "Время выбирать!";
+"InfoVC-message" = "Левая или правая? Нажми кнопку:";
+"InfoVC-latinLabel" = "Какой-то латинский текст";
+"InfoVC-orbitalLabel" = "Орбитальный период Татуина";
+
+// LoginViewController:
+
+"LoginVC-loginPlaceholder" = " Email или телефон";
+"LoginVC-passwordPlaceholder" = " Пароль";
+"LoginVC-alert" = "Не удалось войти в профиль";
+"LoginVC-message" = "Проверьте логин и пароль";
+"LoginVC-button" = "Войти";
+
+
+// ProfileTableHeaderView:
+
+"ProfileHV-status" = "в ожидании чего-то";
+"ProfileHV-statusPlaceholder" = " Напечатайте что-нибудь здесь?";
+"ProfileHV-statusTextNil" = "Нет текста";
+"ProfileHV-statusButton" = "Показать статус";
+
+
+// PhotosTableViewCell:
+
+"ProfileTVC-label" = "Фото";
+
+
+// FavouritiesTableViewCell:
+
+"FavouritesTVC-status" = "Избранное";
+"FavouritesTVC-filterName" = "Фильтр по авторам";
+"FavouritesTVC-reset" = "Сбросить фильтр";
+
+
+// TextPicker:
+
+"TextPicker-alert" = "Введите имя автора";
+"TextPicker-placeholder" = "Введите имя";
+"TextPicker-cancel" = "Отмена";
+
+
+// PostTableViewCell:
+        
+"PostTVC-views" = "Прсмотров: ";
+//"PostTVC-likes" = "Понравилось: ";

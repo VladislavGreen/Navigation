@@ -13,6 +13,14 @@ import KeychainSwift
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
+    private enum LocalizedKeys: String {
+        case loginPlaceholder = "LoginVC-loginPlaceholder" // " Email or phone"
+        case passwordPlaceholder = "LoginVC-passwordPlaceholder" // " Password"
+        case alert = "LoginVC-alert" // "Не удалось войти в профиль"
+        case message = "LoginVC-message" // "Проверьте логин и пароль"
+        case loginButton = "LoginVC-button" // LogIn
+    }
+    
     lazy var realmManager = RealmManager()
     
     lazy var realm = {
@@ -72,7 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.tintColor = UIColor(named: "Accent Color")
         textField.backgroundColor = .systemGray6
         textField.autocapitalizationType = .none
-        textField.placeholder = " Email or phone"
+        textField.placeholder = ~LocalizedKeys.loginPlaceholder.rawValue
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.tintColor = .gray
         textField.backgroundColor = .systemGray6
         textField.autocapitalizationType = .none
-        textField.placeholder = " Password"
+        textField.placeholder = ~LocalizedKeys.passwordPlaceholder.rawValue
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
@@ -112,7 +120,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.setBackgroundImage(imageAlpha08, for: .selected)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.setTitle("Log In", for: .normal)
+        button.setTitle(~LocalizedKeys.loginButton.rawValue, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -121,8 +129,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private let alertController = UIAlertController(
-        title: "Не удалось войти в профиль",
-        message: "Проверьте логин и пароль",
+        title: ~LocalizedKeys.alert.rawValue,
+        message: ~LocalizedKeys.message.rawValue,
         preferredStyle: .alert
     )
     

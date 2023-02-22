@@ -9,9 +9,14 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
+    
+    private enum LocalizedKeys: String {
+        case cellLabel = "ProfileTVC-label" // "Photos"
+    }
+    
     private lazy var cellLabel: UILabel = {
         let label = UILabel()
-        label.text = "Photos"
+        label.text = ~LocalizedKeys.cellLabel.rawValue
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false

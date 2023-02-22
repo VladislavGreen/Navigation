@@ -8,16 +8,23 @@ import UIKit
 
 class PostViewController: UIViewController {
  
+    
+    private enum LocalizedKeys: String {
+        case titleLabelText = "PostVC-guessTextPlaceholder"     // "Press the Flame button to see the Info page ↑"
+        case barButtonItem = "PostVC-barButtonItem"             //  "Continue"
+        case title = "PostVC-title"                             // "Post"
+    }
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Press the Flame button to see the Info page ↑"
+        label.text = ~LocalizedKeys.titleLabelText.rawValue
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private var barButtonItem = UIBarButtonItem (
-        title: "Continue",
+        title: ~LocalizedKeys.barButtonItem.rawValue,
         style: .plain,
         target: PostViewController.self,
         action: #selector(didTapButton(sender:))
@@ -39,7 +46,7 @@ class PostViewController: UIViewController {
     func setupUI() {
         setupConstraints()
         view.backgroundColor = .green
-        navigationItem.title = "Post"
+        navigationItem.title = ~LocalizedKeys.title.rawValue
     }
 
     func setupConstraints() {

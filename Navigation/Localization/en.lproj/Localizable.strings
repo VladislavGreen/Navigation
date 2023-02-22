@@ -1,0 +1,90 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Vladislav Green on 2/21/23.
+  
+*/
+
+
+//  MapViewController:
+
+"MapVC-title" = "Find a Cat";
+"MapVC-cat" = "Cat";
+"MapVC-go" = "Make your routing from here!";
+"MapVC-newPin" = "New pin";
+
+
+// RecordingAudioViewController:
+
+"RecVC-helperText" = "Press Mic to start and stop recording. Then just press Play to listen to it.";
+"RecVC-micAccessAlert" = "Recording failed: please ensure the app has access to your microphone.";
+"RecVC-recFailedAlert" = "Record failed";
+"RecVC-recFailedMessage" = "There was a problem recording your whistle; please try again.";
+
+
+// FeedViewController:
+
+"FeedVC-guessTextPlaceholder" = " Password";
+"FeedVC-lightLabelText" = "Result";
+"FeedVC-firstButtonTitle" = "Clear All Users";
+"FeedVC-secondButtonTitle" = "Tatooine Statistics";
+"FeedVC-checkButtonTitle" = "Check Guess";
+
+
+// PostViewController:
+
+"PostVC-guessTextPlaceholder" = "Press the Flame button to see the Info page ↑";
+"PostVC-barButtonItem" = "Continue";
+"PostVC-title" = "Post";
+
+
+// InfoViewController:
+
+"InfoVC-button" = " A button from UI course ";
+"InfoVC-alert" = "It's time to choose!";
+"InfoVC-message" = "Left or right? Press the button:";
+"InfoVC-latinLabel" = "Some latin text";
+"InfoVC-orbitalLabel" = "Tatooine orbital period";
+
+
+// LoginViewController:
+
+"LoginVC-loginPlaceholder" = " Email or phone";
+"LoginVC-passwordPlaceholder" = " Password";
+"LoginVC-alert" = "Can't enter the profile";
+"LoginVC-message" = "Check your login or password";
+"LoginVC-button" = "LogIn";
+
+
+// ProfileTableHeaderView:
+
+"ProfileHV-status" = "waiting for something";
+"ProfileHV-statusPlaceholder" = " Type something here";
+"ProfileHV-statusTextNil" = "No text";
+"ProfileHV-statusButton" = "Show status";
+
+
+// PhotosTableViewCell:
+
+"ProfileTVC-label" = "Photos";
+
+
+// FavouritiesTableViewCell:
+
+"FavouritesTVC-status" = "Favourites";
+"FavouritesTVC-filterName" = "Filter by Author";
+"FavouritesTVC-reset" = "Reset Filter";
+
+
+// TextPicker:
+
+"TextPicker-alert" = "Enter the Author Name";
+"TextPicker-placeholder" = "Enter the name";
+"TextPicker-cancel" = "Cancel";
+
+
+// PostTableViewCell:
+        
+"PostTVC-views" = "Views: ";
+//"PostTVC-likes" = "Likes: ";

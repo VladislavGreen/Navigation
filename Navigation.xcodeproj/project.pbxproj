@@ -23,6 +23,8 @@
 		A438898929A36EE70077F4DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898829A36EE70077F4DC /* LocationManager.swift */; };
 		A438898B29A38E6F0077F4DC /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898A29A38E6F0077F4DC /* MapAnnotation.swift */; };
 		A438898D29A398FE0077F4DC /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898C29A398FE0077F4DC /* MapAnnotationView.swift */; };
+		A438899A29A4E7F00077F4DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A438899C29A4E7F00077F4DC /* Localizable.strings */; };
+		A438899F29A4E8AF0077F4DC /* LocalizationShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438899E29A4E8AF0077F4DC /* LocalizationShortcut.swift */; };
 		A43943B82902C89C0079EB64 /* User Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943B72902C89C0079EB64 /* User Service.swift */; };
 		A43943BA2902C8F40079EB64 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943B92902C8F40079EB64 /* CurrentUserService.swift */; };
 		A43943BD2902EB0B0079EB64 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43943BC2902EB0B0079EB64 /* CustomButton.swift */; };
@@ -34,6 +36,8 @@
 		A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EA28FB0ACF00649B83 /* LoginInspector.swift */; };
 		A46438ED28FB0F2500649B83 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */; };
 		A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A464C1E8291BE9C800B8C192 /* Errors.swift */; };
+		A469239329A606780036DC55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A469239529A606780036DC55 /* InfoPlist.strings */; };
+		A469239929A60A800036DC55 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A469239B29A60A800036DC55 /* Localizable.stringsdict */; };
 		A46DA9DD2934D89800E4885A /* InfoDataTatooine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */; };
 		A482E5972954AE7A00F5062B /* TextPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A482E5962954AE7A00F5062B /* TextPicker.swift */; };
 		A48A39E12948784E0055D881 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A48A39E02948784E0055D881 /* Realm */; };
@@ -120,6 +124,11 @@
 		A438898829A36EE70077F4DC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A438898A29A38E6F0077F4DC /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		A438898C29A398FE0077F4DC /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
+		A438898F29A4D8220077F4DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A438899029A4D8650077F4DC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A438899E29A4E8AF0077F4DC /* LocalizationShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationShortcut.swift; sourceTree = "<group>"; };
+		A43889A029A4ED100077F4DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A43889A129A4ED420077F4DC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A43943B72902C89C0079EB64 /* User Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Service.swift"; sourceTree = "<group>"; };
 		A43943B92902C8F40079EB64 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		A43943BC2902EB0B0079EB64 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -130,6 +139,10 @@
 		A46438EA28FB0ACF00649B83 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		A46438EC28FB0F2500649B83 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		A464C1E8291BE9C800B8C192 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		A469239429A606780036DC55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A469239629A6067C0036DC55 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A469239A29A60A800036DC55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		A469239C29A60A880036DC55 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A46DA9DC2934D89800E4885A /* InfoDataTatooine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDataTatooine.swift; sourceTree = "<group>"; };
 		A482E5962954AE7A00F5062B /* TextPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPicker.swift; sourceTree = "<group>"; };
 		A48A39E4294880000055D881 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -210,6 +223,7 @@
 		A4231B7E28B37A3E0026265D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				A438899329A4DEDB0077F4DC /* Localization */,
 				A438898329A36D480077F4DC /* Map */,
 				A4E4596A294CD6B6006AB997 /* CoreData */,
 				A48A39E82948801C0055D881 /* RealmModel */,
@@ -280,12 +294,23 @@
 		A438898329A36D480077F4DC /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				A438898829A36EE70077F4DC /* LocationManager.swift */,
 				A438898C29A398FE0077F4DC /* MapAnnotationView.swift */,
 				A438898A29A38E6F0077F4DC /* MapAnnotation.swift */,
 				A438898429A36D600077F4DC /* MapViewController.swift */,
-				A438898829A36EE70077F4DC /* LocationManager.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		A438899329A4DEDB0077F4DC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				A469239B29A60A800036DC55 /* Localizable.stringsdict */,
+				A438899C29A4E7F00077F4DC /* Localizable.strings */,
+				A438899E29A4E8AF0077F4DC /* LocalizationShortcut.swift */,
+				A469239529A606780036DC55 /* InfoPlist.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		A43943BB2902EAC60079EB64 /* SmartViews */ = {
@@ -502,6 +527,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A4231B7328B37A3E0026265D;
 			packageReferences = (
@@ -534,9 +560,12 @@
 				A4DA926F28EC8D18001A4C39 /* HomeTasks PromRazr 1-12.rtf in Resources */,
 				A438898729A36EB10077F4DC /* HomeTasks iosAdv.rtf in Resources */,
 				A4DC3DF428B79AD900ED8263 /* HomeTask 2.2.rtf in Resources */,
+				A469239329A606780036DC55 /* InfoPlist.strings in Resources */,
 				A4EABF39292124DD000EE517 /* TÆT Minus Five.mp3 in Resources */,
 				A4C0611D28DC8FCA006F9A87 /* HomeTask 2.6.rtf in Resources */,
+				A469239929A60A800036DC55 /* Localizable.stringsdict in Resources */,
 				A4EABF3C292124DD000EE517 /* TAET & EXAN Eastern Bells.mp3 in Resources */,
+				A438899A29A4E7F00077F4DC /* Localizable.strings in Resources */,
 				A4FE3B1428B4019B0079D788 /* HomeTask 1.3.rtf in Resources */,
 				A4EABF33291FDF2E000EE517 /* Queen.mp3 in Resources */,
 				A4DC3DF228B79A9900ED8263 /* HomeTask 2.1.rtf in Resources */,
@@ -593,6 +622,7 @@
 				A43943B82902C89C0079EB64 /* User Service.swift in Sources */,
 				A40C3CF328F8290000F1BACF /* TestUserService.swift in Sources */,
 				A46DA9DD2934D89800E4885A /* InfoDataTatooine.swift in Sources */,
+				A438899F29A4E8AF0077F4DC /* LocalizationShortcut.swift in Sources */,
 				A43943BF2906A51F0079EB64 /* FeedModel.swift in Sources */,
 				A48A39E7294880140055D881 /* RealmModel.swift in Sources */,
 				A4231B8028B37A3E0026265D /* AppDelegate.swift in Sources */,
@@ -626,8 +656,37 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4231B8B28B37A3F0026265D /* Base */,
+				A438898F29A4D8220077F4DC /* en */,
+				A438899029A4D8650077F4DC /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A438899C29A4E7F00077F4DC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A43889A029A4ED100077F4DC /* en */,
+				A43889A129A4ED420077F4DC /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A469239529A606780036DC55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A469239429A606780036DC55 /* en */,
+				A469239629A6067C0036DC55 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A469239B29A60A800036DC55 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A469239A29A60A800036DC55 /* en */,
+				A469239C29A60A880036DC55 /* ru */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -637,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -697,6 +757,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -758,10 +819,10 @@
 				DEVELOPMENT_TEAM = DRZ83U4BJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need to enable the Recorder";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For the best experience with the App please allow access to your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "To record sound please allow access to the microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -791,10 +852,10 @@
 				DEVELOPMENT_TEAM = DRZ83U4BJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для удобства работы с приложением, пожалуйста, разрешите использовать гео-локацию";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need to enable the Recorder";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For the best experience with the App please allow access to your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "To record sound please allow access to the microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

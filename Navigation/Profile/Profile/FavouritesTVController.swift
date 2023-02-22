@@ -11,6 +11,12 @@ import CoreData
 class FavouritesTVController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     
+    private enum LocalizedKeys: String {
+        case title = "FavouritesTVC-status" // "Favourites"
+        case filterName = "FavouritesTVC-filterName" // "Filter by Author"
+        case reset = "FavouritesTVC-reset" // "Reset Filter"
+    }
+    
     var fetchedResultsController: NSFetchedResultsController<PostCore>?
     
     
@@ -37,14 +43,14 @@ class FavouritesTVController: UITableViewController, NSFetchedResultsControllerD
     
     
     func setupNavigationBar() {
-        navigationItem.title = "Favourites"
+        navigationItem.title = ~LocalizedKeys.title.rawValue
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Filter by Author",
+            title: ~LocalizedKeys.filterName.rawValue,
             style: .plain,
             target: self,
             action: #selector(filterPostsByAuthor))
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Reset Filter",
+            title: ~LocalizedKeys.reset.rawValue,
             style: .plain,
             target: self,
             action: #selector(resetPostsFilter))
