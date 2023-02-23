@@ -50,7 +50,7 @@ class AudioViewController: UIViewController {
     private lazy var songName: UILabel = {
         let label = UILabel()
         label.text = "Song Name"
-        label.textColor = .gray
+        label.textColor = UIColor.createColor(lightMode: .gray, darkMode: .lightGray)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

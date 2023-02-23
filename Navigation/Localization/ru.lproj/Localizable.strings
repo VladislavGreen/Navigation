@@ -7,6 +7,12 @@
 */
 
 
+// General
+
+"Cancel" = "Отмена";
+"No data" = "No data";
+
+
 //  MapViewController:
 
 "MapVC-title" = "Найди кота";
@@ -72,18 +78,22 @@
 // FavouritiesTableViewCell:
 
 "FavouritesTVC-status" = "Избранное";
-"FavouritesTVC-filterName" = "Фильтр по авторам";
-"FavouritesTVC-reset" = "Сбросить фильтр";
+"FavouritesTVC-filterName" = "Фильтр";
+"FavouritesTVC-reset" = "Сбросить";
 
 
 // TextPicker:
 
 "TextPicker-alert" = "Введите имя автора";
 "TextPicker-placeholder" = "Введите имя";
-"TextPicker-cancel" = "Отмена";
 
 
 // PostTableViewCell:
         
 "PostTVC-views" = "Прсмотров: ";
 //"PostTVC-likes" = "Понравилось: ";
+
+
+// PhotosViewController
+
+"PhotosVС-title" = "Photo gallery";

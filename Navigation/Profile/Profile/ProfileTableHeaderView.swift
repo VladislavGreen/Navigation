@@ -10,13 +10,13 @@ import UIKit
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
     
-    private enum LocalizedKeys: String {
+//    private enum LocalizedKeys: String {
         // ~LocalizedKeys.helperText.rawValue
-        case status = "ProfileHV-status" // "waiting for something"
-        case statusPlaceholder = "ProfileHV-statusPlaceholder" // " Type something here"
-        case statusTextNil = "ProfileHV-statusTextNil" // "No text"
-        case statusButton = "ProfileHV-statusButton" // "Show status"
-    }
+//        case status = "ProfileHV-status" // "waiting for something"
+//        case statusPlaceholder = "ProfileHV-statusPlaceholder" // " Type something here"
+//        case statusTextNil = "ProfileHV-statusTextNil" // "No text"
+//        case statusButton = "ProfileHV-statusButton" // "Show status"
+//    }
     
     //    Аватарка
     
@@ -40,7 +40,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,11 +49,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     //  Текущий статус
     
-    private lazy var statusText: String = ~LocalizedKeys.status.rawValue
+    private lazy var statusText: String = "ProfileHV-status".localized
     
     private lazy var statusLabel: UILabel = {
         let status = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        status.textColor = .gray
+        status.textColor = UIColor.createColor(lightMode: .gray, darkMode: .lightGray)
         status.font = UIFont.boldSystemFont(ofSize: 14)
         status.translatesAutoresizingMaskIntoConstraints = false
         return status
@@ -66,12 +66,15 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         var textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 15)
-        textField.placeholder = ~LocalizedKeys.statusPlaceholder.rawValue
-        textField.textColor = .black
-        textField.backgroundColor = .white
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "ProfileHV-statusPlaceholder".localized,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.createColor(lightMode: .gray, darkMode: .lightGray)]
+        )
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        textField.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = UIColor.createColor(lightMode: .black, darkMode: .white).cgColor
         textField.clearsOnBeginEditing = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -82,13 +85,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private lazy  var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(~LocalizedKeys.statusButton.rawValue, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitle("ProfileHV-statusButton".localized, for: .normal)
+        button.setTitleColor(UIColor.createColor(lightMode: .white, darkMode: .white), for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
         button.layer.shadowOffset.width = 4
         button.layer.shadowOffset.height = 4
-        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowColor = UIColor.createColor(lightMode: .black, darkMode: .white).cgColor
         button.layer.shadowOpacity = 0.7
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -165,7 +168,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
        }
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text ?? ~LocalizedKeys.statusTextNil.rawValue
+        statusText = textField.text ?? "ProfileHV-statusTextNil".localized
     }
     
     @objc func buttonPressed() {

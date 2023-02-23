@@ -13,13 +13,13 @@ import KeychainSwift
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
-    private enum LocalizedKeys: String {
-        case loginPlaceholder = "LoginVC-loginPlaceholder" // " Email or phone"
-        case passwordPlaceholder = "LoginVC-passwordPlaceholder" // " Password"
-        case alert = "LoginVC-alert" // "Не удалось войти в профиль"
-        case message = "LoginVC-message" // "Проверьте логин и пароль"
-        case loginButton = "LoginVC-button" // LogIn
-    }
+//    private enum LocalizedKeys: String {
+//        case loginPlaceholder = "LoginVC-loginPlaceholder" // " Email or phone"
+//        case passwordPlaceholder = "LoginVC-passwordPlaceholder" // " Password"
+//        case alert = "LoginVC-alert" // "Не удалось войти в профиль"
+//        case message = "LoginVC-message" // "Проверьте логин и пароль"
+//        case loginButton = "LoginVC-button" // LogIn
+//    }
     
     lazy var realmManager = RealmManager()
     
@@ -56,6 +56,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,9 +65,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var stackViewTextFields: UIStackView = {
         let stackView = UIStackView()
+        stackView.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
+        stackView.layer.cornerRadius = 10
         stackView.axis = .vertical
-        stackView.layer.borderColor = UIColor.lightGray.cgColor
-        stackView.layer.borderWidth = 0.5
+        stackView.layer.borderColor = UIColor.createColor(lightMode: .lightGray, darkMode: .white).cgColor
+        stackView.layer.borderWidth = 0.7
         stackView.distribution = .equalCentering
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -75,12 +78,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .default
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         textField.font = .systemFont(ofSize: 16)
         textField.tintColor = UIColor(named: "Accent Color")
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         textField.autocapitalizationType = .none
-        textField.placeholder = ~LocalizedKeys.loginPlaceholder.rawValue
+        
+//        textField.placeholder = ~LocalizedKeys.loginPlaceholder.rawValue
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "LoginVC-loginPlaceholder".localized,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.createColor(lightMode: .gray, darkMode: .lightGray)]
+        )
+        
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +98,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .white)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -97,12 +106,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .default
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         textField.font = .systemFont(ofSize: 16)
         textField.tintColor = .gray
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         textField.autocapitalizationType = .none
-        textField.placeholder = ~LocalizedKeys.passwordPlaceholder.rawValue
+        
+//        textField.placeholder = ~LocalizedKeys.passwordPlaceholder.rawValue
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "LoginVC-passwordPlaceholder".localized,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.createColor(lightMode: .black, darkMode: .lightGray)]
+        )
+        
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
@@ -120,8 +135,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         button.setBackgroundImage(imageAlpha08, for: .selected)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.setTitle(~LocalizedKeys.loginButton.rawValue, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitle("LoginVC-button".localized, for: .normal)
+        button.setTitleColor(UIColor.createColor(lightMode: .white, darkMode: .white), for: .normal)
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -129,8 +144,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private let alertController = UIAlertController(
-        title: ~LocalizedKeys.alert.rawValue,
-        message: ~LocalizedKeys.message.rawValue,
+        title: "LoginVC-alert".localized,
+        message: "LoginVC-message".localized,
         preferredStyle: .alert
     )
     
@@ -167,7 +182,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func setupUI() {
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         setupGestures()
         setupAlertConfiguration()
 
@@ -185,7 +200,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         stackViewTextFields.addArrangedSubview(loginTextField)
         stackViewTextFields.addArrangedSubview(separatorView)
         stackViewTextFields.addArrangedSubview(passwordTextField)
-        stackViewTextFields.layer.cornerRadius = 10
         
         NSLayoutConstraint.activate([
             

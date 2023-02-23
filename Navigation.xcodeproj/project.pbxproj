@@ -16,6 +16,7 @@
 		A4231B8928B37A3F0026265D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4231B8828B37A3F0026265D /* Assets.xcassets */; };
 		A4231B8C28B37A3F0026265D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4231B8A28B37A3F0026265D /* LaunchScreen.storyboard */; };
 		A42A608E28FDADF500D7726E /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42A608D28FDADF500D7726E /* LoginFactory.swift */; };
+		A42EBAB229A76A75003D52E2 /* AdaptiveColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42EBAB129A76A75003D52E2 /* AdaptiveColorsExtension.swift */; };
 		A433FBBF292CBD5F00EA4045 /* HomeTasks "Data" .rtf in Resources */ = {isa = PBXBuildFile; fileRef = A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */; };
 		A433FBC1292CBEC600EA4045 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433FBC0292CBEC600EA4045 /* NetworkManager.swift */; };
 		A438898529A36D600077F4DC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438898429A36D600077F4DC /* MapViewController.swift */; };
@@ -117,6 +118,7 @@
 		A4231B8B28B37A3F0026265D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4231B8D28B37A3F0026265D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A42A608D28FDADF500D7726E /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		A42EBAB129A76A75003D52E2 /* AdaptiveColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveColorsExtension.swift; sourceTree = "<group>"; };
 		A433FBBE292CBD5F00EA4045 /* HomeTasks "Data" .rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "HomeTasks \"Data\" .rtf"; sourceTree = "<group>"; };
 		A433FBC0292CBEC600EA4045 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A438898429A36D600077F4DC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		A4231B7E28B37A3E0026265D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				A42EBAB329A76A7D003D52E2 /* LoghtDarkTheme */,
 				A438899329A4DEDB0077F4DC /* Localization */,
 				A438898329A36D480077F4DC /* Map */,
 				A4E4596A294CD6B6006AB997 /* CoreData */,
@@ -289,6 +292,14 @@
 				A40C0DC728B392910056EC7C /* FeedViewController.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		A42EBAB329A76A7D003D52E2 /* LoghtDarkTheme */ = {
+			isa = PBXGroup;
+			children = (
+				A42EBAB129A76A75003D52E2 /* AdaptiveColorsExtension.swift */,
+			);
+			path = LoghtDarkTheme;
 			sourceTree = "<group>";
 		};
 		A438898329A36D480077F4DC /* Map */ = {
@@ -596,6 +607,7 @@
 				A43943BD2902EB0B0079EB64 /* CustomButton.swift in Sources */,
 				A4EABF30291FDEDF000EE517 /* AudioViewController.swift in Sources */,
 				A4F27BBF28D8A180008AF8ED /* Photos.swift in Sources */,
+				A42EBAB229A76A75003D52E2 /* AdaptiveColorsExtension.swift in Sources */,
 				A4E9AC4B28C8D5B100436749 /* LoginViewController.swift in Sources */,
 				A464C1E9291BE9C800B8C192 /* Errors.swift in Sources */,
 				A46438EB28FB0ACF00649B83 /* LoginInspector.swift in Sources */,

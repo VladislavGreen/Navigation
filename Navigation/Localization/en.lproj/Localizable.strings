@@ -7,6 +7,12 @@
 */
 
 
+// General
+
+"Cancel" = "Cancel";
+"No data" = "No data";
+
+
 //  MapViewController:
 
 "MapVC-title" = "Find a Cat";
@@ -81,10 +87,14 @@
 
 "TextPicker-alert" = "Enter the Author Name";
 "TextPicker-placeholder" = "Enter the name";
-"TextPicker-cancel" = "Cancel";
 
 
 // PostTableViewCell:
         
 "PostTVC-views" = "Views: ";
 //"PostTVC-likes" = "Likes: ";
+
+
+// PhotosViewController
+
+"PhotosVС-title" = "Photo gallery";

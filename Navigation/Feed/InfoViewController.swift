@@ -10,33 +10,33 @@ import UIKit
 class InfoViewController: UIViewController {
     
     
-    private enum LocalizedKeys: String {
-        case button = "InfoVC-button" // " A button from UI course "
-        case alert = "InfoVC-alert" //  "It's time to choose!"
-        case message = "InfoVC-message" // "Left or right? Press the button:"
-        case latinLabel = "InfoVC-latinLabel" // "Some latin text"
-        case orbitalLabel = "InfoVC-orbitalLabel" // "Tatooine orbital period"
-    }
+//    private enum LocalizedKeys: String {
+////        case button = "InfoVC-button" // " A button from UI course "
+////        case alert = "InfoVC-alert" //  "It's time to choose!"
+////        case message = "InfoVC-message" // "Left or right? Press the button:"
+////        case latinLabel = "InfoVC-latinLabel" // "Some latin text"
+//        case orbitalLabel = "InfoVC-orbitalLabel" // "Tatooine orbital period"
+//    }
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle(~LocalizedKeys.button.rawValue, for: .normal)
+        button.setTitle("InfoVC-button".localized, for: .normal)
         button.layer.cornerRadius = 5
-        button.backgroundColor = .darkGray
+        button.backgroundColor = UIColor.createColor(lightMode: .darkGray, darkMode: .lightGray)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     let alertController = UIAlertController(
-        title: ~LocalizedKeys.alert.rawValue,
-        message: ~LocalizedKeys.message.rawValue,
+        title: "InfoVC-alert".localized,
+        message: "InfoVC-message".localized,
         preferredStyle: .alert
     )
     
     
     private lazy var latinLabel: UILabel = {
         let label = UILabel()
-        label.text = ~LocalizedKeys.latinLabel.rawValue
+        label.text = "InfoVC-latinLabel".localized
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,7 +44,7 @@ class InfoViewController: UIViewController {
     
     private lazy var orbitalLabel: UILabel = {
         let label = UILabel()
-        label.text = ~LocalizedKeys.orbitalLabel.rawValue
+        label.text = "InfoVC-orbitalLabel".localized
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -150,7 +150,7 @@ class InfoViewController: UIViewController {
                     do {
                         let tatooine = try JSONDecoder().decode(Tatooine.self, from: unwrappedData)
                         DispatchQueue.main.async {
-                            self.orbitalLabel.text = ~LocalizedKeys.orbitalLabel.rawValue + " = \(tatooine.orbitalPeriod)"
+                            self.orbitalLabel.text = "InfoVC-orbitalLabel".localized + " = \(tatooine.orbitalPeriod)"
                             self.startURLSessionDataTask3()
                             self.setupUI()
                         }

@@ -12,7 +12,7 @@ class FavouritesTVController: UITableViewController, NSFetchedResultsControllerD
     
     
     private enum LocalizedKeys: String {
-        case title = "FavouritesTVC-status" // "Favourites"
+//        case title = "FavouritesTVC-status" // "Favourites"
         case filterName = "FavouritesTVC-filterName" // "Filter by Author"
         case reset = "FavouritesTVC-reset" // "Reset Filter"
     }
@@ -43,14 +43,14 @@ class FavouritesTVController: UITableViewController, NSFetchedResultsControllerD
     
     
     func setupNavigationBar() {
-        navigationItem.title = ~LocalizedKeys.title.rawValue
+        navigationItem.title = "FavouritesTVC-status".localized
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: ~LocalizedKeys.filterName.rawValue,
+            title: "FavouritesTVC-filterName".localized,
             style: .plain,
             target: self,
             action: #selector(filterPostsByAuthor))
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: ~LocalizedKeys.reset.rawValue,
+            title: "FavouritesTVC-reset".localized,
             style: .plain,
             target: self,
             action: #selector(resetPostsFilter))
@@ -112,9 +112,9 @@ class FavouritesTVController: UITableViewController, NSFetchedResultsControllerD
             
         let viewModel = PostTableViewCell.ViewModel(
             id: post!.postID,
-            author: post?.postAuthor ?? "no data",
+            author: post?.postAuthor ?? "No data".localized,
             image: image,
-            description: post?.postDescription ?? "no data",
+            description: post?.postDescription ?? "No data".localized,
             views: Int(post!.postViews),
             likes: Int(post!.postLikes)
         )

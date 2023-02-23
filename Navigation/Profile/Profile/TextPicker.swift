@@ -11,21 +11,21 @@ class TextPicker {
     
     static let defaultPicker = TextPicker()
     
-    private enum LocalizedKeys: String {
-        case alert = "TextPicker-alert" // "Enter the Author Name"
-        case placeholder = "TextPicker-placeholder" // "Enter the name"
-        case cancel = "TextPicker-cancel" // "Cancel"
-    }
+//    private enum LocalizedKeys: String {
+//        case alert = "TextPicker-alert" // "Enter the Author Name"
+//        case placeholder = "TextPicker-placeholder" // "Enter the name"
+//        case cancel = "Cancel" // "Cancel"
+//    }
     
     func showPicker(in viewController: UIViewController, completion: @escaping (_ text: String) -> Void) {
         
         let alertController = UIAlertController(
-            title: ~LocalizedKeys.alert.rawValue,
+            title: "TextPicker-alert".localized,
             message: nil,
             preferredStyle: .alert)
         
         alertController.addTextField { textField in
-            textField.placeholder = ~LocalizedKeys.placeholder.rawValue
+            textField.placeholder = "TextPicker-placeholder".localized
         }
         
         let actionOK = UIAlertAction(title: "OK", style: .default) {
@@ -35,7 +35,7 @@ class TextPicker {
             }
         }
         
-        let actionCancel = UIAlertAction(title: ~LocalizedKeys.cancel.rawValue, style: .cancel)
+        let actionCancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
         alertController.addAction(actionOK)
         alertController.addAction(actionCancel)

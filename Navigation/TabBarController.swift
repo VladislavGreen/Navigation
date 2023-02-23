@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
 //        feedViewController.tabBarItem = item1
 //        loginViewController.tabBarItem = item2
         
-        UITabBar.appearance().backgroundColor = .white
+//        UITabBar.appearance().backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
     }
     
 }

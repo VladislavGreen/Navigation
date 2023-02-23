@@ -11,9 +11,9 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
     
     
-    private enum LocalizedKeys: String {
-        case title = "PhotosVС-alert" // "Photo gallery"
-    }
+//    private enum LocalizedKeys: String {
+//        case title = "PhotosVС-title" // "Photo gallery"
+//    }
     
     private enum Constants {
         static let numberOfItemsInLine: CGFloat = 3
@@ -50,8 +50,8 @@ class PhotosViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationItem.title = ~LocalizedKeys.title.rawValue
+//        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationItem.title = "PhotosVС-title".localized
 
     }
 
