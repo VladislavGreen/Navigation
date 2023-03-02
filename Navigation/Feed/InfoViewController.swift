@@ -165,8 +165,13 @@ class InfoViewController: UIViewController {
     
     private func startURLSessionDataTask3() {
         
+        let sessionConfiguration = URLSessionConfiguration.default
+        let urlSession = URLSession(configuration: sessionConfiguration)
+        
         if let url = URL(string: "https://swapi.dev/api/planets/1") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            let networkManager = NetworkManager(session: urlSession)
+            let data = networkManager.get(url: url) { data, error in
                 if let unwrappedData = data {
                     do {
                         let tatooine = try JSONDecoder().decode(Tatooine.self, from: unwrappedData)
@@ -197,7 +202,43 @@ class InfoViewController: UIViewController {
                     }
                 }
             }
-            task.resume()
+            
+            
+            
+            
+//            
+//            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//                if let unwrappedData = data {
+//                    do {
+//                        let tatooine = try JSONDecoder().decode(Tatooine.self, from: unwrappedData)
+//                        let residents = tatooine.residents
+//                        
+//                        residents.forEach {
+//                            if let url = URL(string: $0) {
+//                                let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//                                    if let unwrappedData = data {
+//                                        do {
+//                                            let residentName = try JSONDecoder().decode(TatooineResidentName.self, from: unwrappedData)
+//                                            let name = residentName.name
+//                                            self.tatooineResidentNames.append(name)
+//                                            DispatchQueue.main.async {
+//                                                
+//                                                self.tableView.reloadData()
+//                                            }
+//                                        } catch let error {
+//                                            print(error)
+//                                        }
+//                                    }
+//                                }
+//                                task.resume()
+//                            }
+//                        }
+//                    } catch let error {
+//                        print(error)
+//                    }
+//                }
+//            }
+//            task.resume()
         }
     }
     

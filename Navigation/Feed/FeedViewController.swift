@@ -10,13 +10,13 @@ import UIKit
 class FeedViewController: UIViewController {
     
     
-    private enum LocalizedKeys: String {
-        case guessTextPlaceholder = "FeedVC-guessTextPlaceholder"   // _Password
-        case lightLabelText = "FeedVC-lightLabelText"               //  Result
-        case firstButtonTitle = "FeedVC-firstButtonTitle"           // "Clear All Users"
-        case secondButtonTitle = "FeedVC-secondButtonTitle"         //"Tatooine Statistics"
-        case checkButtonTitle = "FeedVC-checkButtonTitle"           //"Check Guess"
-    }
+//    private enum LocalizedKeys: String {
+//        case guessTextPlaceholder = "FeedVC-guessTextPlaceholder"   // _Password
+//        case lightLabelText = "FeedVC-lightLabelText"               //  Result
+//        case firstButtonTitle = "FeedVC-firstButtonTitle"           // "Clear All Users"
+//        case secondButtonTitle = "FeedVC-secondButtonTitle"         //"Tatooine Statistics"
+//        case checkButtonTitle = "FeedVC-checkButtonTitle"           //"Check Guess"
+//    }
     
     private let buttonsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -35,7 +35,7 @@ class FeedViewController: UIViewController {
         textField.tintColor = .gray
         textField.backgroundColor = .white
         textField.autocapitalizationType = .none
-        textField.placeholder = ~LocalizedKeys.guessTextPlaceholder.rawValue
+        textField.placeholder = "FeedVC-guessTextPlaceholder".localized
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
 //        textField.delegate = self
@@ -45,7 +45,7 @@ class FeedViewController: UIViewController {
     
     private lazy var lightLabel: UILabel = {
         let label = UILabel()
-        label.text = ~LocalizedKeys.lightLabelText.rawValue
+        label.text = "FeedVC-lightLabelText".localized
         label.textColor = label.backgroundColor
         label.clipsToBounds = true
         label.backgroundColor = .gray
@@ -59,7 +59,7 @@ class FeedViewController: UIViewController {
         
         let firstButton = CustomButton()
         firstButton.backgroundColor = .systemGreen
-        firstButton.setTitle(~LocalizedKeys.firstButtonTitle.rawValue, for: .normal)
+        firstButton.setTitle("FeedVC-firstButtonTitle" .localized, for: .normal)
         firstButton.buttonAction = {
             let realmManager = RealmManager()
             realmManager.clearUsersRealm()
@@ -70,7 +70,7 @@ class FeedViewController: UIViewController {
         
         let secondButton = CustomButton()
         secondButton.backgroundColor = .systemYellow
-        secondButton.setTitle(~LocalizedKeys.secondButtonTitle.rawValue, for: .normal)
+        secondButton.setTitle("FeedVC-secondButtonTitle", for: .normal)
         secondButton.buttonAction = { [unowned self] in
             let vc = PostViewController()
             self.navigationController?.pushViewController(vc, animated: true)
@@ -78,7 +78,7 @@ class FeedViewController: UIViewController {
         
         let checkGuessButton = CustomButton()
         checkGuessButton.backgroundColor = .systemBlue
-        checkGuessButton.setTitle(~LocalizedKeys.checkButtonTitle.rawValue, for: .normal)
+        checkGuessButton.setTitle("FeedVC-checkButtonTitle".localized, for: .normal)
         checkGuessButton.buttonAction = { [unowned self] in
             let feedModel = FeedModel()
             let passwordTried = getPasswordTextFieldValue()
