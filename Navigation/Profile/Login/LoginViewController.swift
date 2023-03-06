@@ -13,13 +13,7 @@ import KeychainSwift
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
-//    private enum LocalizedKeys: String {
-//        case loginPlaceholder = "LoginVC-loginPlaceholder" // " Email or phone"
-//        case passwordPlaceholder = "LoginVC-passwordPlaceholder" // " Password"
-//        case alert = "LoginVC-alert" // "Не удалось войти в профиль"
-//        case message = "LoginVC-message" // "Проверьте логин и пароль"
-//        case loginButton = "LoginVC-button" // LogIn
-//    }
+    private let localAuthorizationService = LocalAuthorizationService()
     
     lazy var realmManager = RealmManager()
     
@@ -38,7 +32,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let realm = try! Realm(configuration: config)
         return realm
     }
-    
     
     private lazy var logoImageView: UIImageView = {
         let picView = UIImageView()
@@ -83,13 +76,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.tintColor = UIColor(named: "Accent Color")
         textField.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         textField.autocapitalizationType = .none
-        
-//        textField.placeholder = ~LocalizedKeys.loginPlaceholder.rawValue
         textField.attributedPlaceholder = NSAttributedString(
             string: "LoginVC-loginPlaceholder".localized,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.createColor(lightMode: .gray, darkMode: .lightGray)]
         )
-        
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -111,13 +101,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.tintColor = .gray
         textField.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         textField.autocapitalizationType = .none
-        
-//        textField.placeholder = ~LocalizedKeys.passwordPlaceholder.rawValue
         textField.attributedPlaceholder = NSAttributedString(
             string: "LoginVC-passwordPlaceholder".localized,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.createColor(lightMode: .black, darkMode: .lightGray)]
         )
-        
         textField.isSecureTextEntry = true
         textField.clearButtonMode = .whileEditing
         textField.delegate = self
@@ -143,6 +130,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    private lazy var biometricButton: UIButton = {
+        let button = UIButton()
+        let imageAlpha1 = UIImage(named: "blue_pixel")as UIImage?
+        let imageAlpha08 = UIImage(named: "blue_pixel")!.alpha(0.8)
+        button.setBackgroundImage(imageAlpha1, for: .normal)
+        button.setBackgroundImage(imageAlpha08, for: .disabled)
+        button.setBackgroundImage(imageAlpha08, for: .highlighted)
+        button.setBackgroundImage(imageAlpha08, for: .selected)
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.setTitle("LoginVC: use biometry".localized, for: .normal)
+        button.setTitleColor(UIColor.createColor(lightMode: .white, darkMode: .white), for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.addTarget(self, action: #selector(biometricButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private let alertController = UIAlertController(
         title: "LoginVC-alert".localized,
         message: "LoginVC-message".localized,
@@ -151,10 +156,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBiometricButtonImage()
         checkUserRealm()
         setupUI()
+        
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self,
@@ -167,7 +174,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                                object: nil)
     }
     
-    func checkUserRealm() {
+    
+    private func setBiometricButtonImage() {
+        
+        localAuthorizationService.canEvaluate { (_, BiometricType, _) in
+            var image = UIImage()
+            
+            switch BiometricType {
+            case .touchID:
+                image = (UIImage(systemName: "touchid")?.withTintColor(.white, renderingMode: .alwaysOriginal))!
+            case .faceID:
+                image = (UIImage(systemName: "faceid")?.withTintColor(.white, renderingMode: .alwaysOriginal))!
+            case .none, .unknown:
+                image = (UIImage(systemName: "circle")?.withTintColor(.white, renderingMode: .alwaysOriginal))!
+                biometricButton.backgroundColor = .gray
+            }
+            
+            DispatchQueue.main.async {
+                self.biometricButton.setImage(image, for: .normal)
+            }
+            
+            biometricAuth()
+        }
+    }
+    
+    
+    private func checkUserRealm() {
         
         realmManager.loadUserRealm(realm: realm())
         
@@ -180,7 +212,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func setupUI() {
+    private func setupUI() {
         
         view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         setupGestures()
@@ -196,6 +228,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         stackView.addArrangedSubview(stackViewTextFields)
         stackView.addArrangedSubview(button)
+        stackView.addArrangedSubview(biometricButton)
         
         stackViewTextFields.addArrangedSubview(loginTextField)
         stackViewTextFields.addArrangedSubview(separatorView)
@@ -217,12 +250,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 380),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            stackView.heightAnchor.constraint(equalToConstant: 166.5),
+            stackView.heightAnchor.constraint(equalToConstant: 216.5),
             
             loginTextField.heightAnchor.constraint(equalToConstant: 50),
             separatorView.heightAnchor.constraint(equalToConstant: 0.5),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             button.heightAnchor.constraint(equalToConstant: 50),
+            button.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
+            biometricButton.heightAnchor.constraint(equalToConstant: 50)
 
         ])
     }
@@ -277,6 +312,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         logIn()
     }
     
+    @objc
+    private func biometricButtonPressed() {
+        self.biometricAuth()
+    }
+    
+    func biometricAuth() {
+        localAuthorizationService.authorizeIfPossible { authorizationFinished, errorString  in
+            guard authorizationFinished else {
+                self.biometricAlert(
+                    title: "Error",
+                    message: errorString ?? "Face ID/Touch ID may not be configured",
+                    okActionTitle: "Ok")
+                return
+            }
+            self.logIn()
+        }
+    }
+    
     func logIn() {
         
         #if DEBUG
@@ -290,6 +343,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let viewController = ProfileViewController()
         viewController.user = user
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func biometricAlert(
+        title: String,
+        message: String,
+        okActionTitle: String
+    ) {
+        let alertView = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: okActionTitle,
+            style: .default
+        )
+        alertView.addAction(okAction)
+        present(
+            alertView,
+            animated: true
+        )
     }
 }
 

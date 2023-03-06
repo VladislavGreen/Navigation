@@ -17,3 +17,8 @@
 // Microphone:
 
 "NSMicrophoneUsageDescription" = "Что-бы записывать звук, пожалуйста, разрешите доступ к микрофону";
+
+
+// FaceID
+
+"NSFaceIDUsageDescription" = "Пожалуйста, используйте FaceID для лучшей защиты Ваших данных";

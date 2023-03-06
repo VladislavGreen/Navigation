@@ -60,6 +60,7 @@
 "LoginVC-alert" = "Не удалось войти в профиль";
 "LoginVC-message" = "Проверьте логин и пароль";
 "LoginVC-button" = "Войти";
+"LoginVC: use biometry" = " использовать биометрию";
 
 
 // ProfileTableHeaderView:

@@ -17,3 +17,8 @@
 // Microphone:
 
 "NSMicrophoneUsageDescription" = "To record sound please allow access to the microphone";
+
+
+// FaceID
+
+"NSFaceIDUsageDescription" = "Please use biometric authentification to keep your data safe";

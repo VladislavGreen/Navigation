@@ -18,6 +18,7 @@
 		A41B207729B0A06B008FBD05 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B207629B0A06B008FBD05 /* NetworkManagerTests.swift */; };
 		A41B207829B0B68B008FBD05 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A433FBC0292CBEC600EA4045 /* NetworkManager.swift */; };
 		A41B207B29B0C5F8008FBD05 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B207A29B0C5F8008FBD05 /* URLs.swift */; };
+		A41B207F29B22584008FBD05 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B207C29B22559008FBD05 /* LocalAuthorizationService.swift */; };
 		A4231B8028B37A3E0026265D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4231B7F28B37A3E0026265D /* AppDelegate.swift */; };
 		A4231B8228B37A3E0026265D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4231B8128B37A3E0026265D /* SceneDelegate.swift */; };
 		A4231B8928B37A3F0026265D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4231B8828B37A3F0026265D /* Assets.xcassets */; };
@@ -130,6 +131,7 @@
 		A41B207029AFC286008FBD05 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		A41B207629B0A06B008FBD05 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		A41B207A29B0C5F8008FBD05 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		A41B207C29B22559008FBD05 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		A4231B7C28B37A3E0026265D /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4231B7F28B37A3E0026265D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4231B8128B37A3E0026265D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				A4231B8A28B37A3F0026265D /* LaunchScreen.storyboard */,
 				A4231B8D28B37A3F0026265D /* Info.plist */,
 				A489046029AE27FA00280F1F /* NavigationUnitTests */,
+				A41B207C29B22559008FBD05 /* LocalAuthorizationService.swift */,
 				A4AD685528F551DC007A9AF4 /* Texts */,
 			);
 			path = Navigation;
@@ -356,9 +359,9 @@
 		A438899329A4DEDB0077F4DC /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				A438899E29A4E8AF0077F4DC /* LocalizationShortcut.swift */,
 				A469239B29A60A800036DC55 /* Localizable.stringsdict */,
 				A438899C29A4E7F00077F4DC /* Localizable.strings */,
-				A438899E29A4E8AF0077F4DC /* LocalizationShortcut.swift */,
 				A469239529A606780036DC55 /* InfoPlist.strings */,
 			);
 			path = Localization;
@@ -704,6 +707,7 @@
 				A438898529A36D600077F4DC /* MapViewController.swift in Sources */,
 				A4B2644C2922A93B006521FA /* RecordingAudioViewController.swift in Sources */,
 				A433FBC1292CBEC600EA4045 /* NetworkManager.swift in Sources */,
+				A41B207F29B22584008FBD05 /* LocalAuthorizationService.swift in Sources */,
 				A4AD685828F5ABA4007A9AF4 /* User.swift in Sources */,
 				A482E5972954AE7A00F5062B /* TextPicker.swift in Sources */,
 				A4F27BBD28D88D23008AF8ED /* PhotosTableViewCell.swift in Sources */,
@@ -933,6 +937,7 @@
 				DEVELOPMENT_TEAM = DRZ83U4BJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please enable biometric authentification to keep your data safe";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For the best experience with the App please allow access to your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
@@ -966,6 +971,7 @@
 				DEVELOPMENT_TEAM = DRZ83U4BJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please enable biometric authentification to keep your data safe";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For the best experience with the App please allow access to your location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For the best experience with the App please allow access to your location";
